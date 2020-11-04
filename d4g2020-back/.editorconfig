@@ -1,0 +1,31 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# See https://editorconfig.org
+root = true
+
+[*]
+# Use 4 spaces for indentation
+indent_style = space
+indent_size = 4
+# Establish some standards
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{package,bower}.json]
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{htm,html}]
+indent_size = 2
+
+# Don't automatically add new lines at the end of partials/shortcodes
+# They can mess with the HTML output in some circonstances
+[site/layouts/{shortcodes,partials}/**.html]
+insert_final_newline = false
+
+[*.md]
+trim_trailing_whitespace = false
