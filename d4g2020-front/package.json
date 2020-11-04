@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "The proposition of the CGreenIdea team to the D4G 2020 challenge",
   "scripts": {
+    "start": "npm run start:rollup",
     "start:rollup": "npm run build:rollup -- -w",
+    "prebuild": "rimraf dist tmp",
+    "build": "npm run build:rollup",
     "build:rollup": "rollup -c"
   },
   "author": "CGreenIdea",
@@ -13,6 +16,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@babel/preset-env": "7.12.1",
     "@rollup/plugin-babel": "5.2.1",
+    "rimraf": "3.0.2",
     "rollup": "2.33.1",
     "rollup-plugin-terser": "7.0.2"
   }
