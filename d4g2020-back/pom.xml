@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cgi</groupId>
+  <artifactId>d4g2020-back</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <!--  ___                       _   _         -->
+  <!-- | _ \_ _ ___ _ __  ___ _ _| |_(_)___ ___ -->
+  <!-- |  _/ '_/ _ \ '_ \/ -_) '_|  _| / -_|_-< -->
+  <!-- |_| |_| \___/ .__/\___|_|  \__|_\___/__/ -->
+  <properties>
+    <!-- Build properties -->
+    <java.version>11</java.version>
+    <maven.compiler.parameters>true</maven.compiler.parameters>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- Quarkus settings -->
+    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
+    <quarkus.platform.version>1.9.1.Final</quarkus.platform.version>
+
+    <!-- Dependencies versions -->
+
+    <!-- Plugin versions -->
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
+    <surefire-plugin.version>2.22.1</surefire-plugin.version>
+    <quarkus-plugin.version>1.9.1.Final</quarkus-plugin.version>
+  </properties>
+
+
+  <!--  ___                        _             _         -->
+  <!-- |   \ ___ _ __  ___ _ _  __| |___ _ _  __(_)___ ___ -->
+  <!-- | |) / -_) '_ \/ -_) ' \/ _` / -_) ' \/ _| / -_|_-< -->
+  <!-- |___/\___| .__/\___|_||_\__,_\___|_||_\__|_\___/__/ -->
+  <!--          |_|                                        -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>${quarkus.platform.group-id}</groupId>
+        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-micrometer</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-arc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!--  ___      _ _    _  -->
+  <!-- | _ )_  _(_) |__| | -->
+  <!-- | _ \ || | | / _` | -->
+  <!-- |___/\_,_|_|_\__,_| -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${quarkus-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+              <goal>generate-code</goal>
+              <goal>generate-code-tests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+            <maven.home>${maven.home}</maven.home>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!--  _  _      _   _                         __ _ _      -->
+  <!-- | \| |__ _| |_(_)_ _____   _ __ _ _ ___ / _(_) |___  -->
+  <!-- | .` / _` |  _| \ V / -_) | '_ \ '_/ _ \  _| | / -_) -->
+  <!-- |_|\_\__,_|\__|_|\_/\___| | .__/_| \___/_| |_|_\___| -->
+  <!--                           |_|                        -->
+  <profiles>
+    <profile>
+      <id>native</id>
+      <activation>
+        <property>
+          <name>native</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>${surefire-plugin.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+                <configuration>
+                  <systemPropertyVariables>
+                    <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                    <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                    <maven.home>${maven.home}</maven.home>
+                  </systemPropertyVariables>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <quarkus.package.type>native</quarkus.package.type>
+      </properties>
+    </profile>
+  </profiles>
+</project>
