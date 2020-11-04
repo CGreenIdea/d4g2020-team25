@@ -40,6 +40,11 @@ variables:
   ## `installAtEnd` and `deployAtEnd` are only effective with recent version of the corresponding plugins.
   ##
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true -U"
+  ##
+  ## Node version
+  ##
+  NODE_VERSION: 14.15.0
+
 
 ##
 ## Customize variables for CI templates
@@ -56,6 +61,7 @@ cache:
     ##
     - .m2/repository-maven
     - .m2/repository-native
+    - d4g2020-front/node_modules
 
 
 ##
@@ -66,15 +72,23 @@ cache:
   variables:
     MAVEN_REPO_REL_PATH: ".m2/repository-maven"
 
+.node: &node
+  image: node:${NODE_VERSION}-stretch
+  before_script:
+    ##
+    ## Move current directory to front part
+    ##
+    - cd d4g2020-front
+    ##
+    ## Install node dependencies
+    ##
+    - npm ci
+
+
 ##
-## Build job
+## Build jobs
 ##
-## Validate and compile stuff and run e.g. maven-enforcer-plugin.
-## Because some enforcer rules might check dependency convergence and class duplications
-## we use `test-compile` here instead of `validate` so the correct classpath is picked up.
-## It also ensures all sources compile correctly.
-##
-build:
+build:back:
   stage: build
   <<: *maven
   script:
@@ -84,6 +98,20 @@ build:
       - 'target/*-runner.jar'
       - 'target/lib/*'
     expire_in: 20 mins
+
+build:front:
+  stage: build
+  <<: *node
+  script:
+    ##
+    ## Build project
+    ##
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 20mins
+
 
 ##
 ## Run unit and integration tests, then perform a Sonar analysis.
@@ -95,7 +123,7 @@ build:
 ## have the Sonarcloud token. As a consequence, a job for native tests is performed to make sure
 ## tests still pass.
 ##
-test:
+test:back:
   stage: test
   <<: *maven
   script:
