@@ -11,9 +11,10 @@ export default {
     input: 'src/js/index.js',
 
     output: {
-        name: 'ifn',
-        dir: 'dist/js',
-        entryFileNames: '[name].[hash].js',
+        //name: 'ifn',
+        dir: 'dist',
+        //entryFileNames: 'ifn.[hash].js',
+        entryFileNames: 'ifn.js',
         // immediately-invoked function expression — suitable for <script> tags
         format: 'iife'
     },
