@@ -19,9 +19,6 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 
-[*.{htm,html}]
-indent_size = 2
-
 # Don't automatically add new lines at the end of partials/shortcodes
 # They can mess with the HTML output in some circonstances
 [site/layouts/{shortcodes,partials}/**.html]
