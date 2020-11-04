@@ -7,6 +7,7 @@
     "start": "run-p start:**",
     "start:html": "onchange -i 'src/html/**/*' -- cp -pr src/html/* dist/",
     "start:rollup": "npm run build:rollup -- -w",
+    "start:server": "serve dist",
     "start:styles": "onchange -i 'src/css/**/*' -- npm run build:styles",
     "prebuild": "npm run clean",
     "build": "run-p build:**",
@@ -27,6 +28,7 @@
     "onchange": "7.1.0",
     "rimraf": "3.0.2",
     "rollup": "2.33.1",
-    "rollup-plugin-terser": "7.0.2"
+    "rollup-plugin-terser": "7.0.2",
+    "serve": "11.3.2"
   }
 }
