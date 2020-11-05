@@ -2,6 +2,7 @@ package com.cgi.d4g.business;
 /*
  * class to manage the business of scoring.
  */
+
 import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
 import com.cgi.d4g.dao.*;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Scroring {
+public class Scoring {
 
     /**
      * The department DAO.
@@ -41,12 +42,13 @@ public class Scroring {
 
     /**
      * Constructor
-     * @param regionDAO the region DAO
+     *
+     * @param regionDAO     the region DAO
      * @param departmentDAO the department DAO
      */
-    public Scroring(RegionDAO regionDAO, DepartmentDAO departmentDAO,
-                    CityDigitalScoringDAO cityDigitalScoringDAO, DepartmentDigitalScoringDAO departmentDigitalScoringDAO,
-                    ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO) {
+    public Scoring(RegionDAO regionDAO, DepartmentDAO departmentDAO,
+                   CityDigitalScoringDAO cityDigitalScoringDAO, DepartmentDigitalScoringDAO departmentDigitalScoringDAO,
+                   ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO) {
         this.regionDAO = regionDAO;
         this.departmentDAO = departmentDAO;
         this.cityDigitalScoringDAO = cityDigitalScoringDAO;
@@ -56,6 +58,7 @@ public class Scroring {
 
     /**
      * Compute the scoring for a city
+     *
      * @param city the city where the scoring is requested.
      */
     public ScoringResultModel getOrRetriveScorring(City city) {
@@ -74,6 +77,7 @@ public class Scroring {
 
     /**
      * Retrieve the city scoring for the city
+     *
      * @param city the city to get the scoring
      * @return the scoring
      */
@@ -83,6 +87,7 @@ public class Scroring {
 
     /**
      * Retrieve the city scoring for the city
+     *
      * @param city the city to get the scoring
      * @return the scoring
      */
@@ -104,10 +109,13 @@ public class Scroring {
         List<ImpBaseCcFilosofi> filosofiList = new ArrayList<>();
 
         CityDigitalScoring scoring = new CityDigitalScoring(); // TODO complete
+        CityDigitalScoring threshold = new CityDigitalScoring(); // TODO complete
 
         //par taux
         //calculate or get threshold
         //calculate coeff
+        CityDigitalScoring coef = calculatingCoefficient(scoring, threshold);
+
         //calculate point
         //calculate score
 
@@ -118,8 +126,15 @@ public class Scroring {
         return null;
     }
 
+    private CityDigitalScoring calculatingCoefficient(CityDigitalScoring scoring, CityDigitalScoring threshold) {
+        CityDigitalScoring scoringCoef = new CityDigitalScoring();
+
+        return scoringCoef;
+    }
+
     /**
      * Retrieve the department scoring for the department
+     *
      * @param department the department
      * @return the scoring of the department
      */
@@ -129,6 +144,7 @@ public class Scroring {
 
     /**
      * Retrieve the department scoring for the department
+     *
      * @param department the department
      * @return the scoring of the department
      */
@@ -139,6 +155,7 @@ public class Scroring {
 
     /**
      * Retrieve the region of the city
+     *
      * @param department the department of the region to search
      * @return the department of the city
      */
@@ -148,6 +165,7 @@ public class Scroring {
 
     /**
      * Retrieve the department of the city
+     *
      * @param city the city of the department to search
      * @return the department of the city
      */
@@ -157,6 +175,7 @@ public class Scroring {
 
     /**
      * Generate the default value for region
+     *
      * @return the region scoring values
      */
     private RegionDigitalScoringModel generateRegionDigitalScoring() {
