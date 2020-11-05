@@ -188,14 +188,24 @@ deploy:
 
   script:
     ##
-    ## Gzip all files to allow serving compressed files without on-the-go zipping
+    ## Deploy front
     ##
+    ### Gzip all files to allow serving compressed files without on-the-go zipping
     - find d4g2020-front/dist \( -name '*.css' -o -name '*.js' -o -name '*.html' -o -name '*.xml' -o -name '*.svg' \) -exec gzip --verbose --keep {} \;
+    ### Rsync if not already installed, and sync files with remote
+    - rsync -vrzt --del --stats d4g2020-front/dist/ $SSH_USER@$SSH_HOST:~/d4g-front/
 
     ##
-    ## Rsync if not already installed, and sync files with remote
+    ## Deploy back
     ##
-    - rsync -vrzt --del --stats d4g2020-front/dist/ $SSH_USER@$SSH_HOST:~/deploy-d4g/
+    ### Stop running app
+    - ssh $SSH_USER@$SSH_HOST "~/d4g-back/begin-deploy.sh"
+    ### Sync libs in case they were updated
+    - rsync -vrzt --del --stats d4g2020-back/target/lib/ $SSH_USER@$SSH_HOST:~/d4g-front/lib/
+    ### Deploy new executable
+    - scp d4g202back/target/d4g202-back-*-runner.jar $SSH_USER@$SSH_HOST:~/d4g-front/executable.jar
+    ### Restart app
+    - ssh $SSH_USER@$SSH_HOST "~/d4g-back/begin-deploy.sh"
 
   ##
   ## Only deploy builds from master
