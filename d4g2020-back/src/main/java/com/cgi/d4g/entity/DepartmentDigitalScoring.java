@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DEPARTEMENT_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
-public class DepartementDigitalScoring {
+@Table(name = "DEPARTMENT_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
+public class DepartmentDigitalScoring {
     private int cddId;
     private Integer cddLegalPopulation;
     private BigDecimal cddNetworkRateCoverage;
@@ -181,7 +181,7 @@ public class DepartementDigitalScoring {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DepartementDigitalScoring that = (DepartementDigitalScoring) o;
+        DepartmentDigitalScoring that = (DepartmentDigitalScoring) o;
         return cddId == that.cddId &&
             cddDepartementId == that.cddDepartementId &&
             Objects.equals(cddLegalPopulation, that.cddLegalPopulation) &&

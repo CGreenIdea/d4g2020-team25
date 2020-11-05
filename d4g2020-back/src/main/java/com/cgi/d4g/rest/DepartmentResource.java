@@ -2,7 +2,6 @@ package com.cgi.d4g.rest;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -10,9 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.cgi.d4g.dao.CityDAO;
-import com.cgi.d4g.dao.DepartementDAO;
+import com.cgi.d4g.dao.DepartmentDAO;
 import com.cgi.d4g.entity.City;
-import com.cgi.d4g.entity.Departement;
+import com.cgi.d4g.entity.Department;
 
 /**
  * Department rest WS
@@ -21,19 +20,19 @@ import com.cgi.d4g.entity.Departement;
  */
 @Path("/rest/department")
 @Produces(MediaType.APPLICATION_JSON)
-public class DepartementResource {
+public class DepartmentResource {
 	
 	/**
 	 * Constructor
 	 * @param departementDAO the department DAO 
 	 * @param cityDao the city Dao
 	 */
-	public DepartementResource(DepartementDAO departementDAO, CityDAO cityDao) {
+	public DepartmentResource(DepartmentDAO departementDAO, CityDAO cityDao) {
 		this.departementDAO=departementDAO;
 		this.cityDao=cityDao;
 	}
 	
-	private final DepartementDAO departementDAO;
+	private final DepartmentDAO departementDAO;
 	
 	private final CityDAO cityDao;
 	
@@ -42,7 +41,7 @@ public class DepartementResource {
 	 * @return list of department
 	 */
     @GET
-    public List<Departement> list() {
+    public List<Department> list() {
         return this.departementDAO.listAll();
     }
     

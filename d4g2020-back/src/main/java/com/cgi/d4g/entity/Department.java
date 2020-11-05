@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table (name="DEPARTEMENT")
-public class Departement {
+@Table (name="DEPARTMENT")
+public class Department {
     private int dptId;
     private String dptName;
     private String dptCode;
@@ -64,7 +64,7 @@ public class Departement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Departement that = (Departement) o;
+        Department that = (Department) o;
         return dptId == that.dptId &&
             rgnId == that.rgnId &&
             Objects.equals(dptName, that.dptName) &&

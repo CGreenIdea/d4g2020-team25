@@ -52,6 +52,6 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @return the city
 	 */
   	public List<City>  listByRegionName(int rgnId ,String name){
-  		return list("select distinct c from City INNER JOIN DEPARTEMENT d ON d.dptId = c.dptId where rgnId = ?1 and CTY_NAME like ?2", Sort.ascending("CTY_NAME"), rgnId, "%" + name + "%");
+  		return list("select distinct c from City INNER JOIN DEPARTMENT d ON d.dptId = c.dptId where rgnId = ?1 and CTY_NAME like ?2", Sort.ascending("CTY_NAME"), rgnId, "%" + name + "%");
   	}
 }

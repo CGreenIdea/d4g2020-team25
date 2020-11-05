@@ -4,25 +4,25 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.cgi.d4g.entity.Departement;
+import com.cgi.d4g.entity.Department;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Sort;
 
 /**
- * DAO for the departement
+ * DAO for the department
  * @author vaulotan
  *
  */
 @ApplicationScoped
-public class DepartementDAO implements PanacheRepository<Departement> {
+public class DepartmentDAO implements PanacheRepository<Department> {
 
 	/**
 	 * list all departement order by postal code
 	 * @param name the name to find
 	 * @return the departement
 	 */
-   public List<Departement> listAll(){
+   public List<Department> listAll(){
        return listAll(Sort.ascending("dptCode"));
    }
 }

@@ -2,15 +2,15 @@ package com.cgi.d4g.business.model;
 
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
-import com.cgi.d4g.entity.Departement;
-import com.cgi.d4g.entity.DepartementDigitalScoring;
+import com.cgi.d4g.entity.DepartmentDigitalScoring;
+import com.cgi.d4g.entity.Department;
 import com.cgi.d4g.entity.Region;
 
 public class ScoringResultModel {
 	private City city;
 	private CityDigitalScoring cityDigitalScoring;
-	private Departement departement;
-	private DepartementDigitalScoring departementDigitalScoring;
+	private Department department;
+	private DepartmentDigitalScoring departmentDigitalScoring;
 	private Region region;
 	private RegionDigitalScoringModel regionDigitalScoring;
 	
@@ -19,19 +19,19 @@ public class ScoringResultModel {
 	 * Constructor of the Scoring Result model
 	 * @param city the searched city
 	 * @param cityDigitalScoring the result of the scoring
-	 * @param departement the departemnet of the city
-	 * @param departementDigitalScoring the result of the scoring of departemnet
+	 * @param department the departmnet of the city
+	 * @param departmentDigitalScoring the result of the scoring of departmnet
 	 * @param region the region of the city
 	 * @param regionDigitalScoring the result of the scoring of region
 	 */
-	public ScoringResultModel(City city, CityDigitalScoring cityDigitalScoring, Departement departement,
-			DepartementDigitalScoring departementDigitalScoring, Region region,
+	public ScoringResultModel(City city, CityDigitalScoring cityDigitalScoring, Department department,
+			DepartmentDigitalScoring departmentDigitalScoring, Region region,
 			RegionDigitalScoringModel regionDigitalScoring) {
 		super();
 		this.city = city;
 		this.cityDigitalScoring = cityDigitalScoring;
-		this.departement = departement;
-		this.departementDigitalScoring = departementDigitalScoring;
+		this.department = department;
+		this.departmentDigitalScoring = departmentDigitalScoring;
 		this.region = region;
 		this.regionDigitalScoring = regionDigitalScoring;
 	}
@@ -70,34 +70,34 @@ public class ScoringResultModel {
 
 
 	/**
-	 * @return the departement
+	 * @return the department
 	 */
-	public Departement getDepartement() {
-		return departement;
+	public Department getDepartment() {
+		return department;
 	}
 
 
 	/**
-	 * @param departement the departement to set
+	 * @param department the department to set
 	 */
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 
 	/**
-	 * @return the departementDigitalScoring
+	 * @return the departmentDigitalScoring
 	 */
-	public DepartementDigitalScoring getDepartementDigitalScoring() {
-		return departementDigitalScoring;
+	public DepartmentDigitalScoring getDepartmentDigitalScoring() {
+		return departmentDigitalScoring;
 	}
 
 
 	/**
-	 * @param departementDigitalScoring the departementDigitalScoring to set
+	 * @param departmentDigitalScoring the departmentDigitalScoring to set
 	 */
-	public void setDepartementDigitalScoring(DepartementDigitalScoring departementDigitalScoring) {
-		this.departementDigitalScoring = departementDigitalScoring;
+	public void setDepartmentDigitalScoring(DepartmentDigitalScoring departmentDigitalScoring) {
+		this.departmentDigitalScoring = departmentDigitalScoring;
 	}
 
 
