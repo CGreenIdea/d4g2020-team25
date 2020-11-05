@@ -1,4 +1,3 @@
-
 .card-container:after,
 .card-container:before {
   content: "";
@@ -15,42 +14,42 @@
   min-width: 350px;
 }
 
-.resultCard{
+.result-card{
     padding: 0.01em 16px;
 }
 
-.resultCardHeader{
+.result-card-header{
     color: #000 !important;
     background-color: #f1f1f1 !important;
     border-radius: $card-radius $card-radius 0 0;
     text-align: center;
 }
-.cardResultValues{
+
+.card-result-values{
     margin-bottom: 20px;
     width: 100%;
 }
 
-.cardResultValueContent{
+.card-result-value-content{
     width: 100%;
     display: flex;
 }
 
-.cardResultValueName{
+.card-result-value-name{
     font-weight: bold;
     float: left;
     margin: 0 0 20px 0;
-    width: 65%;
+    width: 50%;
 }
 
-.cardResultValue {
+.card-result-value {
     color: darkgray;
     float: left;
-    width: 25%;
-    text-align: left;
+    width: 40%;
+    text-align: center;
 }
 
-.cardResultValueContent .toggle{
+.card-result-value-content .toggle{
     width: 10%;
-    text-align: right;
-
+    text-align: center;
 }
