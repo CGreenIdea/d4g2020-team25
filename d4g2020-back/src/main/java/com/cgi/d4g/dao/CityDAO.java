@@ -17,9 +17,9 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 public class CityDAO implements PanacheRepository<City> {
 
 	/**
-	 * Find region by name
+	 * Find city by name
 	 * @param name the name to find
-	 * @return the region
+	 * @return the city
 	 */
    public List<City>  listByName(String name){
        return list("CTY_NAME like ?1", "%" + name + "%");
