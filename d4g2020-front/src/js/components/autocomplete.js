@@ -15,8 +15,8 @@ const autocomplete = (inp, arr) => {
     let currentFocus = -1;
 
     /* This will be called when text is entered in the field */
-    inp.addEventListener('input', e => {
-        const val = e.target.value;
+    inp.addEventListener('input', inputEvent => {
+        const val = inputEvent.target.value;
         const valRegex = new RegExp(val, 'i');
 
         /* Close any already open autocompletion list. */
@@ -32,11 +32,11 @@ const autocomplete = (inp, arr) => {
 
         /* Create a DIV element that will contain the items (values). */
         const propositions = document.createElement('div');
-        propositions.setAttribute('id', e.target.id + 'autocomplete-list');
+        propositions.setAttribute('id', inputEvent.target.id + 'autocomplete-list');
         propositions.setAttribute('class', 'autocomplete-items');
 
         /* Append the DIV element as a child of the autocomplete container. */
-        e.target.parentNode.appendChild(propositions);
+        inputEvent.target.parentNode.appendChild(propositions);
 
         /*for each item in the array...*/
         arr.forEach(item => {
@@ -50,9 +50,9 @@ const autocomplete = (inp, arr) => {
                 proposition.dataset.value = item;
                 proposition.innerHTML += `<input type="hidden" value="${item}">`;
                 /* Execute a function when someone clicks on the item value (DIV element) */
-                proposition.addEventListener('click', e => {
+                proposition.addEventListener('click', clickEvent => {
                     /* Set the field to the selected value. */
-                    inp.value = e.target.dataset.value;
+                    inp.value = clickEvent.target.dataset.value;
                     /* Close the list. */
                     closeAllAutocompletionLists();
                 });
@@ -62,27 +62,27 @@ const autocomplete = (inp, arr) => {
     });
 
     /* Add listeners on keyboard to listen the Keyboard */
-    inp.addEventListener('keydown', function(e) {
+    inp.addEventListener('keydown', keyEvent => {
         const propositions = document.querySelector(
-            `#${e.target.id}autocomplete-list`);
+            `#${keyEvent.target.id}autocomplete-list`);
         const propositionDivs = propositions
             ? propositions.querySelectorAll('div')
             : null;
-        if (e.keyCode === KEYCODE_DOWN) {
+        if (keyEvent.keyCode === KEYCODE_DOWN) {
             /*If the arrow DOWN key is pressed,
             increase the currentFocus variable:*/
             ++currentFocus;
             /*and and make the current item more visible:*/
             setActive(propositionDivs);
-        } else if (e.keyCode === KEYCODE_UP) { //up
+        } else if (keyEvent.keyCode === KEYCODE_UP) { //up
             /*If the arrow UP key is pressed,
             decrease the currentFocus variable:*/
             --currentFocus;
             /*and and make the current item more visible:*/
             setActive(propositionDivs);
-        } else if (e.keyCode === KEYCODE_ENTER) {
+        } else if (keyEvent.keyCode === KEYCODE_ENTER) {
             /*If the ENTER key is pressed, prevent the form from being submitted,*/
-            e.preventDefault();
+            keyEvent.preventDefault();
             if (currentFocus > -1) {
                 /*and simulate a click on the 'active' item:*/
                 if (propositionDivs) {
@@ -96,7 +96,7 @@ const autocomplete = (inp, arr) => {
      * Set the 'autocomplete-active' class on focused elements
      * @param propositionDivs the divs containing the propositions
      */
-    const setActive = (propositionDivs) => {
+    const setActive = propositionDivs => {
         if (!propositionDivs) {
             return;
         }
