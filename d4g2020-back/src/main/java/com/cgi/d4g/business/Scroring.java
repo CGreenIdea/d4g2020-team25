@@ -101,8 +101,7 @@ public class Scroring {
 	 * @return the department of the city 
 	 */
 	private Department getDepartment(City city) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.departmentDAO.findById(Long.valueOf(city.getDptId()));
 	}
 
 	
