@@ -9,6 +9,8 @@ import javax.ws.rs.core.MediaType;
 import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
 import com.cgi.d4g.dao.CityDAO;
+import com.cgi.d4g.dao.DepartmentDAO;
+import com.cgi.d4g.dao.RegionDAO;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
 import com.cgi.d4g.entity.Department;
@@ -20,12 +22,16 @@ import com.cgi.d4g.entity.Region;
 public class ScoreResource {
 	
 	private final CityDAO cityDAO;
+	private final DepartmentDAO departmentDAO;
+	private final RegionDAO regionDAO;
     
 	/**
 	 * @param cityDAO
 	 */
-	public ScoreResource(CityDAO cityDAO) {
+	public ScoreResource(CityDAO cityDAO, DepartmentDAO departmentDAO, RegionDAO regionDAO) {
 		this.cityDAO = cityDAO;
+		this.departmentDAO= departmentDAO;
+		this.regionDAO=regionDAO;
 	}
 
 	/**
@@ -41,9 +47,9 @@ public class ScoreResource {
     	
     	City city=cityDAO.findById(cityId);
 		CityDigitalScoring cityDigitalScoring = null;
-		Department department = null;
+		Department department = departmentDAO.findById(city.getDptId());
 		DepartmentDigitalScoring departmentDigitalScoring = null;
-		Region region = null;
+		Region region = regionDAO.findById(department.getRgnId());
 		RegionDigitalScoringModel regionDigitalScoring = null;
 		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
     }
