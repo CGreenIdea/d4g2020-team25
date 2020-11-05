@@ -68,7 +68,7 @@ public class Scroring {
 		Optional<CityDigitalScoring> cityDigitalScoring = getCityScoring(city);
 		//if empty calulate and save.
 		
-		return new ScoringResultModel(city, cityDigitalScoring.orElse(null), department, departmentDigitalScoring.orElse(null), region, regionDigitalScoring);
+		return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)), region, regionDigitalScoring);
 	}
 
 	/**
@@ -81,12 +81,32 @@ public class Scroring {
 	}
 
 	/**
+	 * Retrieve the city scoring for the city
+	 * @param city the city to get the scoring
+	 * @return the scoring
+	 */
+	private CityDigitalScoring calculateCityScoring(City city) {
+		//TODO calculate and save
+		return null;
+	}
+
+	/**
 	 * Retrieve the department scoring for the department 
 	 * @param department the department
 	 * @return the scoring of the department
 	 */
 	private Optional<DepartmentDigitalScoring> getDepartmentScoring(Department department) {
 		return departmentDigitalScoringDAO.getByDeptartmentId(department.getDptId());
+	}
+
+	/**
+	 * Retrieve the department scoring for the department 
+	 * @param department the department
+	 * @return the scoring of the department
+	 */
+	private DepartmentDigitalScoring calculateDepartmentScoring(Department department) {
+		//TODO calculate and save
+		return null;
 	}
 
 	/**
