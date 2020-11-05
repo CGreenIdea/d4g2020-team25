@@ -11,20 +11,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CITY")
 public class City {
-    private long ctyId;
+    private int ctyId;
     private String ctyName;
     private String ctyCodeArm;
     private String ctyPostalCode;
-    private Long dptId;
+    private Integer dptId;
     private String ctyParentCodeArm;
 
     @Id
     @Column(name = "CTY_ID", nullable = false)
-    public long getCtyId() {
+    public int getCtyId() {
         return ctyId;
     }
 
-    public void setCtyId(long ctyId) {
+    public void setCtyId(int ctyId) {
         this.ctyId = ctyId;
     }
 
@@ -60,11 +60,11 @@ public class City {
 
     @Basic
     @Column(name = "DPT_ID", nullable = true)
-    public Long getDptId() {
+    public Integer getDptId() {
         return dptId;
     }
 
-    public void setDptId(Long dptId) {
+    public void setDptId(Integer dptId) {
         this.dptId = dptId;
     }
 

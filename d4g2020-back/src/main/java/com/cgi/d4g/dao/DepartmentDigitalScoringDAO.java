@@ -20,7 +20,7 @@ public class DepartmentDigitalScoringDAO implements PanacheRepository<Department
 	 * @param cddDepartementId the id of the department
 	 * @return the DepartmentDigitalScoring
 	 */
-  public Optional<DepartmentDigitalScoring> getByDeptartmentId(long cddDepartementId){
+  public Optional<DepartmentDigitalScoring> getByDeptartmentId(int cddDepartementId){
       return find("cddDepartementId = ?1 ", cddDepartementId).singleResultOptional();
   }
 }

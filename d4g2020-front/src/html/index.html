@@ -15,21 +15,24 @@
     </div>
 
     <div class="content">
-        <div id="searchBar" class="searchForm">
-            <div>
-                Région:
-                <input type="text" name="region" id="regionInput" placeholder="Choisissez votre région" />
-            </div>
+        <div id="search-bar" class="search-form">
+        <div class="autocomplete">
+            Région:
+            <input type="text" name="region" id="region-input" placeholder="Choisissez votre région"/>
+            <input type="hidden" name="region-id" id="region-id-input" value="-1"/>
+        </div>
 
-            <div>
-                Département:
-                <input type="text" name="department" id="departmentInput" placeholder="Choisissez votre département" />
-            </div>
+        <div class="autocomplete">
+            Département:
+            <input type="text" name="department" id="department-input" placeholder="Choisissez votre département"/>
+            <input type="hidden" name="department-id" id="department-id-input" value="-1"/>
+        </div>
 
-            <div>
-                Ville:
-                <input type="text" name="department" id="cityInput" placeholder="Choisissez votre ville" />
-            </div>
+        <div class="autocomplete">
+            Ville:
+            <input type="text" name="city" id="city-input" placeholder="Choisissez votre ville"/>
+            <input type="hidden" name="city-id" id="city-id-input" value="-1"/>
+        </div>
 
         </div>
 
@@ -111,5 +114,4 @@
     </div>
 
 </body>
-
 </html>

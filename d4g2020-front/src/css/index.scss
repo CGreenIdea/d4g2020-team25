@@ -1,10 +1,11 @@
 @import '../../node_modules/normalize.css/normalize';
 
-@import './assets/_colors.scss';
-@import './assets/_variables.scss';
+@import 'assets/colors';
+@import 'assets/variables';
 
-@import './_card.scss';
-@import './collapsibles.scss';
+* {
+    box-sizing: border-box;
+}
 
 body {
     color: $color;
@@ -12,15 +13,19 @@ body {
 }
 
 .header {
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0 5px 0;
     text-align: center;
     background-color: $bg-color;
     color: white;
     font-size: 30px;
     margin: 10px 20px 5px 20px;
- }
+}
 
- input[type=text] {
+input[type=text] {
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
-  }
+}
+
+@import 'components/autocomplete';
+@import 'components/card';
+@import 'components/collapsibles';

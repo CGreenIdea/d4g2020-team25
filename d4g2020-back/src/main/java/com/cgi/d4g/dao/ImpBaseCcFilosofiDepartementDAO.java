@@ -19,7 +19,7 @@ public class ImpBaseCcFilosofiDepartementDAO implements PanacheRepository<ImpBas
 	 * @param code the code to find
 	 * @return the ImpBaseCcFilosofi for Departement
 	 */
-   public ImpBaseCcFilosofiDepartement getByCode(String code){
+   public ImpBaseCcFilosofiDepartement get(String code){
        return find("FLD_CODE", code).firstResult();
    }
 }

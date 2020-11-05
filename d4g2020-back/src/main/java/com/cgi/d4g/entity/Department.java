@@ -11,18 +11,18 @@ import java.util.Objects;
 @Entity
 @Table (name="DEPARTMENT")
 public class Department {
-    private long dptId;
+    private int dptId;
     private String dptName;
     private String dptCode;
-    private long rgnId;
+    private int rgnId;
 
     @Id
     @Column(name = "DPT_ID", nullable = false)
-    public long getDptId() {
+    public int getDptId() {
         return dptId;
     }
 
-    public void setDptId(long dptId) {
+    public void setDptId(int dptId) {
         this.dptId = dptId;
     }
 
@@ -48,11 +48,11 @@ public class Department {
 
     @Basic
     @Column(name = "RGN_ID", nullable = false)
-    public long getRgnId() {
+    public int getRgnId() {
         return rgnId;
     }
 
-    public void setRgnId(long rgnId) {
+    public void setRgnId(int rgnId) {
         this.rgnId = rgnId;
     }
 

@@ -12,13 +12,11 @@ import com.cgi.d4g.dao.CityDAO;
 import com.cgi.d4g.dao.CityDigitalScoringDAO;
 import com.cgi.d4g.dao.DepartmentDAO;
 import com.cgi.d4g.dao.DepartmentDigitalScoringDAO;
-import com.cgi.d4g.dao.ImpBaseCcFilosofiDepartementDAO;
 import com.cgi.d4g.dao.RegionDAO;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
 import com.cgi.d4g.entity.Department;
 import com.cgi.d4g.entity.DepartmentDigitalScoring;
-import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
 import com.cgi.d4g.entity.Region;
 
 public class Scroring {
@@ -44,23 +42,15 @@ public class Scroring {
 	private final DepartmentDigitalScoringDAO departmentDigitalScoringDAO;
 	
 	/**
-	 * The filosofi department DAO.
-	 */
-	private final ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO;
-	
-	/**
 	 * Constructor
 	 * @param regionDAO the region DAO
 	 * @param departmentDAO the department DAO
 	 */
-    public Scroring(RegionDAO regionDAO,  DepartmentDAO departmentDAO, 
-    		CityDigitalScoringDAO cityDigitalScoringDAO, DepartmentDigitalScoringDAO departmentDigitalScoringDAO,
-    		ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO) {
+    public Scroring(RegionDAO regionDAO,  DepartmentDAO departmentDAO, CityDigitalScoringDAO cityDigitalScoringDAO, DepartmentDigitalScoringDAO departmentDigitalScoringDAO) {
 		this.regionDAO = regionDAO;
 		this.departmentDAO = departmentDAO;
 		this.cityDigitalScoringDAO = cityDigitalScoringDAO;
 		this.departmentDigitalScoringDAO = departmentDigitalScoringDAO;
-		this.impBaseCcFilosofiDepartementDAO=impBaseCcFilosofiDepartementDAO;
 	}
 	
 	/**
@@ -97,24 +87,6 @@ public class Scroring {
 	 */
 	private CityDigitalScoring calculateCityScoring(City city) {
 		//TODO calculate and save
-		
-		//calculate
-		//extract data from import table pour tout les indicateurs
-		
-		//if missing poverty rate -> special average department
-		Department department = departmentDAO.findById(city.getDptId());
-		ImpBaseCcFilosofiDepartement impBaseCcFilosofiDepartement = impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
-		
-		//par taux
-		//calculate or get threshold
-		//calculate coeff
-		//calculate point
-		//calculate score
-		
-		//groupe par indicateur
-		//calculate score base
-		
-		//save data
 		return null;
 	}
 
@@ -155,6 +127,8 @@ public class Scroring {
 		return this.departmentDAO.findById(Long.valueOf(city.getDptId()));
 	}
 
+	
+	
 	/**
 	 * Generate the default value for region
 	 * @return the region scoring values
@@ -175,6 +149,6 @@ public class Scroring {
 		BigDecimal cdrPublicServicePerPerson= null;
 		BigDecimal cdrMobilityCoverageRate2G= null;
 		BigDecimal cdrNetworkRateCoverage= null;
-		return new RegionDigitalScoringModel(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartmentId, null, null, null, null);
+		return new RegionDigitalScoringModel(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartmentId);
 	}
 }
