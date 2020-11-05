@@ -3,6 +3,27 @@ const KEYCODE_UP = 38;
 const KEYCODE_ENTER = 13;
 const MAX_RESULT = 20;
 
+const addProposition = (item, valRegex, inp, hid, propositions) => {
+    /* Create a DIV element for each matching element */
+    const proposition = document.createElement('div');
+    /* Highlight the matching element */
+    proposition.innerHTML = item.label.replace(valRegex,
+        '<span class="match">$&</span>');
+    /* Save the data of this data */
+    proposition.dataset.label = item.label;
+    proposition.dataset.id = item.id;
+    proposition.dataset.parent = item.parent;
+    /* Execute a function when someone clicks on the item value (DIV element) */
+    proposition.addEventListener('click', clickEvent => {
+        /* Set the field to the selected value. */
+        inp.value = clickEvent.currentTarget.dataset.label;
+        hid.value = clickEvent.currentTarget.dataset.id;
+        /* Close the list. */
+        closeAllAutocompletionLists();
+    });
+    propositions.appendChild(proposition);
+}
+
 /**
  * Turns an input into an autocomplete field.
  *
@@ -17,6 +38,7 @@ const autocomplete = (inp, hid, arr) => {
 
     /* This will be called when text is entered in the field */
     inp.addEventListener('input', inputEvent => {
+        hid.value = -1;
         const val = inputEvent.target.value;
         const valRegex = new RegExp(val, 'i');
 
@@ -33,33 +55,18 @@ const autocomplete = (inp, hid, arr) => {
 
         /* Create a DIV element that will contain the items (values). */
         const propositions = document.createElement('div');
-        propositions.setAttribute('id', inputEvent.target.id + 'autocomplete-list');
+        propositions.setAttribute('id', inputEvent.currentTarget.id + 'autocomplete-list');
         propositions.setAttribute('class', 'autocomplete-items');
 
         /* Append the DIV element as a child of the autocomplete container. */
-        inputEvent.target.parentNode.appendChild(propositions);
+        inputEvent.currentTarget.parentNode.appendChild(propositions);
 
         let displayed = 0;
         /*for each item in the array...*/
         arr.some(item => {
             /* Keep only elements that match the supplied proposition */
             if (valRegex.test(item.label)) {
-                /* Create a DIV element for each matching element */
-                const proposition = document.createElement('div');
-                /* Highlight the matching element */
-                proposition.innerHTML = item.label.replace(valRegex, '<span class="match">$&</span>');
-                /* Save the data of this data */
-                proposition.dataset.label = item.label;
-                proposition.dataset.id = item.id;
-                /* Execute a function when someone clicks on the item value (DIV element) */
-                proposition.addEventListener('click', clickEvent => {
-                    /* Set the field to the selected value. */
-                    inp.value = clickEvent.target.dataset.label;
-                    hid.value = clickEvent.target.dataset.id;
-                    /* Close the list. */
-                    closeAllAutocompletionLists();
-                });
-                propositions.appendChild(proposition);
+                addProposition(item, valRegex, inp, hid, propositions);
                 return ++displayed === MAX_RESULT;
             }
             return false;
@@ -79,7 +86,7 @@ const autocomplete = (inp, hid, arr) => {
             ++currentFocus;
             /*and and make the current item more visible:*/
             setActive(propositionDivs);
-        } else if (keyEvent.keyCode === KEYCODE_UP) { //up
+        } else if (keyEvent.keyCode === KEYCODE_UP) {
             /*If the arrow UP key is pressed,
             decrease the currentFocus variable:*/
             --currentFocus;
