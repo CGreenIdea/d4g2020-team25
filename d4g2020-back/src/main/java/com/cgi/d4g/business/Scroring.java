@@ -17,12 +17,66 @@ public class Scroring {
 	 * Compute the scoring for a city
 	 */
 	public ScoringResultModel getOrRetriveScorring(City city) {
-		CityDigitalScoring cityDigitalScoring = null;
-		Departement departement = null;
-		DepartementDigitalScoring departementDigitalScoring = null;
-		Region region = null;
-		RegionDigitalScoringModel regionDigitalScoring = null;
+		Departement departement = getDepartement(city);
+		Region region = getRegion(city);
+		
+		RegionDigitalScoringModel regionDigitalScoring =  generateRegionDigitalScoring();
+		DepartementDigitalScoring departementDigitalScoring = getDepartementScoring(departement);
+		CityDigitalScoring cityDigitalScoring = getCityScoring(city);
+		
+		
 		
 		return new ScoringResultModel(city, cityDigitalScoring, departement, departementDigitalScoring, region, regionDigitalScoring);
+	}
+
+	/**
+	 * Retrieve the city scoring for the city
+	 * @param city the city to get the scoring
+	 * @return the scoring
+	 */
+	private CityDigitalScoring getCityScoring(City city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Retrieve the department scoring for the department 
+	 * @param department the department
+	 * @return the scoring of the department
+	 */
+	private DepartementDigitalScoring getDepartementScoring(Departement department) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Retrieve the region of the city
+	 * @param city the city of the region to search
+	 * @return the department of the city 
+	 */
+	private Region getRegion(City city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Retrieve the department of the city
+	 * @param city the city of the department to search
+	 * @return the department of the city 
+	 */
+	private Departement getDepartement(City city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	/**
+	 * Generate the default value for region
+	 * @return the region scoring values
+	 */
+	private RegionDigitalScoringModel generateRegionDigitalScoring() {
+		// FIXME
+		return null;
 	}
 }
