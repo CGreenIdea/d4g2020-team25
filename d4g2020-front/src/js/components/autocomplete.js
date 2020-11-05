@@ -22,59 +22,79 @@ const addProposition = (item, valRegex, inp, hid, propositions) => {
         closeAllAutocompletionLists();
     });
     propositions.appendChild(proposition);
-}
+};
 
 /**
  * Turns an input into an autocomplete field.
  *
- * @param {*} inp the text input that will trigger the apparition of the proposition list
- * @param {*} hid the hidden input where the ID of the selected value can be stored
- * @param {*} arr the array of values that can be looked upon
+ * @param input the text input that will trigger the apparition of the proposition list
+ * @param hidden the hidden input where the ID of the selected value can be stored
+ * @param store the array of values that can be looked upon
  */
-const autocomplete = (inp, hid, arr) => {
+const autocomplete = (input, hidden, store) => {
+    dynamicAutocomplete(input, hidden, () => store);
+};
+
+/**
+ * Turns an input into an autocomplete field with a dynamic store
+ * @param input the text input that will trigger the apparition of the proposition list
+ * @param hidden the hidden input where the ID of the selected value can be stored
+ * @param storeProvider a supplier returning an array of values that can be looked upon
+ */
+const dynamicAutocomplete = (input, hidden, storeProvider) => {
 
     /* The focused proposition.  */
     let currentFocus = -1;
 
     /* This will be called when text is entered in the field */
-    inp.addEventListener('input', inputEvent => {
-        hid.value = -1;
-        const val = inputEvent.target.value;
-        const valRegex = new RegExp(val, 'i');
+    input.addEventListener('input', inputEvent => {
+        hidden.value = -1;
+        showPropositions(inputEvent.target);
+    });
+
+    /* Show propositions when clicking on the input field */
+    input.addEventListener('focus', inputEvent => {
+        showPropositions(inputEvent.currentTarget);
+    });
+
+    const showPropositions = inputField => {
+        console.log(inputField);
 
         /* Close any already open autocompletion list. */
         closeAllAutocompletionLists();
 
         /* If no text is set, just stop here anyway. */
+        const val = inputField.value;
         if (!val) {
             return false;
         }
+        const valRegex = new RegExp(val, 'i');
 
         /* Reset the focused value. */
         currentFocus = -1;
 
         /* Create a DIV element that will contain the items (values). */
         const propositions = document.createElement('div');
-        propositions.setAttribute('id', inputEvent.currentTarget.id + 'autocomplete-list');
+        propositions.setAttribute('id', inputField.id + 'autocomplete-list');
         propositions.setAttribute('class', 'autocomplete-items');
 
         /* Append the DIV element as a child of the autocomplete container. */
-        inputEvent.currentTarget.parentNode.appendChild(propositions);
+        inputField.parentNode.appendChild(propositions);
 
         let displayed = 0;
         /*for each item in the array...*/
-        arr.some(item => {
+        storeProvider().some(item => {
             /* Keep only elements that match the supplied proposition */
             if (valRegex.test(item.label)) {
-                addProposition(item, valRegex, inp, hid, propositions);
+                addProposition(item, valRegex, input, hidden, propositions);
                 return ++displayed === MAX_RESULT;
             }
             return false;
         });
-    });
+    }
 
     /* Add listeners on keyboard to listen the Keyboard */
-    inp.addEventListener('keydown', keyEvent => {
+    input.addEventListener('keydown', keyEvent => {
         const propositions = document.querySelector(
             `#${keyEvent.target.id}autocomplete-list`);
         const propositionDivs = propositions
@@ -142,4 +162,4 @@ const closeAllAutocompletionLists = elmnt => {
     });
 };
 
-export {autocomplete, closeAllAutocompletionLists};
+export {autocomplete, dynamicAutocomplete, closeAllAutocompletionLists};

@@ -21,24 +21,24 @@ import com.cgi.d4g.entity.Region;
 @Path("/rest/region")
 @Produces(MediaType.APPLICATION_JSON)
 public class RegionResource {
-	
+
 	/**
 	 * The region DAO.
 	 */
-	private final RegionDAO regionDAO;
-	
+	private final RegionDAO regionDao;
+
 	/**
 	 * The city DAO
 	 */
 	private final CityDAO cityDao;
-	
+
 	/**
 	 * Constructor
-	 * @param regionDAO the region DAO
+	 * @param regionDao the region DAO
 	 * @param cityDao the city DAO
 	 */
-    public RegionResource(RegionDAO regionDAO, CityDAO cityDao) {
-		this.regionDAO = regionDAO;
+    public RegionResource(RegionDAO regionDao, CityDAO cityDao) {
+		this.regionDao = regionDao;
 		this.cityDao = cityDao;
 	}
 
@@ -48,9 +48,9 @@ public class RegionResource {
      */
 	@GET
     public List<Region> listAll() {
-        return this.regionDAO.listAll();
+        return this.regionDao.listAll();
     }
-    
+
 	/**
 	 * List of all the city of a region.
 	 * @param regionId the id of the region to filter
@@ -58,8 +58,14 @@ public class RegionResource {
 	 * @return list of city
 	 */
     @GET
-    @Path("{regionId}/city/name/{name}")
-    public List<City> listCity(@PathParam("regionId") String regionId, @PathParam("name") String name) {
-        return this.cityDao.listAll();
+    @Path("{regionId}/department/{departmentId}/city/name/{name}")
+    public List<City> listCity(@PathParam("regionId") int regionId, @PathParam("departmentId") int departmentId, @PathParam("name") String name) {
+        if (departmentId >= 0) {
+            return this.cityDao.listByDepartmentAndName(departmentId, name);
+        } else if (regionId >= 0) {
+            return this.cityDao.listByRegionAndName(regionId, name);
+        }
+
+        return this.cityDao.listByName(name);
     }
 }

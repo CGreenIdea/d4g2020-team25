@@ -1,11 +1,21 @@
 import {
     autocomplete,
+    dynamicAutocomplete,
     closeAllAutocompletionLists,
 } from '../components/autocomplete';
 import {notifyError} from '../components/error';
+import {debounce} from '../utils/throttle';
 
-const loadComboboxData = (endpoint, input, idInput, transformData) => {
-    fetch(`${env.apiUri}/${endpoint}`, {
+const TYPING_THROTTLE = 200;
+
+const regionIdInput = document.getElementById('region-id-input');
+const departmentId = document.getElementById('department-id-input');
+const cityInput = document.getElementById('city-input');
+
+let cities = [];
+
+function fetchData(endpoint) {
+    return fetch(`${env.apiUri}/${endpoint}`, {
         method: 'GET',
         mode: env.mode,
     }).then(response => {
@@ -14,8 +24,36 @@ const loadComboboxData = (endpoint, input, idInput, transformData) => {
         } else {
             throw Error(response.statusText);
         }
-    }).then(json => {
+    });
+}
+
+const loadComboboxData = (endpoint, input, idInput, transformData) => {
+    fetchData(endpoint).then(json => {
         autocomplete(input, idInput, json.map(item => transformData(item)));
+    }).catch(error => notifyError(error));
+};
+
+const refreshCities = (input) => {
+    if (!input) {
+        cities = [];
+        return;
+    }
+
+    const postalCode = /\\d(?:[\\dAB]\\d{0,3})?/i.test(input);
+
+    const endpoint = postalCode
+        ? `city/postal-code/{input}`
+        : `region/${regionIdInput.value}/department/${departmentId.value}/city/name/${input}`;
+    fetchData(endpoint).then(json => {
+        cities = json.map(cty => {
+            return {
+                id: cty.ctyId,
+                label: `${cty.ctyName} (${cty.ctyCodeArm})`,
+            };
+        });
+        // Trigger an input event to display the propositions
+        console.log('refresh');
+        cityInput.dispatchEvent(new Event('focus'));
     }).catch(error => notifyError(error));
 };
 
@@ -26,27 +64,39 @@ const initSearchForm = () => {
     loadComboboxData(
         'region',
         document.getElementById('region-input'),
-        document.getElementById('region-id-input'),
+        regionIdInput,
         rgn => {
             return {
                 id: rgn.rgnId,
-                label: rgn.rgnName
-            }
-        }
+                label: rgn.rgnName,
+            };
+        },
     );
     loadComboboxData(
         'department',
         document.getElementById('department-input'),
-        document.getElementById('department-id-input'),
+        departmentId,
         dpt => {
             return {
                 id: dpt.dptId,
-                label: `${dpt.dptCode} - ${dpt.dptName}`
-            }
-        }
+                label: `${dpt.dptCode} - ${dpt.dptName}`,
+            };
+        },
     );
 
-    // FIXME set filters based on what is selected
+    // TODO nice to have: upon selecting a region, filter available departments
+    // TODO nice to have: upon selecting a region, filter cities
+    // TODO nice to have: upon selecting a department, set region
+    // TODO nice to have: upon selecting a department, filter cities
+
+    cityInput.addEventListener('input', debounce(inputEvent => {
+        refreshCities(inputEvent.target.value);
+    }, TYPING_THROTTLE));
+    dynamicAutocomplete(
+        cityInput,
+        document.getElementById('city-id-input'),
+        () => cities,
+    );
 
     /* Close all open lists when someone clicks on the document */
     document.addEventListener('click', clickEvent => {
