@@ -61,8 +61,12 @@ public class Scroring {
 		Region region = getRegion(department);
 		
 		RegionDigitalScoringModel regionDigitalScoring =  generateRegionDigitalScoring();
+		//if empty calulate and save.
 		DepartmentDigitalScoring departmentDigitalScoring = getDepartmentScoring(department);
+		//if empty calulate and save.
 		CityDigitalScoring cityDigitalScoring = getCityScoring(city);
+		//if empty calulate and save.
+		
 		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
 	}
 
@@ -72,8 +76,7 @@ public class Scroring {
 	 * @return the scoring
 	 */
 	private CityDigitalScoring getCityScoring(City city) {
-		// TODO Auto-generated method stub
-		return null;
+		return cityDigitalScoringDAO.listByDepartmentName(city.getCtyId());
 	}
 
 	/**
