@@ -9,6 +9,7 @@ public class ImpBaseIcEvolStructProp {
     private int espId;
     private String espCodeArm;
     private Integer espTotalPop;
+    private Integer espPopAge014;
     private Integer espPopAge1529;
     private Integer espPopAgeOver65;
     private Integer espPopNoJobOver15;
@@ -41,6 +42,16 @@ public class ImpBaseIcEvolStructProp {
 
     public void setEspTotalPop(Integer espTotalPop) {
         this.espTotalPop = espTotalPop;
+    }
+
+    @Basic
+    @Column(name = "ESP_POP_AGE_0_14", nullable = true, precision = 0)
+    public Integer getEspPopAge014() {
+        return espPopAge014;
+    }
+
+    public void setEspPopAge014(Integer espPopAge014) {
+        this.espPopAge014 = espPopAge014;
     }
 
     @Basic
@@ -85,6 +96,7 @@ public class ImpBaseIcEvolStructProp {
         return espId == that.espId &&
             Objects.equals(espCodeArm, that.espCodeArm) &&
             Objects.equals(espTotalPop, that.espTotalPop) &&
+            Objects.equals(espPopAge014, that.espPopAge014) &&
             Objects.equals(espPopAge1529, that.espPopAge1529) &&
             Objects.equals(espPopAgeOver65, that.espPopAgeOver65) &&
             Objects.equals(espPopNoJobOver15, that.espPopNoJobOver15);
@@ -92,6 +104,6 @@ public class ImpBaseIcEvolStructProp {
 
     @Override
     public int hashCode() {
-        return Objects.hash(espId, espCodeArm, espTotalPop, espPopAge1529, espPopAgeOver65, espPopNoJobOver15);
+        return Objects.hash(espId, espCodeArm, espTotalPop, espPopAge014, espPopAge1529, espPopAgeOver65, espPopNoJobOver15);
     }
 }
