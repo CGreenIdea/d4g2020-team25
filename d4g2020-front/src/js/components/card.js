@@ -1,15 +1,17 @@
 function showCard(data) {
     if (data != null) {
+        document.getElementById("cardResult").style("display: block");
+
         if (data.city != null) {
-            fillCityData();
+            fillCityData(data.city);
         }
 
         if (data.department != null) {
-            fillDepartmentData();
+            fillDepartmentData(data.department);
         }
 
         if (data.region != null) {
-            fillRegionData();
+            fillRegionData(data.region);
         }
     }
 }
@@ -29,11 +31,17 @@ function fillCityData(cityData) {
 }
 
 function fillDepartmentData(departmentData) {
-
+    // Scoring in the detail
+    document.getElementById("departmentScore").innerHTML(departmentData.scoring);
+    let detailContent = "";
+    document.querySelector("#departmentData .content").innerHTML(detailContent);
 }
 
 function fillRegionData(regionData) {
-
+    // Scoring in the detail
+    document.getElementById("regionScore").innerHTML(regionData.scoring);
+    let detailContent = "";
+    document.querySelector("#regionData .content").innerHTML(detailContent);
 }
 
 function getValueRow(label, value, suffix) {
