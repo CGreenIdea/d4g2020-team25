@@ -1,0 +1,29 @@
+
+$card-text-color: black;
+$card-radius: 15px;
+
+.card-container:after,
+.card-container:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card-container {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
+  color: $card-text-color;
+  border-radius: $card-radius;
+  width: 100%;
+  min-width: 350px;
+}
+
+.resultCard{
+    padding: 0.01em 16px;
+}
+
+.resultCardHeader{
+    color: #000 !important;
+    background-color: #f1f1f1 !important;
+    border-radius: $card-radius $card-radius 0 0;
+}
