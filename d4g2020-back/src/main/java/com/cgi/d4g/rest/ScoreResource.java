@@ -1,5 +1,7 @@
 package com.cgi.d4g.rest;
 
+import java.math.BigDecimal;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -46,11 +48,26 @@ public class ScoreResource {
     	//TODO implemeter l'appel.
     	
     	City city=cityDAO.findById(cityId);
-		CityDigitalScoring cityDigitalScoring = null;
+		CityDigitalScoring cityDigitalScoring = new CityDigitalScoring();
+		cityDigitalScoring.setCdsDigitalInterface(BigDecimal.valueOf(25.36));
+		cityDigitalScoring.setCdsInformationAccess(BigDecimal.valueOf(321.21));
+		cityDigitalScoring.setCdsAdministrationSkill(BigDecimal.valueOf(324.2));
+		cityDigitalScoring.setCdsDigitalSkill(BigDecimal.valueOf(5.3214));
+		
 		Department department = departmentDAO.findById(city.getDptId());
-		DepartmentDigitalScoring departmentDigitalScoring = null;
+		DepartmentDigitalScoring departmentDigitalScoring = new DepartmentDigitalScoring();
+		departmentDigitalScoring.setCddDigitalInterface(BigDecimal.valueOf(25.36));
+		departmentDigitalScoring.setCddInformationAccess(BigDecimal.valueOf(56.21));
+		departmentDigitalScoring.setCddAdministrationSkill(BigDecimal.valueOf(57.2));
+		departmentDigitalScoring.setCddDigitalSkill(BigDecimal.valueOf(5.755));
+		
 		Region region = regionDAO.findById(department.getRgnId());
-		RegionDigitalScoringModel regionDigitalScoring = null;
+		RegionDigitalScoringModel regionDigitalScoring = new RegionDigitalScoringModel();
+		regionDigitalScoring.setCdrDigitalInterface(BigDecimal.valueOf(555.45));
+		regionDigitalScoring.setCdrInformationAccess(BigDecimal.valueOf(57.21));
+		regionDigitalScoring.setCdrAdministrationSkill(BigDecimal.valueOf(57.2));
+		regionDigitalScoring.setCdrDigitalSkill(BigDecimal.valueOf(5.7));
+		
 		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
     }
 
