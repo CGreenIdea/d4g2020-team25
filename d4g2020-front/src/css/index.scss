@@ -1,5 +1,22 @@
 $color: #ee6644;
+$bg-color: grey;
+$font-family: "Arial, Verdana, Times New Roman, Helvetica";
 
 body {
     color: $color;
+    font-family: $font-family;
 }
+
+.header {
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    background-color: $bg-color;
+    color: white;
+    font-size: 30px;
+    margin: 10px 20px 5px 20px;
+ }
+
+ input[type=text] {
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
