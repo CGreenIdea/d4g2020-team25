@@ -4,10 +4,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.util.Objects;
 
 @Entity
+@Table(name="REGION")
 public class Region {
+	
     private int rgnId;
     private String rgnName;
     private String rgnCode;
