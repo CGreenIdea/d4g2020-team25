@@ -32,6 +32,6 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @return the city
 	 */
   public List<City>  listByDepartmentName(int dptId ,String name){
-      return list("dptId = ?1 CTY_NAME like ?2", dptId, "%" + name + "%");
+      return list("dptId = ?1 and CTY_NAME like ?2", dptId, "%" + name + "%");
   }
 }
