@@ -17,10 +17,48 @@ public class RegionDigitalScoringModel {
     private Integer cdrPersonAged15To29;
     private Integer cdrPersonAgedOver65;
     private Integer cdrNoDiplomaOver15;
-    private int cdrDepartementId;
+    private int cdrDepartmentId;
+    
+    /**
+     * The region scoring constructor
+     * @param cdrLegalPopulation the legal population
+     * @param cdrNetworkRateCoverage the network rate coverage
+     * @param cdrMobilityCoverageRate2G the mobility coverage rate of 2G
+     * @param cdrPovertyRate the poverty rate
+     * @param cdrMedianIncome the median income 
+     * @param cdrSingleParent the single parent values
+     * @param cdrSingle the single values 
+     * @param cdrPublicServicePerPerson the public service per person values
+     * @param cdrPublicService the public service values
+     * @param cdrJobless15To64 the jobless values for person from 15 to 64 year
+     * @param cdrPersonAged15To29 the number of person from 15 to 29 year
+     * @param cdrPersonAgedOver65 the number of person aged over 65
+     * @param cdrNoDiplomaOver15 the number of person with no diploma of over 15 year
+     * @param cdrDepartmentId the department id.
+     */
+    public RegionDigitalScoringModel(Integer cdrLegalPopulation, BigDecimal cdrNetworkRateCoverage,
+			BigDecimal cdrMobilityCoverageRate2G, BigDecimal cdrPovertyRate, BigDecimal cdrMedianIncome,
+			Integer cdrSingleParent, Integer cdrSingle, BigDecimal cdrPublicServicePerPerson,
+			BigDecimal cdrPublicService, Integer cdrJobless15To64, Integer cdrPersonAged15To29,
+			Integer cdrPersonAgedOver65, Integer cdrNoDiplomaOver15, int cdrDepartmentId) {
+		super();
+		this.cdrLegalPopulation = cdrLegalPopulation;
+		this.cdrNetworkRateCoverage = cdrNetworkRateCoverage;
+		this.cdrMobilityCoverageRate2G = cdrMobilityCoverageRate2G;
+		this.cdrPovertyRate = cdrPovertyRate;
+		this.cdrMedianIncome = cdrMedianIncome;
+		this.cdrSingleParent = cdrSingleParent;
+		this.cdrSingle = cdrSingle;
+		this.cdrPublicServicePerPerson = cdrPublicServicePerPerson;
+		this.cdrPublicService = cdrPublicService;
+		this.cdrJobless15To64 = cdrJobless15To64;
+		this.cdrPersonAged15To29 = cdrPersonAged15To29;
+		this.cdrPersonAgedOver65 = cdrPersonAgedOver65;
+		this.cdrNoDiplomaOver15 = cdrNoDiplomaOver15;
+		this.cdrDepartmentId = cdrDepartmentId;
+	}
 
-
-    public Integer getCddLegalPopulation() {
+	public Integer getCddLegalPopulation() {
         return cdrLegalPopulation;
     }
 
@@ -124,12 +162,12 @@ public class RegionDigitalScoringModel {
         this.cdrNoDiplomaOver15 = cdrNoDiplomaOver15;
     }
 
-    public int getCddDepartementId() {
-        return cdrDepartementId;
+    public int getCddDepartmentId() {
+        return cdrDepartmentId;
     }
 
-    public void setCddDepartementId(int cdrDepartementId) {
-        this.cdrDepartementId = cdrDepartementId;
+    public void setCddDepartmentId(int cdrDepartmentId) {
+        this.cdrDepartmentId = cdrDepartmentId;
     }
 
     @Override
@@ -142,7 +180,7 @@ public class RegionDigitalScoringModel {
         }
         RegionDigitalScoringModel that = (RegionDigitalScoringModel) o;
         return 
-            cdrDepartementId == that.cdrDepartementId &&
+            cdrDepartmentId == that.cdrDepartmentId &&
             Objects.equals(cdrLegalPopulation, that.cdrLegalPopulation) &&
             Objects.equals(cdrNetworkRateCoverage, that.cdrNetworkRateCoverage) &&
             Objects.equals(cdrMobilityCoverageRate2G, that.cdrMobilityCoverageRate2G) &&
@@ -160,6 +198,6 @@ public class RegionDigitalScoringModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartementId);
+        return Objects.hash(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartmentId);
     }
 }
