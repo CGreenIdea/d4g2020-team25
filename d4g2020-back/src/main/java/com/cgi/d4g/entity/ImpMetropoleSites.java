@@ -7,17 +7,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "IMP_METROPOLE_SITES", schema = "d4g_ifn", catalog = "")
 public class ImpMetropoleSites {
-    private int mpsId;
+    private long mpsId;
     private String mpsCodeArm;
     private BigDecimal mpsCodeAccessibility2G;
 
     @Id
     @Column(name = "MPS_ID", nullable = false)
-    public int getMpsId() {
+    public long getMpsId() {
         return mpsId;
     }
 
-    public void setMpsId(int mpsId) {
+    public void setMpsId(long mpsId) {
         this.mpsId = mpsId;
     }
 

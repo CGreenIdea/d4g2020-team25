@@ -6,18 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "IMP_BASE_IC_DIPLOMES_FORMATION", schema = "d4g_ifn", catalog = "")
 public class ImpBaseIcDiplomesFormation {
-    private int dlfId;
+    private long dlfId;
     private String dlfCodeArm;
     private Integer dlfUnscholarOver15;
     private Integer dlfUnscholarNoDiplomaOver15;
 
     @Id
     @Column(name = "DLF_ID", nullable = false)
-    public int getDlfId() {
+    public long getDlfId() {
         return dlfId;
     }
 
-    public void setDlfId(int dlfId) {
+    public void setDlfId(long dlfId) {
         this.dlfId = dlfId;
     }
 

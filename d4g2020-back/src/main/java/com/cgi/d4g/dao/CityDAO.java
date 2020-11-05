@@ -31,7 +31,7 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @param dptId the id of the department
 	 * @return the city
 	 */
-	 public List<City>  listByDepartmentName(int dptId){
+	 public List<City>  listByDepartmentName(long dptId){
 	     return list("dptId = ?1", Sort.ascending("CTY_NAME"), dptId);
 	 }
 
@@ -41,7 +41,7 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @param name the name to find
 	 * @return the city
 	 */
-  public List<City>  listByDepartmentName(int dptId ,String name){
+  public List<City>  listByDepartmentName(long dptId ,String name){
       return list("dptId = ?1 and CTY_NAME like ?2", Sort.ascending("CTY_NAME"), dptId, "%" + name + "%");
   }
 
@@ -51,7 +51,7 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @param name the name to find
 	 * @return the city
 	 */
-  	public List<City>  listByRegionName(int rgnId ,String name){
+  	public List<City>  listByRegionName(long rgnId ,String name){
   		return list("select distinct c from City INNER JOIN DEPARTMENT d ON d.dptId = c.dptId where rgnId = ?1 and CTY_NAME like ?2", Sort.ascending("CTY_NAME"), rgnId, "%" + name + "%");
   	}
 }

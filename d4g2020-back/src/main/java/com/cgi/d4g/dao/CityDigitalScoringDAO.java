@@ -18,7 +18,7 @@ public class CityDigitalScoringDAO implements PanacheRepository<CityDigitalScori
 	 * @param cdsCityId the id of the city
 	 * @return the CityDigitalScoring
 	 */
-  public Optional<CityDigitalScoring> getByCityId(int cdsCityId){
+  public Optional<CityDigitalScoring> getByCityId(long cdsCityId){
       return find("cdsCityId = ?1 ", cdsCityId).singleResultOptional();
   }
 }

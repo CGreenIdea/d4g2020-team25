@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "IMP_BASE_IC_EVOL_STRUCT_PROP", schema = "d4g_ifn", catalog = "")
 public class ImpBaseIcEvolStructProp {
-    private int espId;
+    private long espId;
     private String espCodeArm;
     private Integer espTotalPop;
     private Integer espPopAge014;
@@ -16,11 +16,11 @@ public class ImpBaseIcEvolStructProp {
 
     @Id
     @Column(name = "ESP_ID", nullable = false)
-    public int getEspId() {
+    public long getEspId() {
         return espId;
     }
 
-    public void setEspId(int espId) {
+    public void setEspId(long espId) {
         this.espId = espId;
     }
 

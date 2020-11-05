@@ -7,18 +7,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "IMP_RD_THD_DEPLOIEMENT", schema = "d4g_ifn", catalog = "")
 public class ImpRdThdDeploiement {
-    private int htdId;
+    private long htdId;
     private String htdCodeArm;
     private Integer htdAvailableNetworks;
     private BigDecimal htdBestRate;
 
     @Id
     @Column(name = "HTD_ID", nullable = false)
-    public int getHtdId() {
+    public long getHtdId() {
         return htdId;
     }
 
-    public void setHtdId(int htdId) {
+    public void setHtdId(long htdId) {
         this.htdId = htdId;
     }
 

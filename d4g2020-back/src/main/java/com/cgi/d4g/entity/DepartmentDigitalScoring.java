@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "DEPARTMENT_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
 public class DepartmentDigitalScoring {
-    private int cddId;
+    private long cddId;
     private Integer cddLegalPopulation;
     private BigDecimal cddNetworkRateCoverage;
     private BigDecimal cddMobilityCoverageRate2G;
@@ -21,15 +21,15 @@ public class DepartmentDigitalScoring {
     private Integer cddPersonAged15To29;
     private Integer cddPersonAgedOver65;
     private Integer cddNoDiplomaOver15;
-    private int cddDepartementId;
+    private long cddDepartementId;
 
     @Id
     @Column(name = "CDD_ID", nullable = false)
-    public int getCddId() {
+    public long getCddId() {
         return cddId;
     }
 
-    public void setCddId(int cddId) {
+    public void setCddId(long cddId) {
         this.cddId = cddId;
     }
 
@@ -165,11 +165,11 @@ public class DepartmentDigitalScoring {
 
     @Basic
     @Column(name = "CDD_DEPARTEMENT_ID", nullable = false)
-    public int getCddDepartementId() {
+    public long getCddDepartementId() {
         return cddDepartementId;
     }
 
-    public void setCddDepartementId(int cddDepartementId) {
+    public void setCddDepartementId(long cddDepartementId) {
         this.cddDepartementId = cddDepartementId;
     }
 
