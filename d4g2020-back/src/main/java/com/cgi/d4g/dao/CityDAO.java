@@ -24,4 +24,14 @@ public class CityDAO implements PanacheRepository<City> {
    public List<City>  listByName(String name){
        return list("CTY_NAME like ?1", "%" + name + "%");
    }
+
+	/**
+	 * Find city by name
+	 * @param dptId the id of the department
+	 * @param name the name to find
+	 * @return the city
+	 */
+  public List<City>  listByDepartmentName(int dptId ,String name){
+      return list("dptId = ?1 CTY_NAME like ?2", dptId, "%" + name + "%");
+  }
 }
