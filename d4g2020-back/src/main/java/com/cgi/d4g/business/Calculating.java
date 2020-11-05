@@ -96,18 +96,4 @@ public final class Calculating {
         return score.multiply(SCORE_BASE).divide(BigDecimal.valueOf(numberScore).multiply(SCORE_BASE), SCALE, ROUNDING_MODE);
     }
 
-    public static int getQuintiles(BigDecimal scoreBase, BigDecimal thresholdTwo, BigDecimal thresholdThree, BigDecimal thresholdFour, BigDecimal thresholdFive) {
-        if (scoreBase.compareTo(thresholdTwo) < 0) {
-            return 1;
-        } else if (scoreBase.compareTo(thresholdTwo) >= 0 && scoreBase.compareTo(thresholdThree) < 0) {
-            return 2;
-        } else if (scoreBase.compareTo(thresholdThree) >= 0 && scoreBase.compareTo(thresholdFour) < 0) {
-            return 3;
-        } else if (scoreBase.compareTo(thresholdFour) >= 0 && scoreBase.compareTo(thresholdFive) < 0) {
-            return 4;
-        } else {
-            return 5;
-        }
-    }
-
 }
