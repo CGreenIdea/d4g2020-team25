@@ -7,16 +7,16 @@ const showCard = (data) => {
     if (data != null) {
         document.getElementById("cardResult").style("display: block");
 
-        if (data.city != null) {
-            fillCityData(data.city);
+        if (data.cityDigitalScoring != null) {
+            fillCityData(data.cityDigitalScoring);
         }
 
-        if (data.department != null) {
-            fillDepartmentData(data.department);
+        if (data.departmentDigitalScoring != null) {
+            fillDepartmentData(data.departmentDigitalScoring);
         }
 
-        if (data.region != null) {
-            fillRegionData(data.region);
+        if (data.regionDigitalScoring != null) {
+            fillRegionData(data.regionDigitalScoring);
         }
     }
 };
@@ -49,22 +49,22 @@ function fillCityData(cityData) {
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
-        cityData.digitalInterface,
+        cityData.cdsDigitalInterface,
         null
     );
     detailContent += getValueRow(
         "Accès à l'information",
-        cityData.informationAccess,
+        cityData.cdsInformationAccess,
         null
     );
     detailContent += getValueRow(
         "Capacité d'usage des interfaces numériques",
-        cityData.digitalSkill,
+        cityData.cdsDigitalSkill,
         null
     );
     detailContent += getValueRow(
         "Compétences administratives",
-        cityData.administrationSkill,
+        cityData.cdsAdministrationSkill,
         null
     );
 
@@ -84,22 +84,22 @@ function fillDepartmentData(departmentData) {
     l;
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
-        departmentData.digitalInterface,
+        departmentData.cddDigitalInterface,
         null
     );
     detailContent += getValueRow(
         "Accès à l'information",
-        departmentData.informationAccess,
+        departmentData.cddInformationAccess,
         null
     );
     detailContent += getValueRow(
         "Capacité d'usage des interfaces numériques",
-        departmentData.digitalSkill,
+        departmentData.cddDigitalSkill,
         null
     );
     detailContent += getValueRow(
         "Compétences administratives",
-        departmentData.administrationSkill,
+        departmentData.cddAdministrationSkill,
         null
     );
 
@@ -117,22 +117,22 @@ function fillRegionData(regionData) {
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
-        regionData.digitalInterface,
+        regionData.cdrDigitalInterface,
         null
     );
     detailContent += getValueRow(
         "Accès à l'information",
-        regionData.informationAccess,
+        regionData.cdrInformationAccess,
         null
     );
     detailContent += getValueRow(
         "Capacité d'usage des interfaces numériques",
-        regionData.digitalSkill,
+        regionData.cdrDigitalSkill,
         null
     );
     detailContent += getValueRow(
         "Compétences administratives",
-        regionData.administrationSkill,
+        regionData.cdrAdministrationSkill,
         null
     );
 
