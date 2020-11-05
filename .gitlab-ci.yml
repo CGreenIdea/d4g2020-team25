@@ -200,6 +200,6 @@ deploy:
   ##
   ## Only deploy builds from master
   ##
-  #only:
-  #  refs:
-  #    - master
+  only:
+    refs:
+      - master
