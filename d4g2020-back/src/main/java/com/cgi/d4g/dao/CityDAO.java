@@ -8,16 +8,20 @@ import com.cgi.d4g.entity.City;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
+/**
+ * DAO for the city
+ * @author vaulotan
+ *
+ */
 @ApplicationScoped
 public class CityDAO implements PanacheRepository<City> {
 
 	/**
-	 * Find region by name
+	 * Find city by name
 	 * @param name the name to find
-	 * @return the region
+	 * @return the city
 	 */
    public List<City>  listByName(String name){
-	   System.out.println("name: " + name);
        return list("CTY_NAME like ?1", "%" + name + "%");
    }
 }
