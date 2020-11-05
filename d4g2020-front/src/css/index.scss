@@ -15,3 +15,8 @@ body {
     font-size: 30px;
     margin: 10px 20px 5px 20px;
  }
+
+ input[type=text] {
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
