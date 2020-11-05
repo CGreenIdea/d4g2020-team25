@@ -107,7 +107,7 @@ build-back:
     paths:
       - 'target/*-runner.jar'
       - 'target/lib/*'
-      - target/classes/
+      #- target/classes/
     expire_in: 20 mins
 
 build-front:
@@ -137,13 +137,13 @@ test-back:
 ##
 ## Run Sonarcloud analysis
 ##
-sonarcloud-check:
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script:
-    - sonar-scanner
+#sonarcloud-check:
+#  image:
+#    name: sonarsource/sonar-scanner-cli:latest
+#    entrypoint: [""]
+#  cache:
+#    key: "${CI_JOB_NAME}"
+#    paths:
+#      - .sonar/cache
+#  script:
+#    - sonar-scanner
