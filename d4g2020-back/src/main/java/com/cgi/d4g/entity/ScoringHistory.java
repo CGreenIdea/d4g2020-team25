@@ -11,18 +11,18 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "SCORING_HISTORY", schema = "d4g_ifn", catalog = "")
 public class ScoringHistory {
-	private int sghId;
+	private long sghId;
     private int cddId;
     private int cdsId;
     private LocalDateTime search;
 
     @Id
     @Column(name = "SGH_ID", nullable = false)
-    public int getSghId() {
+    public long getSghId() {
         return sghId;
     }
 
-    public void setSghId(int sghId) {
+    public void setSghId(long sghId) {
         this.sghId = sghId;
     }
 
@@ -57,6 +57,7 @@ public class ScoringHistory {
 		this.search = search;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,7 +65,7 @@ public class ScoringHistory {
 		result = prime * result + cddId;
 		result = prime * result + cdsId;
 		result = prime * result + ((search == null) ? 0 : search.hashCode());
-		result = prime * result + sghId;
+		result = prime * result + (int) (sghId ^ (sghId >>> 32));
 		return result;
 	}
 

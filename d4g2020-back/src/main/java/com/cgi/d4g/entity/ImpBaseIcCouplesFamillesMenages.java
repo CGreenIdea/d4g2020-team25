@@ -6,18 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "IMP_BASE_IC_COUPLES_FAMILLES_MENAGES", schema = "d4g_ifn", catalog = "")
 public class ImpBaseIcCouplesFamillesMenages {
-    private int cfmId;
+    private long cfmId;
     private String cfmCodeArm;
     private Integer cfmSingle;
     private Integer cfmSingleParent;
 
     @Id
     @Column(name = "CFM_ID", nullable = false)
-    public int getCfmId() {
+    public long getCfmId() {
         return cfmId;
     }
 
-    public void setCfmId(int cfmId) {
+    public void setCfmId(long cfmId) {
         this.cfmId = cfmId;
     }
 

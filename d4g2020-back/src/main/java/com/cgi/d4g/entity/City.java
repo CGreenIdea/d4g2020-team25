@@ -1,31 +1,30 @@
 package com.cgi.d4g.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 @Entity
 @Table(name = "CITY")
-public class City implements Serializable {
-    private int ctyId;
+public class City {
+    private long ctyId;
     private String ctyName;
     private String ctyCodeArm;
     private String ctyPostalCode;
-    private Integer dptId;
+    private Long dptId;
     private String ctyParentCodeArm;
 
     @Id
     @Column(name = "CTY_ID", nullable = false)
-    public int getCtyId() {
+    public long getCtyId() {
         return ctyId;
     }
 
-    public void setCtyId(int ctyId) {
+    public void setCtyId(long ctyId) {
         this.ctyId = ctyId;
     }
 
@@ -61,11 +60,11 @@ public class City implements Serializable {
 
     @Basic
     @Column(name = "DPT_ID", nullable = true)
-    public Integer getDptId() {
+    public Long getDptId() {
         return dptId;
     }
 
-    public void setDptId(Integer dptId) {
+    public void setDptId(Long dptId) {
         this.dptId = dptId;
     }
 

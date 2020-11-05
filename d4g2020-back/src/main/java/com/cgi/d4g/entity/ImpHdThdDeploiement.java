@@ -5,20 +5,20 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "IMP_RD_THD_DEPLOIEMENT", schema = "d4g_ifn", catalog = "")
-public class ImpRdThdDeploiement {
-    private int htdId;
+@Table(name = "IMP_HD_THD_DEPLOIEMENT", schema = "d4g_ifn", catalog = "")
+public class ImpHdThdDeploiement {
+    private long htdId;
     private String htdCodeArm;
     private Integer htdAvailableNetworks;
     private BigDecimal htdBestRate;
 
     @Id
     @Column(name = "HTD_ID", nullable = false)
-    public int getHtdId() {
+    public long getHtdId() {
         return htdId;
     }
 
-    public void setHtdId(int htdId) {
+    public void setHtdId(long htdId) {
         this.htdId = htdId;
     }
 
@@ -60,7 +60,7 @@ public class ImpRdThdDeploiement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ImpRdThdDeploiement that = (ImpRdThdDeploiement) o;
+        ImpHdThdDeploiement that = (ImpHdThdDeploiement) o;
         return htdId == that.htdId &&
             Objects.equals(htdCodeArm, that.htdCodeArm) &&
             Objects.equals(htdAvailableNetworks, that.htdAvailableNetworks) &&
