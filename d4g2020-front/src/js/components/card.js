@@ -22,7 +22,7 @@ const showCard = (data) => {
 }
 
 /**
- * Hide the card and reset the data displayed
+ * Hide the card and reset all the data displayed
  */
 const hideCard = () => {
     document.getElementById("cardResult").style("display: none");
