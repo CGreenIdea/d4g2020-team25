@@ -87,6 +87,22 @@ public class Scroring {
 	 */
 	private CityDigitalScoring calculateCityScoring(City city) {
 		//TODO calculate and save
+		
+		//calculate
+		//extract data from import table pour tout les indicateurs
+		
+		//if missing poverty rate -> special average department
+		
+		//par taux
+		//calculate or get threshold
+		//calculate coeff
+		//calculate point
+		//calculate score
+		
+		//groupe par indicateur
+		//calculate score base
+		
+		//save data
 		return null;
 	}
 
