@@ -4,9 +4,12 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.util.Objects;
 
 @Entity
+@Table (name="DEPARTEMENT")
 public class Departement {
     private int dptId;
     private String dptName;
