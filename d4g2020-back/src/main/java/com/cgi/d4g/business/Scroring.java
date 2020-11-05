@@ -4,6 +4,7 @@ package com.cgi.d4g.business;
  */
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
@@ -61,9 +62,13 @@ public class Scroring {
 		Region region = getRegion(department);
 		
 		RegionDigitalScoringModel regionDigitalScoring =  generateRegionDigitalScoring();
-		DepartmentDigitalScoring departmentDigitalScoring = getDepartmentScoring(department);
-		CityDigitalScoring cityDigitalScoring = getCityScoring(city);
-		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
+		//if empty calulate and save.
+		Optional<DepartmentDigitalScoring> departmentDigitalScoring = getDepartmentScoring(department);
+		//if empty calulate and save.
+		Optional<CityDigitalScoring> cityDigitalScoring = getCityScoring(city);
+		//if empty calulate and save.
+		
+		return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)), region, regionDigitalScoring);
 	}
 
 	/**
@@ -71,8 +76,33 @@ public class Scroring {
 	 * @param city the city to get the scoring
 	 * @return the scoring
 	 */
-	private CityDigitalScoring getCityScoring(City city) {
-		// TODO Auto-generated method stub
+	private Optional<CityDigitalScoring> getCityScoring(City city) {
+		return cityDigitalScoringDAO.getByCityId(city.getCtyId());
+	}
+
+	/**
+	 * Retrieve the city scoring for the city
+	 * @param city the city to get the scoring
+	 * @return the scoring
+	 */
+	private CityDigitalScoring calculateCityScoring(City city) {
+		//TODO calculate and save
+		
+		//calculate
+		//extract data from import table pour tout les indicateurs
+		
+		//if missing poverty rate -> special average department
+		
+		//par taux
+		//calculate or get threshold
+		//calculate coeff
+		//calculate point
+		//calculate score
+		
+		//groupe par indicateur
+		//calculate score base
+		
+		//save data
 		return null;
 	}
 
@@ -81,8 +111,17 @@ public class Scroring {
 	 * @param department the department
 	 * @return the scoring of the department
 	 */
-	private DepartmentDigitalScoring getDepartmentScoring(Department department) {
-		// TODO Auto-generated method stub
+	private Optional<DepartmentDigitalScoring> getDepartmentScoring(Department department) {
+		return departmentDigitalScoringDAO.getByDeptartmentId(department.getDptId());
+	}
+
+	/**
+	 * Retrieve the department scoring for the department 
+	 * @param department the department
+	 * @return the scoring of the department
+	 */
+	private DepartmentDigitalScoring calculateDepartmentScoring(Department department) {
+		//TODO calculate and save
 		return null;
 	}
 
