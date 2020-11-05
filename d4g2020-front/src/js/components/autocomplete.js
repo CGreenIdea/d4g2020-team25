@@ -38,8 +38,9 @@ const autocomplete = (inp, arr) => {
         /* Append the DIV element as a child of the autocomplete container. */
         inputEvent.target.parentNode.appendChild(propositions);
 
+        let displayed = 0;
         /*for each item in the array...*/
-        arr.forEach(item => {
+        arr.some(item => {
             /* Keep only elements that match the supplied proposition */
             if (valRegex.test(item)) {
                 /* Create a DIV element for each matching element */
@@ -57,7 +58,9 @@ const autocomplete = (inp, arr) => {
                     closeAllAutocompletionLists();
                 });
                 propositions.appendChild(proposition);
+                return ++displayed === MAX_RESULT;
             }
+            return false;
         });
     });
 
