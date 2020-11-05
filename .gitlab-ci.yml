@@ -105,9 +105,9 @@ build-back:
     - 'mvn -f d4g2020-back $MAVEN_CLI_OPTS package -DskipTests'
   artifacts:
     paths:
-      - 'target/*-runner.jar'
-      - 'target/lib/*'
-      #- target/classes/
+      - 'd4g2020-back/target/*-runner.jar'
+      - 'd4g2020-back/target/lib/*'
+      #- d4g2020-back/target/classes/
     expire_in: 20 mins
 
 build-front:
@@ -137,16 +137,16 @@ test-back:
 ##
 ## Run Sonarcloud analysis
 ##
-#sonarcloud-check:
-#  image:
-#    name: sonarsource/sonar-scanner-cli:latest
-#    entrypoint: [""]
-#  cache:
-#    key: "${CI_JOB_NAME}"
-#    paths:
-#      - .sonar/cache
-#  script:
-#    - sonar-scanner
+sonarcloud-check:
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
 
 #
 # Deploys the website to the remote server.
