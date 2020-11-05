@@ -26,13 +26,13 @@ const showCard = (data) => {
  */
 const hideCard = () => {
     document.getElementById("cardResult").style.display = "none";
-    document.getElementById("headerScore").innerHTML("");
-    document.getElementById("cityScore").innerHTML("");
-    document.querySelector("#cityData .content").innerHTML("");
-    document.getElementById("departmentScore").innerHTML("");
-    document.querySelector("#departmentData .content").innerHTML("");
-    document.getElementById("regionScore").innerHTML("");
-    document.querySelector("#regionData .content").innerHTML("");
+    document.getElementById("headerScore").innerHTML = "";
+    document.getElementById("cityScore").innerHTML = "";
+    document.querySelector("#cityData .content").innerHTML = "";
+    document.getElementById("departmentScore").innerHTML = "";
+    document.querySelector("#departmentData .content").innerHTML = "";
+    document.getElementById("regionScore").innerHTML = "";
+    document.querySelector("#regionData .content").innerHTML = "";
 };
 
 /**
@@ -68,7 +68,7 @@ function fillCityData(cityData) {
         null
     );
 
-    document.querySelector("#cityData .content").innerHTML(detailContent);
+    document.querySelector("#cityData .content").innerHTML = detailContent;
 }
 
 /**
@@ -103,7 +103,7 @@ function fillDepartmentData(departmentData) {
         null
     );
 
-    document.querySelector("#departmentData .content").innerHTML(detailContent);
+    document.querySelector("#departmentData .content").innerHTML = detailContent;
 }
 
 /**
@@ -136,7 +136,7 @@ function fillRegionData(regionData) {
         null
     );
 
-    document.querySelector("#regionData .content").innerHTML(detailContent);
+    document.querySelector("#regionData .content").innerHTML = detailContent;
 }
 
 /**
