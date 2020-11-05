@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "IMP_RD_THD_DEPLOIEMENT", schema = "d4g_ifn", catalog = "")
-public class ImpRdThdDeploiement {
+@Table(name = "IMP_HD_THD_DEPLOIEMENT", schema = "d4g_ifn", catalog = "")
+public class ImpHdThdDeploiement {
     private long htdId;
     private String htdCodeArm;
     private Integer htdAvailableNetworks;
@@ -60,7 +60,7 @@ public class ImpRdThdDeploiement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ImpRdThdDeploiement that = (ImpRdThdDeploiement) o;
+        ImpHdThdDeploiement that = (ImpHdThdDeploiement) o;
         return htdId == that.htdId &&
             Objects.equals(htdCodeArm, that.htdCodeArm) &&
             Objects.equals(htdAvailableNetworks, that.htdAvailableNetworks) &&
