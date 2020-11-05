@@ -5,7 +5,7 @@
  */
 const showCard = (data) => {
     if (data != null) {
-        document.getElementById("cardResult").style("display: block");
+        document.getElementById("cardResult").style.display = "block";
 
         if (data.cityDigitalScoring != null) {
             fillCityData(data.cityDigitalScoring);
@@ -25,7 +25,7 @@ const showCard = (data) => {
  * Hide the card and reset all the data displayed
  */
 const hideCard = () => {
-    document.getElementById("cardResult").style("display: none");
+    document.getElementById("cardResult").style.display = "none";
     document.getElementById("headerScore").innerHTML("");
     document.getElementById("cityScore").innerHTML("");
     document.querySelector("#cityData .content").innerHTML("");
