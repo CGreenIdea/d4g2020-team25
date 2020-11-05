@@ -3,6 +3,9 @@
 @import 'assets/colors';
 @import 'assets/variables';
 
+* {
+    box-sizing: border-box;
+}
 
 body {
     color: $color;
