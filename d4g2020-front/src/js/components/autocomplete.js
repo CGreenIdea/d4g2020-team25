@@ -7,9 +7,10 @@ const MAX_RESULT = 20;
  * Turns an input into an autocomplete field.
  *
  * @param {*} inp the text input that will trigger the apparition of the proposition list
+ * @param {*} hid the hidden input where the ID of the selected value can be stored
  * @param {*} arr the array of values that can be looked upon
  */
-const autocomplete = (inp, arr) => {
+const autocomplete = (inp, hid, arr) => {
 
     /* The focused proposition.  */
     let currentFocus = -1;
@@ -42,18 +43,19 @@ const autocomplete = (inp, arr) => {
         /*for each item in the array...*/
         arr.some(item => {
             /* Keep only elements that match the supplied proposition */
-            if (valRegex.test(item)) {
+            if (valRegex.test(item.label)) {
                 /* Create a DIV element for each matching element */
                 const proposition = document.createElement('div');
                 /* Highlight the matching element */
-                proposition.innerHTML = item.replace(valRegex, '<span class="match">$&</span>');
-                /* Insert a hidden input hold the current array item's value */
-                proposition.dataset.value = item;
-                proposition.innerHTML += `<input type="hidden" value="${item}">`;
+                proposition.innerHTML = item.label.replace(valRegex, '<span class="match">$&</span>');
+                /* Save the data of this data */
+                proposition.dataset.label = item.label;
+                proposition.dataset.id = item.id;
                 /* Execute a function when someone clicks on the item value (DIV element) */
                 proposition.addEventListener('click', clickEvent => {
                     /* Set the field to the selected value. */
-                    inp.value = clickEvent.target.dataset.value;
+                    inp.value = clickEvent.target.dataset.label;
+                    hid.value = clickEvent.target.dataset.id;
                     /* Close the list. */
                     closeAllAutocompletionLists();
                 });
