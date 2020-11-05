@@ -1,7 +1,4 @@
 
-$card-text-color: black;
-$card-radius: 15px;
-
 .card-container:after,
 .card-container:before {
   content: "";
@@ -26,4 +23,30 @@ $card-radius: 15px;
     color: #000 !important;
     background-color: #f1f1f1 !important;
     border-radius: $card-radius $card-radius 0 0;
+    text-align: center;
+}
+.cardResultValues{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.cardResultValueContent{
+    width: 100%;
+    display: flex;
+}
+
+.cardResultValueName{
+    font-weight: bold;
+    float: left;
+    margin: 0 30px 10px 0;
+}
+
+.cardResultValue {
+    color: darkgray;
+    float: left;
+}
+
+.buttonCardDetail {
+    float: left;
+    margin-left: 20px;
 }
