@@ -51,7 +51,7 @@ public final class Calculating {
     /**
      * Simple addition of values
      */
-    public static BigDecimal numericInterfaceAccessScore(BigDecimal networkRateCoveragePoint, BigDecimal mobilityCoverageRatePoint, BigDecimal povertyRatePoint, BigDecimal medianIncomePoint) {
+    public static BigDecimal digitalInterfaceAccessScore(BigDecimal networkRateCoveragePoint, BigDecimal mobilityCoverageRatePoint, BigDecimal povertyRatePoint, BigDecimal medianIncomePoint) {
         return networkRateCoveragePoint.add(mobilityCoverageRatePoint).add(povertyRatePoint).add(medianIncomePoint);
     }
 
@@ -65,8 +65,8 @@ public final class Calculating {
     /**
      * Simple addition of values
      */
-    public static BigDecimal globalAccessScore(BigDecimal numericAccessScore, BigDecimal informationAccessScore) {
-        return numericAccessScore.add(informationAccessScore);
+    public static BigDecimal globalAccessScore(BigDecimal digitalAccessScore, BigDecimal informationAccessScore) {
+        return digitalAccessScore.add(informationAccessScore);
     }
 
     /**
@@ -100,8 +100,8 @@ public final class Calculating {
     /**
      * Simple addition of values
      */
-    public static BigDecimal numericInterfaceAccessScoreBase(BigDecimal numericInterfaceAccessScore) {
-        return getScoreBase(numericInterfaceAccessScore, 4);
+    public static BigDecimal digitalInterfaceAccessScoreBase(BigDecimal digitalInterfaceAccessScore) {
+        return getScoreBase(digitalInterfaceAccessScore, 4);
     }
 
     /**

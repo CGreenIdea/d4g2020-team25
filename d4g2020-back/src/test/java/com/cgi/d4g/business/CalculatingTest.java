@@ -31,15 +31,15 @@ class CalculatingTest {
     private final static BigDecimal PERSON_OVER_65_POINT = BigDecimal.valueOf(53.92);
     private final static BigDecimal NO_DIPLOMA_POINT = BigDecimal.valueOf(56.45);
 
-    private static final BigDecimal NUMERIC_INTERFACE_ACCESS_SCORE = HD_POINT.add(MOBILE_POINT).add(POVERTY_POINT).add(MEDIAN_POINT);
+    private static final BigDecimal DIGITAL_INTERFACE_ACCESS_SCORE = HD_POINT.add(MOBILE_POINT).add(POVERTY_POINT).add(MEDIAN_POINT);
     private static final BigDecimal INFORMATION_ACCESS_SCORE = SINGLE_PARENT_POINT.add(SINGLE_POINT).add(PUBLIC_SERVICE_PER_PERSON_POINT);
-    private static final BigDecimal GLOBAL_ACCESS_SCORE = INFORMATION_ACCESS_SCORE.add(NUMERIC_INTERFACE_ACCESS_SCORE);
+    private static final BigDecimal GLOBAL_ACCESS_SCORE = INFORMATION_ACCESS_SCORE.add(DIGITAL_INTERFACE_ACCESS_SCORE);
     private static final BigDecimal ADMINISTRATIVE_SKILLS_SCORE = JOBLESS_POINT.add(PERSON_15_TO_29_POINT);
     private static final BigDecimal DIGITAL_SCHOOL_SKILLS_SCORE = PERSON_OVER_65_POINT.add(NO_DIPLOMA_POINT);
     private static final BigDecimal GLOBAL_COMPETENCES_SCORE = ADMINISTRATIVE_SKILLS_SCORE.add(DIGITAL_SCHOOL_SKILLS_SCORE);
     private static final BigDecimal GLOBAL_SCORE = GLOBAL_ACCESS_SCORE.add(GLOBAL_COMPETENCES_SCORE);
 
-    private static final BigDecimal NUMERIC_INTERFACE_ACCESS_SCORE_BASE = BigDecimal.valueOf(36.96);
+    private static final BigDecimal DIGITAL_INTERFACE_ACCESS_SCORE_BASE = BigDecimal.valueOf(36.96);
     private static final BigDecimal INFORMATION_ACCESS_SCORE_BASE = BigDecimal.valueOf(108.82);
     private static final BigDecimal GLOBAL_ACCESS_SCORE_BASE = BigDecimal.valueOf(67.76);
     private static final BigDecimal ADMINISTRATIVE_SKILLS_SCORE_BASE = BigDecimal.valueOf(69.88);
@@ -72,9 +72,9 @@ class CalculatingTest {
     }
 
     @Test
-    void testNumericInterfaceAccessScore() {
-        BigDecimal result = Calculating.numericInterfaceAccessScore(HD_POINT, MOBILE_POINT, POVERTY_POINT, MEDIAN_POINT);
-        Assertions.assertEquals(0, NUMERIC_INTERFACE_ACCESS_SCORE.compareTo(result));
+    void testDigitalInterfaceAccessScore() {
+        BigDecimal result = Calculating.digitalInterfaceAccessScore(HD_POINT, MOBILE_POINT, POVERTY_POINT, MEDIAN_POINT);
+        Assertions.assertEquals(0, DIGITAL_INTERFACE_ACCESS_SCORE.compareTo(result));
     }
 
     @Test
@@ -85,7 +85,7 @@ class CalculatingTest {
 
     @Test
     void testGlobalAccessScore() {
-        BigDecimal result = Calculating.globalAccessScore(NUMERIC_INTERFACE_ACCESS_SCORE, INFORMATION_ACCESS_SCORE);
+        BigDecimal result = Calculating.globalAccessScore(DIGITAL_INTERFACE_ACCESS_SCORE, INFORMATION_ACCESS_SCORE);
         Assertions.assertEquals(0, GLOBAL_ACCESS_SCORE.compareTo(result));
     }
 
@@ -114,9 +114,9 @@ class CalculatingTest {
     }
 
     @Test
-    void testNumericInterfaceAccessScoreBase() {
-        BigDecimal result = Calculating.numericInterfaceAccessScoreBase(NUMERIC_INTERFACE_ACCESS_SCORE);
-        Assertions.assertEquals(0, NUMERIC_INTERFACE_ACCESS_SCORE_BASE.compareTo(result));
+    void testDigitalInterfaceAccessScoreBase() {
+        BigDecimal result = Calculating.digitalInterfaceAccessScoreBase(DIGITAL_INTERFACE_ACCESS_SCORE);
+        Assertions.assertEquals(0, DIGITAL_INTERFACE_ACCESS_SCORE_BASE.compareTo(result));
     }
 
     @Test
