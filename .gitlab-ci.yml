@@ -44,6 +44,11 @@ variables:
   ## Node version
   ##
   NODE_VERSION: 14.15.0
+  ##
+  ## Sonar configuration
+  ##
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Defines the location of the analysis task cache
+  GIT_DEPTH: "0" # Tells Git to fetch all the branches of the project, required by the analysis task
 
 
 ##
@@ -53,16 +58,6 @@ variables:
 #  variables:
 #    MAVEN_CLI_OPTS: -DskipTests
 
-cache:
-  key: "branch-${CI_COMMIT_REF_SLUG}"
-  paths:
-    ##
-    ## Cache dependencies to save some time on build
-    ##
-    - .m2/repository-maven
-    - .m2/repository-native
-    - d4g2020-front/node_modules
-
 
 ##
 ## Define images to be used in all build steps
@@ -71,9 +66,24 @@ cache:
   image: maven:${MAVEN_CONTAINER_VERSION}
   variables:
     MAVEN_REPO_REL_PATH: ".m2/repository-maven"
+  ##
+  ## Cache dependencies to save some time on build
+  ##
+  cache:
+    key: ${CI_JOB_NAME}
+    paths:
+      - .m2/repository-maven
+      - .sonar/cache
 
 .node: &node
   image: node:${NODE_VERSION}-stretch
+  ##
+  ## Cache dependencies to save some time on build
+  ##
+  cache:
+    key: ${CI_JOB_NAME}
+    paths:
+      - d4g2020-front/node_modules
   before_script:
     ##
     ## Move current directory to front part
@@ -88,7 +98,7 @@ cache:
 ##
 ## Build jobs
 ##
-build:back:
+build-back:
   stage: build
   <<: *maven
   script:
@@ -99,7 +109,7 @@ build:back:
       - 'target/lib/*'
     expire_in: 20 mins
 
-build:front:
+build-front:
   stage: build
   <<: *node
   script:
@@ -114,17 +124,30 @@ build:front:
 
 
 ##
-## Run unit and integration tests, then perform a Sonar analysis.
+## Run unit and integration tests, and generate coverage reports
 ##
-## SonarQube should only be run on base of the native OR standard build.
-## We chose the native build because it activates the integration tests.
-##
-## The SonarQube analysis can only be performed for the current repo, since externatl repo won't
-## have the Sonarcloud token. As a consequence, a job for native tests is performed to make sure
-## tests still pass.
-##
-test:back:
+test-back:
   stage: test
   <<: *maven
   script:
     - 'mvn -f d4g2020-back $MAVEN_CLI_OPTS verify'
+
+
+##
+## Run Sonarcloud analysis
+##
+sonarcloud-check-back:
+  <<: *maven
+  script:
+    - 'mvn -f d4g2020-back $MAVEN_CLI_OPTS clean org.jacoco:jacoco-maven-plugin:prepare-agent verify org.jacoco:jacoco-maven-plugin:report sonar:sonar'
+
+sonarcloud-check-front:
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
