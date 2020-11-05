@@ -8,6 +8,11 @@ import com.cgi.d4g.entity.City;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
+/**
+ * DAO for the city
+ * @author vaulotan
+ *
+ */
 @ApplicationScoped
 public class CityDAO implements PanacheRepository<City> {
 
