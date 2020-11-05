@@ -12,17 +12,17 @@ import java.util.Objects;
 @Table(name="REGION")
 public class Region {
 	
-    private int rgnId;
+    private long rgnId;
     private String rgnName;
     private String rgnCode;
 
     @Id
     @Column(name = "RGN_ID", nullable = false)
-    public int getRgnId() {
+    public long getRgnId() {
         return rgnId;
     }
 
-    public void setRgnId(int rgnId) {
+    public void setRgnId(long rgnId) {
         this.rgnId = rgnId;
     }
 

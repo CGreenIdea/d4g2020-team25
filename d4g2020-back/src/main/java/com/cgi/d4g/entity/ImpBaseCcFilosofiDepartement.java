@@ -7,18 +7,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "IMP_BASE_CC_FILOSOFI_DEPARTEMENT", schema = "d4g_ifn", catalog = "")
 public class ImpBaseCcFilosofiDepartement {
-    private int fldId;
+    private long fldId;
     private String fldCode;
     private BigDecimal fldPovertyRate;
     private BigDecimal fldMedianIncome;
 
     @Id
     @Column(name = "FLD_ID", nullable = false)
-    public int getFldId() {
+    public long getFldId() {
         return fldId;
     }
 
-    public void setFldId(int fldId) {
+    public void setFldId(long fldId) {
         this.fldId = fldId;
     }
 

@@ -59,7 +59,7 @@ public class RegionResource {
 	 */
     @GET
     @Path("{regionId}/city/name/{name}")
-    public List<City> listCity(@PathParam("regionId") String regionId, @PathParam("name") String name) {
-        return this.cityDao.listAll();
+    public List<City> listCity(@PathParam("regionId") long regionId, @PathParam("name") String name) {
+        return this.cityDao.listByRegionName(regionId, name);
     }
 }

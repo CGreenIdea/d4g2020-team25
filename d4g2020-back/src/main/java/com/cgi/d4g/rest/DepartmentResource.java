@@ -51,7 +51,7 @@ public class DepartmentResource {
 	 */
     @GET
     @Path("{departmentId}/city/")
-    public List<City> listCity(@PathParam("departmentId") int departmentId) {
+    public List<City> listCity(@PathParam("departmentId") long departmentId) {
         return this.cityDao.listByDepartmentName(departmentId);
     }
     
@@ -61,7 +61,7 @@ public class DepartmentResource {
 	 */
     @GET
     @Path("{departmentId}/city/name/{name}")
-    public List<City> listCity(@PathParam("departmentId") int departmentId, @PathParam("name") String name) {
+    public List<City> listCity(@PathParam("departmentId") long departmentId, @PathParam("name") String name) {
         return this.cityDao.listByDepartmentName(departmentId, name);
     }
 }

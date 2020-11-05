@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "CITY_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
 public class CityDigitalScoring {
-    private int cdsId;
+    private long cdsId;
     private Integer cdsLegalPopulation;
     private BigDecimal cdsNetworkRateCoverage;
     private BigDecimal cdsMobilityCoverageRate2G;
@@ -21,15 +21,15 @@ public class CityDigitalScoring {
     private Integer cdsPersonAged15To29;
     private Integer cdsPersonAgedOver65;
     private Integer cdsNoDiplomaOver15;
-    private int cdsCityId;
+    private long cdsCityId;
 
     @Id
     @Column(name = "CDS_ID", nullable = false)
-    public int getCdsId() {
+    public long getCdsId() {
         return cdsId;
     }
 
-    public void setCdsId(int cdsId) {
+    public void setCdsId(long cdsId) {
         this.cdsId = cdsId;
     }
 
@@ -165,11 +165,11 @@ public class CityDigitalScoring {
 
     @Basic
     @Column(name = "CDS_CITY_ID", nullable = false)
-    public int getCdsCityId() {
+    public long getCdsCityId() {
         return cdsCityId;
     }
 
-    public void setCdsCityId(int cdsCityId) {
+    public void setCdsCityId(long cdsCityId) {
         this.cdsCityId = cdsCityId;
     }
 
