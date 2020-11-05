@@ -16,7 +16,7 @@
 
     .content {
         max-height: 0;
-        transition: max-height .3s ease-out;
+        transition: max-height .6s ease-in-out;
         overflow-y: hidden;
     }
 
@@ -32,7 +32,7 @@
         }
 
         .content {
-            max-height: 750px;
+            max-height: 350px;
             overflow-y: auto;
         }
     }
