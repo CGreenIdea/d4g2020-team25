@@ -19,7 +19,7 @@ const showCard = (data) => {
             fillRegionData(data.region);
         }
     }
-}
+};
 
 /**
  * Hide the card and reset all the data displayed
@@ -33,7 +33,7 @@ const hideCard = () => {
     document.querySelector("#departmentData .content").innerHTML("");
     document.getElementById("regionScore").innerHTML("");
     document.querySelector("#regionData .content").innerHTML("");
-}
+};
 
 /**
  * Display all the data regarding the city
@@ -47,10 +47,26 @@ function fillCityData(cityData) {
     // Scoring in the detail
     document.getElementById("cityScore").innerHTML(cityData.scoring);
 
-    let detailContent = getValueRow("Accès aux interfaces digitales", cityData.digitalInterface, null);
-    detailContent += getValueRow("Accès à l'information", cityData.informationAccess, null);
-    detailContent += getValueRow("Capacité d'usage des interfaces numériques", cityData.digitalSkill, null);
-    detailContent += getValueRow("Compétences administratives", cityData.administrationSkill, null);
+    let detailContent = getValueRow(
+        "Accès aux interfaces digitales",
+        cityData.digitalInterface,
+        null
+    );
+    detailContent += getValueRow(
+        "Accès à l'information",
+        cityData.informationAccess,
+        null
+    );
+    detailContent += getValueRow(
+        "Capacité d'usage des interfaces numériques",
+        cityData.digitalSkill,
+        null
+    );
+    detailContent += getValueRow(
+        "Compétences administratives",
+        cityData.administrationSkill,
+        null
+    );
 
     document.querySelector("#cityData .content").innerHTML(detailContent);
 }
@@ -62,12 +78,30 @@ function fillCityData(cityData) {
  */
 function fillDepartmentData(departmentData) {
     // Scoring in the detail
-    document.getElementById("departmentScore").innerHTML(departmentData.scoring);
-    l
-    let detailContent = getValueRow("Accès aux interfaces digitales", departmentData.digitalInterface, null);
-    detailContent += getValueRow("Accès à l'information", departmentData.informationAccess, null);
-    detailContent += getValueRow("Capacité d'usage des interfaces numériques", departmentData.digitalSkill, null);
-    detailContent += getValueRow("Compétences administratives", departmentData.administrationSkill, null);
+    document
+        .getElementById("departmentScore")
+        .innerHTML(departmentData.scoring);
+    l;
+    let detailContent = getValueRow(
+        "Accès aux interfaces digitales",
+        departmentData.digitalInterface,
+        null
+    );
+    detailContent += getValueRow(
+        "Accès à l'information",
+        departmentData.informationAccess,
+        null
+    );
+    detailContent += getValueRow(
+        "Capacité d'usage des interfaces numériques",
+        departmentData.digitalSkill,
+        null
+    );
+    detailContent += getValueRow(
+        "Compétences administratives",
+        departmentData.administrationSkill,
+        null
+    );
 
     document.querySelector("#departmentData .content").innerHTML(detailContent);
 }
@@ -81,10 +115,26 @@ function fillRegionData(regionData) {
     // Scoring in the detail
     document.getElementById("regionScore").innerHTML(regionData.scoring);
 
-    let detailContent = getValueRow("Accès aux interfaces digitales", regionData.digitalInterface, null);
-    detailContent += getValueRow("Accès à l'information", regionData.informationAccess, null);
-    detailContent += getValueRow("Capacité d'usage des interfaces numériques", regionData.digitalSkill, null);
-    detailContent += getValueRow("Compétences administratives", regionData.administrationSkill, null);
+    let detailContent = getValueRow(
+        "Accès aux interfaces digitales",
+        regionData.digitalInterface,
+        null
+    );
+    detailContent += getValueRow(
+        "Accès à l'information",
+        regionData.informationAccess,
+        null
+    );
+    detailContent += getValueRow(
+        "Capacité d'usage des interfaces numériques",
+        regionData.digitalSkill,
+        null
+    );
+    detailContent += getValueRow(
+        "Compétences administratives",
+        regionData.administrationSkill,
+        null
+    );
 
     document.querySelector("#regionData .content").innerHTML(detailContent);
 }
