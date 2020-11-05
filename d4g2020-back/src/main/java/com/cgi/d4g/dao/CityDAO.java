@@ -22,7 +22,6 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @return the region
 	 */
    public List<City>  listByName(String name){
-	   System.out.println("name: " + name);
        return list("CTY_NAME like ?1", "%" + name + "%");
    }
 }
