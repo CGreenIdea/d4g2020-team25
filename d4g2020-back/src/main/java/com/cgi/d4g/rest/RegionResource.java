@@ -14,14 +14,29 @@ import com.cgi.d4g.dao.RegionDAO;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.Region;
 
+/**
+ * Rest Region resource
+ * @author vaulotan
+ *
+ */
 @Path("/rest/region")
 @Produces(MediaType.APPLICATION_JSON)
 public class RegionResource {
 	
-	@Inject
-	private RegionDAO regionDAO;
+	/**
+	 * the region DAO.
+	 */
+	private final RegionDAO regionDAO;
 	
-    @GET
+	/**
+	 * constructeur
+	 * @param cityDao the city Dao
+	 */
+    public RegionResource(RegionDAO regionDAO) {
+		this.regionDAO = regionDAO;
+	}
+
+	@GET
     public List<Region> listAll() {
         return this.regionDAO.listAll();
     }
