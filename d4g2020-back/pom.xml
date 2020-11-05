@@ -6,6 +6,8 @@
   <artifactId>d4g2020-back</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
+  <name>Back D4G 2020 (CGreenIdea)</name>
+
   <!--  ___                       _   _         -->
   <!-- | _ \_ _ ___ _ __  ___ _ _| |_(_)___ ___ -->
   <!-- |  _/ '_/ _ \ '_ \/ -_) '_|  _| / -_|_-< -->
@@ -18,6 +20,9 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- Sonar -->
+    <sonar.organization>cgreenidea</sonar.organization>
 
     <!-- Quarkus settings -->
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
