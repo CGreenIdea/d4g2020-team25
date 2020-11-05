@@ -39,6 +39,36 @@ public class Scoring {
      * The filosofi department DAO.
      */
     private final ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO;
+    
+    /**
+     * The population file DAO.
+     */
+    private final ImpBaseIcEvolStructPropDAO impBaseIcEvolStructPropDAO;
+    
+    /**
+     * The filosofie file DAO.
+     */
+    private final ImpBaseCcFilosofieDAO impBaseCcFilosofieDAO;
+    
+    /**
+     * The couplesFamillesMenage file DAO.
+     */
+    private final ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO;
+    
+    /**
+     * The baseIcDiplomesFormation file DAO.
+     */
+    private final ImpBaseIcDiplomesFormationDAO impBaseIcDiplomesFormationDAO;
+    
+    /**
+     * The hdThdDeploiement file DAO.
+     */
+    private final ImpHdThdDeploiementDAO impHdThdDeploiementDAO;
+    
+    /**
+     * The hdThdDeploiement file DAO.
+     */
+    private final ImpMetropoleSitesDAO impMetropoleSitesDAO;
 
     /**
      * Constructor
@@ -47,13 +77,25 @@ public class Scoring {
      * @param departmentDAO the department DAO
      */
     public Scoring(RegionDAO regionDAO, DepartmentDAO departmentDAO,
-                   CityDigitalScoringDAO cityDigitalScoringDAO, DepartmentDigitalScoringDAO departmentDigitalScoringDAO,
-                   ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO) {
+		   CityDigitalScoringDAO cityDigitalScoringDAO, DepartmentDigitalScoringDAO departmentDigitalScoringDAO,
+		   ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO,
+		   ImpBaseIcEvolStructPropDAO impBaseIcEvolStructPropDAO,
+		   ImpBaseCcFilosofieDAO impBaseCcFilosofieDAO, 
+		   ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO,
+		   ImpBaseIcDiplomesFormationDAO impBaseIcDiplomesFormationDAO,
+		   ImpHdThdDeploiementDAO impHdThdDeploiementDAO,
+		   ImpMetropoleSitesDAO impMetropoleSitesDAO) {
         this.regionDAO = regionDAO;
         this.departmentDAO = departmentDAO;
         this.cityDigitalScoringDAO = cityDigitalScoringDAO;
         this.departmentDigitalScoringDAO = departmentDigitalScoringDAO;
         this.impBaseCcFilosofiDepartementDAO = impBaseCcFilosofiDepartementDAO;
+        this.impBaseIcEvolStructPropDAO = impBaseIcEvolStructPropDAO;
+        this.impBaseCcFilosofieDAO = impBaseCcFilosofieDAO; 
+        this.impBaseIcCouplesFamillesMenagesDAO = impBaseIcCouplesFamillesMenagesDAO;
+        this.impBaseIcDiplomesFormationDAO= impBaseIcDiplomesFormationDAO;
+        this.impHdThdDeploiementDAO= impHdThdDeploiementDAO;
+        this.impMetropoleSitesDAO= impMetropoleSitesDAO;
     }
 
     /**
@@ -92,21 +134,19 @@ public class Scoring {
      * @return the scoring
      */
     private CityDigitalScoring calculateCityScoring(City city) {
-        //TODO calculate and save
-
         //calculate
         //extract data from import table pour tout les indicateurs
 
         //if missing poverty rate -> special average department
         Department department = departmentDAO.findById(city.getDptId());
-        ImpBaseCcFilosofiDepartement impBaseCcFilosofiDepartement = impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
+        ImpBaseCcFilosofiDepartement impBaseCcFilosofiDepartement = this.impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
 
-        List<ImpBaseIcEvolStructProp> populateList = new ArrayList<>();
-        List<ImpBaseIcCouplesFamillesMenages> coupleList = new ArrayList<>();
-        List<ImpBaseIcDiplomesFormation> diplomaList = new ArrayList<>();
-        List<ImpHdThdDeploiement> hdList = new ArrayList<>();
-        List<ImpMetropoleSites> mobileList = new ArrayList<>();
-        List<ImpBaseCcFilosofi> filosofiList = new ArrayList<>();
+        List<ImpBaseIcEvolStructProp> populateList = this.impBaseIcEvolStructPropDAO.getByCode(city.getCtyCodeArm());
+        List<ImpBaseIcCouplesFamillesMenages> coupleList = this.impBaseIcCouplesFamillesMenagesDAO.getByCode(city.getCtyCodeArm());
+        List<ImpBaseIcDiplomesFormation> diplomaList = this.impBaseIcDiplomesFormationDAO.getByCode(city.getCtyCodeArm());
+        List<ImpHdThdDeploiement> hdList = this.impHdThdDeploiementDAO.getByCode(city.getCtyCodeArm());
+        List<ImpMetropoleSites> mobileList = this.impMetropoleSitesDAO.getByCode(city.getCtyCodeArm());
+        List<ImpBaseCcFilosofi> filosofiList = this.impBaseCcFilosofieDAO.getByCode(city.getCtyCodeArm());
 
         CityDigitalScoring scoring = new CityDigitalScoring(); // TODO complete
         CityDigitalScoring threshold = new CityDigitalScoring(); // TODO complete
