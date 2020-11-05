@@ -51,6 +51,16 @@ public class DepartementResource {
 	 * @return list of city
 	 */
     @GET
+    @Path("{departmentId}/city/")
+    public List<City> listCity(@PathParam("departmentId") int departmentId) {
+        return this.cityDao.listByDepartmentName(departmentId);
+    }
+    
+	/**
+	 * List of all the city of a department.
+	 * @return list of city
+	 */
+    @GET
     @Path("{departmentId}/city/name/{name}")
     public List<City> listCity(@PathParam("departmentId") int departmentId, @PathParam("name") String name) {
         return this.cityDao.listByDepartmentName(departmentId, name);
