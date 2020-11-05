@@ -1,13 +1,14 @@
 @import '../../node_modules/normalize.css/normalize';
-@import './_card.scss';
 
-$color: #ee6644;
-$bg-color: grey;
-$font-family: "Segoe UI, Roboto, Ubuntu, Helvetica Neue, Arial, sans-serif";
+@import './assets/_colors.scss';
+@import './assets/_variables.scss';
+
+@import './_card.scss';
+@import './collapsibles.scss';
 
 body {
     color: $color;
-    font-family: $font-family;
+    font-family: $font-family-main;
 }
 
 .header {
