@@ -190,12 +190,12 @@ deploy:
     ##
     ## Gzip all files to allow serving compressed files without on-the-go zipping
     ##
-    - find dist \( -name '*.css' -o -name '*.js' -o -name '*.html' -o -name '*.xml' -o -name '*.svg' \) -exec gzip --verbose --keep {} \;
+    - find d4g2020-front/dist \( -name '*.css' -o -name '*.js' -o -name '*.html' -o -name '*.xml' -o -name '*.svg' \) -exec gzip --verbose --keep {} \;
 
     ##
     ## Rsync if not already installed, and sync files with remote
     ##
-    - rsync -vrzt --del --stats d4g2020-front/dist/ $SSH_USER@ssh.keyboardplaying.org:~/deploy-d4g/
+    - rsync -vrzt --del --stats d4g2020-front/dist/ $SSH_USER@$SSH_HOST:~/deploy-d4g/
 
   ##
   ## Only deploy builds from master
