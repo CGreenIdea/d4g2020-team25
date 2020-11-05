@@ -106,8 +106,8 @@ build-back:
   artifacts:
     paths:
       - 'target/*-runner.jar'
-      - 'target/classes/*'
       - 'target/lib/*'
+      - target/classes/
     expire_in: 20 mins
 
 build-front:
