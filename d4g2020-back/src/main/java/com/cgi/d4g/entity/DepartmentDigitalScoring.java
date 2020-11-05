@@ -1,13 +1,17 @@
 package com.cgi.d4g.entity;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "DEPARTMENT_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
 public class DepartmentDigitalScoring {
-    private int cddId;
+    private long cddId;
     private Integer cddLegalPopulation;
     private BigDecimal cddNetworkRateCoverage;
     private BigDecimal cddMobilityCoverageRate2G;
@@ -21,15 +25,19 @@ public class DepartmentDigitalScoring {
     private Integer cddPersonAged15To29;
     private Integer cddPersonAgedOver65;
     private Integer cddNoDiplomaOver15;
-    private int cddDepartementId;
+    private long cddDepartementId;
+    private BigDecimal cddDigitalInterface;
+    private BigDecimal cddInformationAccess;
+    private BigDecimal cddAdministrationSkill;
+    private BigDecimal cddDigitalSkill;
 
     @Id
     @Column(name = "CDD_ID", nullable = false)
-    public int getCddId() {
+    public long getCddId() {
         return cddId;
     }
 
-    public void setCddId(int cddId) {
+    public void setCddId(long cddId) {
         this.cddId = cddId;
     }
 
@@ -165,42 +173,179 @@ public class DepartmentDigitalScoring {
 
     @Basic
     @Column(name = "CDD_DEPARTEMENT_ID", nullable = false)
-    public int getCddDepartementId() {
+    public long getCddDepartementId() {
         return cddDepartementId;
     }
 
-    public void setCddDepartementId(int cddDepartementId) {
+    public void setCddDepartementId(long cddDepartementId) {
         this.cddDepartementId = cddDepartementId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    @Basic
+    @Column(name = "CDD_DIGITAL_INTERFACE", nullable = true, precision = 4)
+	public BigDecimal getCddDigitalInterface() {
+		return cddDigitalInterface;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+
+	public void setCddDigitalInterface(BigDecimal cddDigitalInterface) {
+		this.cddDigitalInterface = cddDigitalInterface;
         }
-        DepartmentDigitalScoring that = (DepartmentDigitalScoring) o;
-        return cddId == that.cddId &&
-            cddDepartementId == that.cddDepartementId &&
-            Objects.equals(cddLegalPopulation, that.cddLegalPopulation) &&
-            Objects.equals(cddNetworkRateCoverage, that.cddNetworkRateCoverage) &&
-            Objects.equals(cddMobilityCoverageRate2G, that.cddMobilityCoverageRate2G) &&
-            Objects.equals(cddPovertyRate, that.cddPovertyRate) &&
-            Objects.equals(cddMedianIncome, that.cddMedianIncome) &&
-            Objects.equals(cddSingleParent, that.cddSingleParent) &&
-            Objects.equals(cddSingle, that.cddSingle) &&
-            Objects.equals(cddPublicServicePerPerson, that.cddPublicServicePerPerson) &&
-            Objects.equals(cddPublicService, that.cddPublicService) &&
-            Objects.equals(cddJobless15To64, that.cddJobless15To64) &&
-            Objects.equals(cddPersonAged15To29, that.cddPersonAged15To29) &&
-            Objects.equals(cddPersonAgedOver65, that.cddPersonAgedOver65) &&
-            Objects.equals(cddNoDiplomaOver15, that.cddNoDiplomaOver15);
+	
+	@Basic
+    @Column(name = "CDD_INFORMATION_ACCESS", nullable = true, precision = 4)
+	public BigDecimal getCddInformationAccess() {
+		return cddInformationAccess;
+	}
+
+	public void setCddInformationAccess(BigDecimal cddInformationAccess) {
+		this.cddInformationAccess = cddInformationAccess;
     }
+
+	@Basic
+    @Column(name = "CDD_ADMISTRATION_SKILL", nullable = true, precision = 4)
+	public BigDecimal getCddAdministrationSkill() {
+		return cddAdministrationSkill;
+	}
+
+	public void setCddAdministrationSkill(BigDecimal cddAdministrationSkill) {
+		this.cddAdministrationSkill = cddAdministrationSkill;
+	}
+	
+	@Basic
+    @Column(name = "CDD_DIGITAL_SCRILL", nullable = true, precision = 4)
+	public BigDecimal getCddDigitalSkill() {
+		return cddDigitalSkill;
+	}
+
+	public void setCddDigitalSkill(BigDecimal cddDigitalSkill) {
+		this.cddDigitalSkill = cddDigitalSkill;
+	}
 
     @Override
     public int hashCode() {
-        return Objects.hash(cddId, cddLegalPopulation, cddNetworkRateCoverage, cddMobilityCoverageRate2G, cddPovertyRate, cddMedianIncome, cddSingleParent, cddSingle, cddPublicServicePerPerson, cddPublicService, cddJobless15To64, cddPersonAged15To29, cddPersonAgedOver65, cddNoDiplomaOver15, cddDepartementId);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cddAdministrationSkill == null) ? 0 : cddAdministrationSkill.hashCode());
+		result = prime * result + (int) (cddDepartementId ^ (cddDepartementId >>> 32));
+		result = prime * result + ((cddDigitalInterface == null) ? 0 : cddDigitalInterface.hashCode());
+		result = prime * result + ((cddDigitalSkill == null) ? 0 : cddDigitalSkill.hashCode());
+		result = prime * result + (int) (cddId ^ (cddId >>> 32));
+		result = prime * result + ((cddInformationAccess == null) ? 0 : cddInformationAccess.hashCode());
+		result = prime * result + ((cddJobless15To64 == null) ? 0 : cddJobless15To64.hashCode());
+		result = prime * result + ((cddLegalPopulation == null) ? 0 : cddLegalPopulation.hashCode());
+		result = prime * result + ((cddMedianIncome == null) ? 0 : cddMedianIncome.hashCode());
+		result = prime * result + ((cddMobilityCoverageRate2G == null) ? 0 : cddMobilityCoverageRate2G.hashCode());
+		result = prime * result + ((cddNetworkRateCoverage == null) ? 0 : cddNetworkRateCoverage.hashCode());
+		result = prime * result + ((cddNoDiplomaOver15 == null) ? 0 : cddNoDiplomaOver15.hashCode());
+		result = prime * result + ((cddPersonAged15To29 == null) ? 0 : cddPersonAged15To29.hashCode());
+		result = prime * result + ((cddPersonAgedOver65 == null) ? 0 : cddPersonAgedOver65.hashCode());
+		result = prime * result + ((cddPovertyRate == null) ? 0 : cddPovertyRate.hashCode());
+		result = prime * result + ((cddPublicService == null) ? 0 : cddPublicService.hashCode());
+		result = prime * result + ((cddPublicServicePerPerson == null) ? 0 : cddPublicServicePerPerson.hashCode());
+		result = prime * result + ((cddSingle == null) ? 0 : cddSingle.hashCode());
+		result = prime * result + ((cddSingleParent == null) ? 0 : cddSingleParent.hashCode());
+		return result;
     }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DepartmentDigitalScoring other = (DepartmentDigitalScoring) obj;
+		if (cddAdministrationSkill == null) {
+			if (other.cddAdministrationSkill != null)
+				return false;
+		} else if (!cddAdministrationSkill.equals(other.cddAdministrationSkill))
+			return false;
+		if (cddDepartementId != other.cddDepartementId)
+			return false;
+		if (cddDigitalInterface == null) {
+			if (other.cddDigitalInterface != null)
+				return false;
+		} else if (!cddDigitalInterface.equals(other.cddDigitalInterface))
+			return false;
+		if (cddDigitalSkill == null) {
+			if (other.cddDigitalSkill != null)
+				return false;
+		} else if (!cddDigitalSkill.equals(other.cddDigitalSkill))
+			return false;
+		if (cddId != other.cddId)
+			return false;
+		if (cddInformationAccess == null) {
+			if (other.cddInformationAccess != null)
+				return false;
+		} else if (!cddInformationAccess.equals(other.cddInformationAccess))
+			return false;
+		if (cddJobless15To64 == null) {
+			if (other.cddJobless15To64 != null)
+				return false;
+		} else if (!cddJobless15To64.equals(other.cddJobless15To64))
+			return false;
+		if (cddLegalPopulation == null) {
+			if (other.cddLegalPopulation != null)
+				return false;
+		} else if (!cddLegalPopulation.equals(other.cddLegalPopulation))
+			return false;
+		if (cddMedianIncome == null) {
+			if (other.cddMedianIncome != null)
+				return false;
+		} else if (!cddMedianIncome.equals(other.cddMedianIncome))
+			return false;
+		if (cddMobilityCoverageRate2G == null) {
+			if (other.cddMobilityCoverageRate2G != null)
+				return false;
+		} else if (!cddMobilityCoverageRate2G.equals(other.cddMobilityCoverageRate2G))
+			return false;
+		if (cddNetworkRateCoverage == null) {
+			if (other.cddNetworkRateCoverage != null)
+				return false;
+		} else if (!cddNetworkRateCoverage.equals(other.cddNetworkRateCoverage))
+			return false;
+		if (cddNoDiplomaOver15 == null) {
+			if (other.cddNoDiplomaOver15 != null)
+				return false;
+		} else if (!cddNoDiplomaOver15.equals(other.cddNoDiplomaOver15))
+			return false;
+		if (cddPersonAged15To29 == null) {
+			if (other.cddPersonAged15To29 != null)
+				return false;
+		} else if (!cddPersonAged15To29.equals(other.cddPersonAged15To29))
+			return false;
+		if (cddPersonAgedOver65 == null) {
+			if (other.cddPersonAgedOver65 != null)
+				return false;
+		} else if (!cddPersonAgedOver65.equals(other.cddPersonAgedOver65))
+			return false;
+		if (cddPovertyRate == null) {
+			if (other.cddPovertyRate != null)
+				return false;
+		} else if (!cddPovertyRate.equals(other.cddPovertyRate))
+			return false;
+		if (cddPublicService == null) {
+			if (other.cddPublicService != null)
+				return false;
+		} else if (!cddPublicService.equals(other.cddPublicService))
+			return false;
+		if (cddPublicServicePerPerson == null) {
+			if (other.cddPublicServicePerPerson != null)
+				return false;
+		} else if (!cddPublicServicePerPerson.equals(other.cddPublicServicePerPerson))
+			return false;
+		if (cddSingle == null) {
+			if (other.cddSingle != null)
+				return false;
+		} else if (!cddSingle.equals(other.cddSingle))
+			return false;
+		if (cddSingleParent == null) {
+			if (other.cddSingleParent != null)
+				return false;
+		} else if (!cddSingleParent.equals(other.cddSingleParent))
+			return false;
+		return true;
+	}
+
 }

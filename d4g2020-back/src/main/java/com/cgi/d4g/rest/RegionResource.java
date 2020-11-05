@@ -61,7 +61,7 @@ public class RegionResource {
     @Path("{regionId}/department/{departmentId}/city/name/{name}")
     public List<City> listCity(@PathParam("regionId") int regionId, @PathParam("departmentId") int departmentId, @PathParam("name") String name) {
         if (departmentId >= 0) {
-            return this.cityDao.listByDepartmentAndName(departmentId, name);
+            return this.cityDao.listByDepartmentName(departmentId, name);
         } else if (regionId >= 0) {
             return this.cityDao.listByRegionAndName(regionId, name);
         }

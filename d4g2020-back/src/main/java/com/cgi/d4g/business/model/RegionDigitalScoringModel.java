@@ -1,7 +1,6 @@
 package com.cgi.d4g.business.model;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class RegionDigitalScoringModel {
     private Integer cdrLegalPopulation;
@@ -18,6 +17,14 @@ public class RegionDigitalScoringModel {
     private Integer cdrPersonAgedOver65;
     private Integer cdrNoDiplomaOver15;
     private int cdrDepartmentId;
+    private BigDecimal cdrDigitalInterface;
+    private BigDecimal cdrInformationAccess;
+    private BigDecimal cdrAdministrationSkill;
+    private BigDecimal cdrDigitalSkill;
+    
+    public RegionDigitalScoringModel() {
+    	
+    }
     
     /**
      * The region scoring constructor
@@ -40,7 +47,9 @@ public class RegionDigitalScoringModel {
 			BigDecimal cdrMobilityCoverageRate2G, BigDecimal cdrPovertyRate, BigDecimal cdrMedianIncome,
 			Integer cdrSingleParent, Integer cdrSingle, BigDecimal cdrPublicServicePerPerson,
 			BigDecimal cdrPublicService, Integer cdrJobless15To64, Integer cdrPersonAged15To29,
-			Integer cdrPersonAgedOver65, Integer cdrNoDiplomaOver15, int cdrDepartmentId) {
+			Integer cdrPersonAgedOver65, Integer cdrNoDiplomaOver15, int cdrDepartmentId,
+		     BigDecimal cdrDigitalInterface, BigDecimal cdrInformationAccess,
+		     BigDecimal cdrAdministrationSkill, BigDecimal cdrDigitalSkill) {
 		super();
 		this.cdrLegalPopulation = cdrLegalPopulation;
 		this.cdrNetworkRateCoverage = cdrNetworkRateCoverage;
@@ -56,148 +65,154 @@ public class RegionDigitalScoringModel {
 		this.cdrPersonAgedOver65 = cdrPersonAgedOver65;
 		this.cdrNoDiplomaOver15 = cdrNoDiplomaOver15;
 		this.cdrDepartmentId = cdrDepartmentId;
+		this.cdrDigitalInterface = cdrDigitalInterface;
+		this.cdrInformationAccess = cdrInformationAccess;
+		this.cdrAdministrationSkill = cdrAdministrationSkill;
+		this.cdrDigitalSkill = cdrDigitalSkill;
 	}
 
-	public Integer getCddLegalPopulation() {
+	public Integer getCdrLegalPopulation() {
         return cdrLegalPopulation;
     }
 
-    public void setCddLegalPopulation(Integer cdrLegalPopulation) {
+    public void setCdrLegalPopulation(Integer cdrLegalPopulation) {
         this.cdrLegalPopulation = cdrLegalPopulation;
     }
 
-    public BigDecimal getCddNetworkRateCoverage() {
+    public BigDecimal getCdrNetworkRateCoverage() {
         return cdrNetworkRateCoverage;
     }
 
-    public void setCddNetworkRateCoverage(BigDecimal cdrNetworkRateCoverage) {
+    public void setCdrNetworkRateCoverage(BigDecimal cdrNetworkRateCoverage) {
         this.cdrNetworkRateCoverage = cdrNetworkRateCoverage;
     }
 
-    public BigDecimal getCddMobilityCoverageRate2G() {
+    public BigDecimal getCdrMobilityCoverageRate2G() {
         return cdrMobilityCoverageRate2G;
     }
 
-    public void setCddMobilityCoverageRate2G(BigDecimal cdrMobilityCoverageRate2G) {
+    public void setCdrMobilityCoverageRate2G(BigDecimal cdrMobilityCoverageRate2G) {
         this.cdrMobilityCoverageRate2G = cdrMobilityCoverageRate2G;
     }
 
-    public BigDecimal getCddPovertyRate() {
+    public BigDecimal getCdrPovertyRate() {
         return cdrPovertyRate;
     }
 
-    public void setCddPovertyRate(BigDecimal cdrPovertyRate) {
+    public void setCdrPovertyRate(BigDecimal cdrPovertyRate) {
         this.cdrPovertyRate = cdrPovertyRate;
     }
 
-    public BigDecimal getCddMedianIncome() {
+    public BigDecimal getCdrMedianIncome() {
         return cdrMedianIncome;
     }
 
-    public void setCddMedianIncome(BigDecimal cdrMedianIncome) {
+    public void setCdrMedianIncome(BigDecimal cdrMedianIncome) {
         this.cdrMedianIncome = cdrMedianIncome;
     }
 
-    public Integer getCddSingleParent() {
+    public Integer getCdrSingleParent() {
         return cdrSingleParent;
     }
 
-    public void setCddSingleParent(Integer cdrSingleParent) {
+    public void setCdrSingleParent(Integer cdrSingleParent) {
         this.cdrSingleParent = cdrSingleParent;
     }
 
-    public Integer getCddSingle() {
+    public Integer getCdrSingle() {
         return cdrSingle;
     }
 
-    public void setCddSingle(Integer cdrSingle) {
+    public void setCdrSingle(Integer cdrSingle) {
         this.cdrSingle = cdrSingle;
     }
 
-    public BigDecimal getCddPublicServicePerPerson() {
+    public BigDecimal getCdrPublicServicePerPerson() {
         return cdrPublicServicePerPerson;
     }
 
-    public void setCddPublicServicePerPerson(BigDecimal cdrPublicServicePerPerson) {
+    public void setCdrPublicServicePerPerson(BigDecimal cdrPublicServicePerPerson) {
         this.cdrPublicServicePerPerson = cdrPublicServicePerPerson;
     }
 
-    public BigDecimal getCddPublicService() {
+    public BigDecimal getCdrPublicService() {
         return cdrPublicService;
     }
 
-    public void setCddPublicService(BigDecimal cdrPublicService) {
+    public void setCdrPublicService(BigDecimal cdrPublicService) {
         this.cdrPublicService = cdrPublicService;
     }
 
-    public Integer getCddJobless15To64() {
+    public Integer getCdrJobless15To64() {
         return cdrJobless15To64;
     }
 
-    public void setCddJobless15To64(Integer cdrJobless15To64) {
+    public void setCdrJobless15To64(Integer cdrJobless15To64) {
         this.cdrJobless15To64 = cdrJobless15To64;
     }
 
-    public Integer getCddPersonAged15To29() {
+    public Integer getCdrPersonAged15To29() {
         return cdrPersonAged15To29;
     }
 
-    public void setCddPersonAged15To29(Integer cdrPersonAged15To29) {
+    public void setCdrPersonAged15To29(Integer cdrPersonAged15To29) {
         this.cdrPersonAged15To29 = cdrPersonAged15To29;
     }
 
-    public Integer getCddPersonAgedOver65() {
+    public Integer getCdrPersonAgedOver65() {
         return cdrPersonAgedOver65;
     }
 
-    public void setCddPersonAgedOver65(Integer cdrPersonAgedOver65) {
+    public void setCdrPersonAgedOver65(Integer cdrPersonAgedOver65) {
         this.cdrPersonAgedOver65 = cdrPersonAgedOver65;
     }
 
-    public Integer getCddNoDiplomaOver15() {
+    public Integer getCdrNoDiplomaOver15() {
         return cdrNoDiplomaOver15;
     }
 
-    public void setCddNoDiplomaOver15(Integer cdrNoDiplomaOver15) {
+    public void setCdrNoDiplomaOver15(Integer cdrNoDiplomaOver15) {
         this.cdrNoDiplomaOver15 = cdrNoDiplomaOver15;
     }
 
-    public int getCddDepartmentId() {
+    public int getCdrDepartmentId() {
         return cdrDepartmentId;
     }
 
-    public void setCddDepartmentId(int cdrDepartmentId) {
+    public void setCdrDepartmentId(int cdrDepartmentId) {
         this.cdrDepartmentId = cdrDepartmentId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+	public BigDecimal getCdrDigitalInterface() {
+		return cdrDigitalInterface;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+
+	public void setCdrDigitalInterface(BigDecimal cdrDigitalInterface) {
+		this.cdrDigitalInterface = cdrDigitalInterface;
         }
-        RegionDigitalScoringModel that = (RegionDigitalScoringModel) o;
-        return 
-            cdrDepartmentId == that.cdrDepartmentId &&
-            Objects.equals(cdrLegalPopulation, that.cdrLegalPopulation) &&
-            Objects.equals(cdrNetworkRateCoverage, that.cdrNetworkRateCoverage) &&
-            Objects.equals(cdrMobilityCoverageRate2G, that.cdrMobilityCoverageRate2G) &&
-            Objects.equals(cdrPovertyRate, that.cdrPovertyRate) &&
-            Objects.equals(cdrMedianIncome, that.cdrMedianIncome) &&
-            Objects.equals(cdrSingleParent, that.cdrSingleParent) &&
-            Objects.equals(cdrSingle, that.cdrSingle) &&
-            Objects.equals(cdrPublicServicePerPerson, that.cdrPublicServicePerPerson) &&
-            Objects.equals(cdrPublicService, that.cdrPublicService) &&
-            Objects.equals(cdrJobless15To64, that.cdrJobless15To64) &&
-            Objects.equals(cdrPersonAged15To29, that.cdrPersonAged15To29) &&
-            Objects.equals(cdrPersonAgedOver65, that.cdrPersonAgedOver65) &&
-            Objects.equals(cdrNoDiplomaOver15, that.cdrNoDiplomaOver15);
+	
+	public BigDecimal getCdrInformationAccess() {
+		return cdrInformationAccess;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartmentId);
+	public void setCdrInformationAccess(BigDecimal cdrInformationAccess) {
+		this.cdrInformationAccess = cdrInformationAccess;
+	}
+	
+	public BigDecimal getCdrAdministrationSkill() {
+		return cdrAdministrationSkill;
     }
+
+	public void setCdrAdministrationSkill(BigDecimal cdrAdministrationSkill) {
+		this.cdrAdministrationSkill = cdrAdministrationSkill;
+	}
+	
+	public BigDecimal getCdrDigitalSkill() {
+		return cdrDigitalSkill;
+	}
+
+	public void setCdrDigitalSkill(BigDecimal cdrDigitalSkill) {
+		this.cdrDigitalSkill = cdrDigitalSkill;
+	}
+
 }
