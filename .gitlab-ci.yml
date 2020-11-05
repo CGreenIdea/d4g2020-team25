@@ -39,7 +39,7 @@ variables:
   ## when running from the command line.
   ## `installAtEnd` and `deployAtEnd` are only effective with recent version of the corresponding plugins.
   ##
-  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true -U"
+  MAVEN_CLI_OPTS: "-f d4g2020-back --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true -U"
   ##
   ## Node version
   ##
@@ -102,7 +102,7 @@ build-back:
   stage: build
   <<: *maven
   script:
-    - 'mvn -f d4g2020-back $MAVEN_CLI_OPTS package -DskipTests'
+    - 'mvn $MAVEN_CLI_OPTS package -DskipTests'
   artifacts:
     paths:
       - 'd4g2020-back/target/*-runner.jar'
@@ -131,7 +131,7 @@ test-back:
   stage: test
   <<: *maven
   script:
-    - 'mvn -f d4g2020-back $MAVEN_CLI_OPTS verify'
+    - 'mvn $MAVEN_CLI_OPTS -verify'
 
 
 ##
