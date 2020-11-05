@@ -4,6 +4,7 @@ package com.cgi.d4g.business;
  */
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
@@ -62,12 +63,12 @@ public class Scroring {
 		
 		RegionDigitalScoringModel regionDigitalScoring =  generateRegionDigitalScoring();
 		//if empty calulate and save.
-		DepartmentDigitalScoring departmentDigitalScoring = getDepartmentScoring(department);
+		Optional<DepartmentDigitalScoring> departmentDigitalScoring = getDepartmentScoring(department);
 		//if empty calulate and save.
-		CityDigitalScoring cityDigitalScoring = getCityScoring(city);
+		Optional<CityDigitalScoring> cityDigitalScoring = getCityScoring(city);
 		//if empty calulate and save.
 		
-		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
+		return new ScoringResultModel(city, cityDigitalScoring.orElse(null), department, departmentDigitalScoring.orElse(null), region, regionDigitalScoring);
 	}
 
 	/**
@@ -75,8 +76,8 @@ public class Scroring {
 	 * @param city the city to get the scoring
 	 * @return the scoring
 	 */
-	private CityDigitalScoring getCityScoring(City city) {
-		return cityDigitalScoringDAO.listByDepartmentName(city.getCtyId());
+	private Optional<CityDigitalScoring> getCityScoring(City city) {
+		return cityDigitalScoringDAO.getByCityId(city.getCtyId());
 	}
 
 	/**
@@ -84,9 +85,8 @@ public class Scroring {
 	 * @param department the department
 	 * @return the scoring of the department
 	 */
-	private DepartmentDigitalScoring getDepartmentScoring(Department department) {
-		// TODO Auto-generated method stub
-		return null;
+	private Optional<DepartmentDigitalScoring> getDepartmentScoring(Department department) {
+		return departmentDigitalScoringDAO.getByDeptartmentId(department.getDptId());
 	}
 
 	/**
