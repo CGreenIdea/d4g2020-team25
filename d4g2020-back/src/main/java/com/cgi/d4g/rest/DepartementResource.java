@@ -15,23 +15,43 @@ import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.Departement;
 
 /**
- * departement reste WS
+ * Department rest WS
  * @author vaulotan
  *
  */
-@Path("/rest/departement")
+@Path("/rest/department")
 @Produces(MediaType.APPLICATION_JSON)
 public class DepartementResource {
 	
-	@Inject
-	private DepartementDAO departementDAO;
+	/**
+	 * Constructor
+	 * @param departementDAO the department DAO 
+	 * @param cityDao the city Dao
+	 */
+	public DepartementResource(DepartementDAO departementDAO, CityDAO cityDao) {
+		this.departementDAO=departementDAO;
+		this.cityDao=cityDao;
+	}
+	
+	private final DepartementDAO departementDAO;
+	
+	private final CityDAO cityDao;
 	
 	/**
-	 * List of all the departement.
-	 * @return list of departement
+	 * List of all the department.
+	 * @return list of department
 	 */
     @GET
     public List<Departement> list() {
         return this.departementDAO.listAll();
+    }
+	/**
+	 * List of all the city of a department.
+	 * @return list of department
+	 */
+    @GET
+    @Path("{departmentId}/city/name/{name}")
+    public List<City> listCity(@PathParam("departmentId") String departmentId, @PathParam("name") String name) {
+        return this.cityDao.listAll();
     }
 }
