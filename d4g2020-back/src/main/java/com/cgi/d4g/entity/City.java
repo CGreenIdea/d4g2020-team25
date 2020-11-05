@@ -1,17 +1,16 @@
 package com.cgi.d4g.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 @Entity
 @Table(name = "CITY")
-public class City implements Serializable {
+public class City {
     private int ctyId;
     private String ctyName;
     private String ctyCodeArm;
