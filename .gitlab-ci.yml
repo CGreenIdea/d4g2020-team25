@@ -107,7 +107,7 @@ build-back:
     paths:
       - 'd4g2020-back/target/*-runner.jar'
       - 'd4g2020-back/target/lib/*'
-      #- d4g2020-back/target/classes/
+      - d4g2020-back/target/classes/
     expire_in: 20 mins
 
 build-front:
