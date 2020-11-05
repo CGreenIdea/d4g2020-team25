@@ -10,7 +10,6 @@ public class ImpBaseCcFilosofiDepartement {
     private int fldId;
     private String fldCode;
     private BigDecimal fldPovertyRate;
-    private BigDecimal fldSocialAid;
     private BigDecimal fldMedianIncome;
 
     @Id
@@ -44,16 +43,6 @@ public class ImpBaseCcFilosofiDepartement {
     }
 
     @Basic
-    @Column(name = "FLD_SOCIAL_AID", nullable = true, precision = 4)
-    public BigDecimal getFldSocialAid() {
-        return fldSocialAid;
-    }
-
-    public void setFldSocialAid(BigDecimal fldSocialAid) {
-        this.fldSocialAid = fldSocialAid;
-    }
-
-    @Basic
     @Column(name = "FLD_MEDIAN_INCOME", nullable = true, precision = 4)
     public BigDecimal getFldMedianIncome() {
         return fldMedianIncome;
@@ -75,12 +64,11 @@ public class ImpBaseCcFilosofiDepartement {
         return fldId == that.fldId &&
             Objects.equals(fldCode, that.fldCode) &&
             Objects.equals(fldPovertyRate, that.fldPovertyRate) &&
-            Objects.equals(fldSocialAid, that.fldSocialAid) &&
             Objects.equals(fldMedianIncome, that.fldMedianIncome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fldId, fldCode, fldPovertyRate, fldSocialAid, fldMedianIncome);
+        return Objects.hash(fldId, fldCode, fldPovertyRate, fldMedianIncome);
     }
 }

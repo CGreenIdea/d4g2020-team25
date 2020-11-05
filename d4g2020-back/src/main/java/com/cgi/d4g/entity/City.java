@@ -6,11 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "CITY")
-public class City {
+public class City implements Serializable {
     private int ctyId;
     private String ctyName;
     private String ctyCodeArm;
