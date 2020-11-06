@@ -1,3 +1,7 @@
+/* Node resolution */
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
+
 /* Node utilities */
 import path from 'path';
 
@@ -26,6 +30,11 @@ export default {
     },
 
     plugins: [
+        /* Node resolution */
+        // transform Node dependencies so that Rollup can process them
+        json(),
+        resolve(),
+
         /* JS transformation */
         // Inject environment variables
         inject({
