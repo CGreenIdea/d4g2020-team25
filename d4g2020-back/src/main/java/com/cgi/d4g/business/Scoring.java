@@ -9,12 +9,14 @@ import com.cgi.d4g.business.model.ScoringResultModel;
 import com.cgi.d4g.dao.*;
 import com.cgi.d4g.entity.*;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class Scoring {
 
     /**

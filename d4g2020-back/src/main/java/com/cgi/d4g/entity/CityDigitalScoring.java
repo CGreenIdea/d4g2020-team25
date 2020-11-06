@@ -179,7 +179,7 @@ public class CityDigitalScoring {
 
 
     @Basic
-    @Column(name = "CDD_DIGITAL_INTERFACE", nullable = true, precision = 4)
+    @Column(name = "CDS_DIGITAL_INTERFACE", nullable = true, precision = 4)
     public BigDecimal getCdsDigitalInterface() {
         return cdsDigitalInterface;
     }
@@ -189,7 +189,7 @@ public class CityDigitalScoring {
     }
 
     @Basic
-    @Column(name = "CDD_INFORMATION_ACCESS", nullable = true, precision = 4)
+    @Column(name = "CDS_INFORMATION_ACCESS", nullable = true, precision = 4)
     public BigDecimal getCdsInformationAccess() {
         return cdsInformationAccess;
     }
@@ -199,7 +199,7 @@ public class CityDigitalScoring {
     }
 
     @Basic
-    @Column(name = "CDD_ADMISTRATION_SKILL", nullable = true, precision = 4)
+    @Column(name = "CDS_ADMISTRATION_SKILL", nullable = true, precision = 4)
     public BigDecimal getCdsAdministrationSkill() {
         return cdsAdministrationSkill;
     }
@@ -209,7 +209,7 @@ public class CityDigitalScoring {
     }
 
     @Basic
-    @Column(name = "CDD_DIGITAL_SCRILL", nullable = true, precision = 4)
+    @Column(name = "CDS_DIGITAL_SCRILL", nullable = true, precision = 4)
     public BigDecimal getCdsDigitalSkill() {
         return cdsDigitalSkill;
     }

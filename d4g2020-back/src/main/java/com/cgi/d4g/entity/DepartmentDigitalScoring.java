@@ -172,7 +172,7 @@ public class DepartmentDigitalScoring {
     }
 
     @Basic
-    @Column(name = "CDD_DEPARTEMENT_ID", nullable = false)
+    @Column(name = "CDD_DEPARTMENT_ID", nullable = false)
     public long getCddDepartementId() {
         return cddDepartementId;
     }
