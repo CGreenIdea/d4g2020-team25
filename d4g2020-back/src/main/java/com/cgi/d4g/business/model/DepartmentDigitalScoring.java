@@ -1,4 +1,4 @@
-package com.cgi.d4g.entity;
+package com.cgi.d4g.business.model;
 
 import java.math.BigDecimal;
 
@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.cgi.d4g.business.model.DepartmentDigitalScoringModel;
 
 @Entity
 @Table(name = "DEPARTMENT_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
@@ -222,18 +220,7 @@ public class DepartmentDigitalScoring {
 	public void setCddDigitalSkill(BigDecimal cddDigitalSkill) {
 		this.cddDigitalSkill = cddDigitalSkill;
 	}
-	
-	public DepartmentDigitalScoringModel getDepartmentDigitalScoringModel() {
-		DepartmentDigitalScoringModel departmentDigitalScoringModel = new DepartmentDigitalScoringModel();
-		
-		departmentDigitalScoringModel.setCddAdministrationSkill(cddAdministrationSkill);
-		departmentDigitalScoringModel.setCddDepartementId(cddDepartementId);
-		departmentDigitalScoringModel.setCddDigitalInterface(cddDigitalInterface);
-		departmentDigitalScoringModel.setCddDigitalSkill(cddDigitalSkill);
-		departmentDigitalScoringModel.setCddInformationAccess(cddInformationAccess);
-		return departmentDigitalScoringModel;
-	}
-	
+
     @Override
     public int hashCode() {
 		final int prime = 31;

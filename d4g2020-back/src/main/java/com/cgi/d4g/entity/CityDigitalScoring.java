@@ -1,8 +1,14 @@
 package com.cgi.d4g.entity;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.cgi.d4g.business.model.CityDigitalScoringModel;
 
 @Entity
 @Table(name = "CITY_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
@@ -216,6 +222,15 @@ public class CityDigitalScoring {
 
     public void setCdsDigitalSkill(BigDecimal cdsDigitalSkill) {
         this.cdsDigitalSkill = cdsDigitalSkill;
+    }
+    
+    public CityDigitalScoringModel getCityDigitalScoringModel() {
+    	CityDigitalScoringModel cityDigitalScoringModel = new CityDigitalScoringModel();
+    	cityDigitalScoringModel.setCdsAdministrationSkill(cdsAdministrationSkill);
+    	cityDigitalScoringModel.setCdsDigitalInterface(cdsDigitalInterface);
+    	cityDigitalScoringModel.setCdsDigitalSkill(cdsDigitalSkill);
+    	cityDigitalScoringModel.setCdsInformationAccess(cdsInformationAccess);
+    	return cityDigitalScoringModel;
     }
 
 	@Override

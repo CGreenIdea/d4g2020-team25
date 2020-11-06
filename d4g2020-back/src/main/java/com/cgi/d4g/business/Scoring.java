@@ -1,20 +1,44 @@
 package com.cgi.d4g.business;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+import java.util.Optional;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
+
 /*
  * class to manage the business of scoring.
  */
 
 import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
-import com.cgi.d4g.dao.*;
-import com.cgi.d4g.entity.*;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.List;
-import java.util.Optional;
+import com.cgi.d4g.dao.CityDigitalScoringDAO;
+import com.cgi.d4g.dao.DepartmentDAO;
+import com.cgi.d4g.dao.DepartmentDigitalScoringDAO;
+import com.cgi.d4g.dao.ImpBaseCcFilosofiDepartementDAO;
+import com.cgi.d4g.dao.ImpBaseCcFilosofiRegionDAO;
+import com.cgi.d4g.dao.ImpBaseCcFilosofieDAO;
+import com.cgi.d4g.dao.ImpBaseIcCouplesFamillesMenagesDAO;
+import com.cgi.d4g.dao.ImpBaseIcDiplomesFormationDAO;
+import com.cgi.d4g.dao.ImpBaseIcEvolStructPropDAO;
+import com.cgi.d4g.dao.ImpHdThdDeploiementDAO;
+import com.cgi.d4g.dao.ImpMetropoleSitesDAO;
+import com.cgi.d4g.dao.RegionDAO;
+import com.cgi.d4g.entity.City;
+import com.cgi.d4g.entity.CityDigitalScoring;
+import com.cgi.d4g.entity.Department;
+import com.cgi.d4g.entity.DepartmentDigitalScoring;
+import com.cgi.d4g.entity.ImpBaseCcFilosofi;
+import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
+import com.cgi.d4g.entity.ImpBaseCcFilosofiRegion;
+import com.cgi.d4g.entity.ImpBaseIcCouplesFamillesMenages;
+import com.cgi.d4g.entity.ImpBaseIcDiplomesFormation;
+import com.cgi.d4g.entity.ImpBaseIcEvolStructProp;
+import com.cgi.d4g.entity.ImpHdThdDeploiement;
+import com.cgi.d4g.entity.ImpMetropoleSites;
+import com.cgi.d4g.entity.Region;
 
 @ApplicationScoped
 public class Scoring {
@@ -131,7 +155,7 @@ public class Scoring {
         Optional<CityDigitalScoring> cityDigitalScoring = getCityScoring(city);
         //if empty calulate and save.
 
-        return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)), region, regionDigitalScoring);
+        return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)).getCityDigitalScoringModel(), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)).getDepartmentDigitalScoringModel(), region, regionDigitalScoring);
     }
 
 
@@ -377,21 +401,7 @@ public class Scoring {
      */
     private RegionDigitalScoringModel generateRegionDigitalScoring() {
         // FIXME
-        int cdrDepartmentId = 0;
-        Integer cdrLegalPopulation = null;
-        BigDecimal cdrSingle = null;
-        BigDecimal cdrPersonAged15To29 = null;
-        BigDecimal cdrNoDiplomaOver15 = null;
-        BigDecimal cdrJobless15To64 = null;
-        BigDecimal cdrSingleParent = null;
-        BigDecimal cdrPersonAgedOver65 = null;
-        BigDecimal cdrMedianIncome = null;
-        BigDecimal cdrPovertyRate = null;
-        BigDecimal cdrPublicService = null;
-        BigDecimal cdrPublicServicePerPerson = null;
-        BigDecimal cdrMobilityCoverageRate2G = null;
-        BigDecimal cdrNetworkRateCoverage = null;
-        return new RegionDigitalScoringModel(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartmentId, null, null, null, null);
+        return new RegionDigitalScoringModel( BigDecimal.valueOf(1), BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4));
     }
 
     private void icCouplesFamiliesMenageToScoring(CityDigitalScoring scoring, BigDecimal cfmSingle,

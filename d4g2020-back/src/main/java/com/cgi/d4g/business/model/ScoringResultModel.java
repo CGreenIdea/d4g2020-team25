@@ -1,16 +1,14 @@
 package com.cgi.d4g.business.model;
 
 import com.cgi.d4g.entity.City;
-import com.cgi.d4g.entity.CityDigitalScoring;
-import com.cgi.d4g.entity.DepartmentDigitalScoring;
 import com.cgi.d4g.entity.Department;
 import com.cgi.d4g.entity.Region;
 
 public class ScoringResultModel {
 	private City city;
-	private CityDigitalScoring cityDigitalScoring;
+	private CityDigitalScoringModel cityDigitalScoring;
 	private Department department;
-	private DepartmentDigitalScoring departmentDigitalScoring;
+	private DepartmentDigitalScoringModel departmentDigitalScoring;
 	private Region region;
 	private RegionDigitalScoringModel regionDigitalScoring;
 	
@@ -24,8 +22,8 @@ public class ScoringResultModel {
 	 * @param region the region of the city
 	 * @param regionDigitalScoring the result of the scoring of region
 	 */
-	public ScoringResultModel(City city, CityDigitalScoring cityDigitalScoring, Department department,
-			DepartmentDigitalScoring departmentDigitalScoring, Region region,
+	public ScoringResultModel(City city, CityDigitalScoringModel cityDigitalScoring, Department department,
+			DepartmentDigitalScoringModel departmentDigitalScoring, Region region,
 			RegionDigitalScoringModel regionDigitalScoring) {
 		super();
 		this.city = city;
@@ -56,7 +54,7 @@ public class ScoringResultModel {
 	/**
 	 * @return the cityDigitalScoring
 	 */
-	public CityDigitalScoring getCityDigitalScoring() {
+	public CityDigitalScoringModel getCityDigitalScoring() {
 		return cityDigitalScoring;
 	}
 
@@ -64,7 +62,7 @@ public class ScoringResultModel {
 	/**
 	 * @param cityDigitalScoring the cityDigitalScoring to set
 	 */
-	public void setCityDigitalScoring(CityDigitalScoring cityDigitalScoring) {
+	public void setCityDigitalScoring(CityDigitalScoringModel cityDigitalScoring) {
 		this.cityDigitalScoring = cityDigitalScoring;
 	}
 
@@ -88,7 +86,7 @@ public class ScoringResultModel {
 	/**
 	 * @return the departmentDigitalScoring
 	 */
-	public DepartmentDigitalScoring getDepartmentDigitalScoring() {
+	public DepartmentDigitalScoringModel getDepartmentDigitalScoring() {
 		return departmentDigitalScoring;
 	}
 
@@ -96,7 +94,7 @@ public class ScoringResultModel {
 	/**
 	 * @param departmentDigitalScoring the departmentDigitalScoring to set
 	 */
-	public void setDepartmentDigitalScoring(DepartmentDigitalScoring departmentDigitalScoring) {
+	public void setDepartmentDigitalScoring(DepartmentDigitalScoringModel departmentDigitalScoring) {
 		this.departmentDigitalScoring = departmentDigitalScoring;
 	}
 

@@ -19,6 +19,7 @@ import com.cgi.d4g.dao.ImpBaseIcEvolStructPropDAO;
 import com.cgi.d4g.dao.ImpHdThdDeploiementDAO;
 import com.cgi.d4g.dao.ImpMetropoleSitesDAO;
 import com.cgi.d4g.dao.RegionDAO;
+import com.cgi.d4g.dto.ImpBaseIcCouplesFamillesMenagesTo;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
 import com.cgi.d4g.entity.Department;
@@ -104,7 +105,7 @@ public class ScoreResource {
 		regionDigitalScoring.setCdrAdministrationSkill(BigDecimal.valueOf(57.2));
 		regionDigitalScoring.setCdrDigitalSkill(BigDecimal.valueOf(5.7));
 		
-		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
+		return new ScoringResultModel(city, cityDigitalScoring.getCityDigitalScoringModel(), department, departmentDigitalScoring.getDepartmentDigitalScoringModel(), region, regionDigitalScoring);
     }
 
 	/**
@@ -115,9 +116,9 @@ public class ScoreResource {
 	 */
     @GET
     @Path("/test/{rgnId}")
-    public DepartmentDigitalScoring getScoreByregion(@PathParam("rgnId") long rgnId) {
+    public ImpBaseIcCouplesFamillesMenagesTo getScoreByregion(@PathParam("rgnId") long rgnId) {
     	long dptId=55;
-    	DepartmentDigitalScoring regionDigitalScoringModel = impBaseIcCouplesFamillesMenagesDAO.getAvgdepartment(rgnId);
+    	ImpBaseIcCouplesFamillesMenagesTo regionDigitalScoringModel = impBaseIcCouplesFamillesMenagesDAO.getAvgdepartment(rgnId);
     	impBaseIcCouplesFamillesMenagesDAO.getAvgRegion(rgnId);
     	
     	impMetropoleSitesDAO.getAvgdepartment(dptId);
