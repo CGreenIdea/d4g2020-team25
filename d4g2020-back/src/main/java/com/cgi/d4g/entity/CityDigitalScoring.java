@@ -13,14 +13,14 @@ public class CityDigitalScoring {
     private BigDecimal cdsMobilityCoverageRate2G;
     private BigDecimal cdsPovertyRate;
     private BigDecimal cdsMedianIncome;
-    private Integer cdsSingleParent;
-    private Integer cdsSingle;
+    private BigDecimal cdsSingleParent;
+    private BigDecimal cdsSingle;
     private BigDecimal cdsPublicServicePerPerson;
     private BigDecimal cdsPublicService;
-    private Integer cdsJobless15To64;
-    private Integer cdsPersonAged15To29;
-    private Integer cdsPersonAgedOver65;
-    private Integer cdsNoDiplomaOver15;
+    private BigDecimal cdsJobless15To64;
+    private BigDecimal cdsPersonAged15To29;
+    private BigDecimal cdsPersonAgedOver65;
+    private BigDecimal cdsNoDiplomaOver15;
     private long cdsCityId;
     private BigDecimal cdsDigitalInterface;
     private BigDecimal cdsInformationAccess;
@@ -89,21 +89,21 @@ public class CityDigitalScoring {
 
     @Basic
     @Column(name = "CDS_SINGLE_PARENT", nullable = true, precision = 0)
-    public Integer getCdsSingleParent() {
+    public BigDecimal getCdsSingleParent() {
         return cdsSingleParent;
     }
 
-    public void setCdsSingleParent(Integer cdsSingleParent) {
+    public void setCdsSingleParent(BigDecimal cdsSingleParent) {
         this.cdsSingleParent = cdsSingleParent;
     }
 
     @Basic
     @Column(name = "CDS_SINGLE", nullable = true, precision = 0)
-    public Integer getCdsSingle() {
+    public BigDecimal getCdsSingle() {
         return cdsSingle;
     }
 
-    public void setCdsSingle(Integer cdsSingle) {
+    public void setCdsSingle(BigDecimal cdsSingle) {
         this.cdsSingle = cdsSingle;
     }
 
@@ -129,41 +129,41 @@ public class CityDigitalScoring {
 
     @Basic
     @Column(name = "CDS_JOBLESS_15_TO_64", nullable = true, precision = 0)
-    public Integer getCdsJobless15To64() {
+    public BigDecimal getCdsJobless15To64() {
         return cdsJobless15To64;
     }
 
-    public void setCdsJobless15To64(Integer cdsJobless15To64) {
+    public void setCdsJobless15To64(BigDecimal cdsJobless15To64) {
         this.cdsJobless15To64 = cdsJobless15To64;
     }
 
     @Basic
     @Column(name = "CDS_PERSON_AGED_15_TO_29", nullable = true, precision = 0)
-    public Integer getCdsPersonAged15To29() {
+    public BigDecimal getCdsPersonAged15To29() {
         return cdsPersonAged15To29;
     }
 
-    public void setCdsPersonAged15To29(Integer cdsPersonAged15To29) {
+    public void setCdsPersonAged15To29(BigDecimal cdsPersonAged15To29) {
         this.cdsPersonAged15To29 = cdsPersonAged15To29;
     }
 
     @Basic
     @Column(name = "CDS_PERSON_AGED_OVER_65", nullable = true, precision = 0)
-    public Integer getCdsPersonAgedOver65() {
+    public BigDecimal getCdsPersonAgedOver65() {
         return cdsPersonAgedOver65;
     }
 
-    public void setCdsPersonAgedOver65(Integer cdsPersonAgedOver65) {
+    public void setCdsPersonAgedOver65(BigDecimal cdsPersonAgedOver65) {
         this.cdsPersonAgedOver65 = cdsPersonAgedOver65;
     }
 
     @Basic
     @Column(name = "CDS_NO_DIPLOMA_OVER_15", nullable = true, precision = 0)
-    public Integer getCdsNoDiplomaOver15() {
+    public BigDecimal getCdsNoDiplomaOver15() {
         return cdsNoDiplomaOver15;
     }
 
-    public void setCdsNoDiplomaOver15(Integer cdsNoDiplomaOver15) {
+    public void setCdsNoDiplomaOver15(BigDecimal cdsNoDiplomaOver15) {
         this.cdsNoDiplomaOver15 = cdsNoDiplomaOver15;
     }
 
@@ -176,48 +176,47 @@ public class CityDigitalScoring {
     public void setCdsCityId(long cdsCityId) {
         this.cdsCityId = cdsCityId;
     }
-    
-    
-    
+
+
     @Basic
     @Column(name = "CDD_DIGITAL_INTERFACE", nullable = true, precision = 4)
-	public BigDecimal getCdsDigitalInterface() {
-		return cdsDigitalInterface;
-	}
+    public BigDecimal getCdsDigitalInterface() {
+        return cdsDigitalInterface;
+    }
 
-	public void setCdsDigitalInterface(BigDecimal cdsDigitalInterface) {
-		this.cdsDigitalInterface = cdsDigitalInterface;
-	}
-	
-	@Basic
+    public void setCdsDigitalInterface(BigDecimal cdsDigitalInterface) {
+        this.cdsDigitalInterface = cdsDigitalInterface;
+    }
+
+    @Basic
     @Column(name = "CDD_INFORMATION_ACCESS", nullable = true, precision = 4)
-	public BigDecimal getCdsInformationAccess() {
-		return cdsInformationAccess;
-	}
+    public BigDecimal getCdsInformationAccess() {
+        return cdsInformationAccess;
+    }
 
-	public void setCdsInformationAccess(BigDecimal cdsInformationAccess) {
-		this.cdsInformationAccess = cdsInformationAccess;
-	}
-	
-	@Basic
+    public void setCdsInformationAccess(BigDecimal cdsInformationAccess) {
+        this.cdsInformationAccess = cdsInformationAccess;
+    }
+
+    @Basic
     @Column(name = "CDD_ADMISTRATION_SKILL", nullable = true, precision = 4)
-	public BigDecimal getCdsAdministrationSkill() {
-		return cdsAdministrationSkill;
-	}
+    public BigDecimal getCdsAdministrationSkill() {
+        return cdsAdministrationSkill;
+    }
 
-	public void setCdsAdministrationSkill(BigDecimal cdsAdministrationSkill) {
-		this.cdsAdministrationSkill = cdsAdministrationSkill;
-	}
-	
-	@Basic
+    public void setCdsAdministrationSkill(BigDecimal cdsAdministrationSkill) {
+        this.cdsAdministrationSkill = cdsAdministrationSkill;
+    }
+
+    @Basic
     @Column(name = "CDD_DIGITAL_SCRILL", nullable = true, precision = 4)
-	public BigDecimal getCdsDigitalSkill() {
-		return cdsDigitalSkill;
-	}
+    public BigDecimal getCdsDigitalSkill() {
+        return cdsDigitalSkill;
+    }
 
-	public void setCdsDigitalSkill(BigDecimal cdsDigitalSkill) {
-		this.cdsDigitalSkill = cdsDigitalSkill;
-	}
+    public void setCdsDigitalSkill(BigDecimal cdsDigitalSkill) {
+        this.cdsDigitalSkill = cdsDigitalSkill;
+    }
 
 	@Override
 	public int hashCode() {

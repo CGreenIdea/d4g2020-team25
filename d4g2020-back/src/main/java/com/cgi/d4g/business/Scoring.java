@@ -113,23 +113,10 @@ public class Scoring {
 
         //par taux
         //calculate or get threshold
-        //calculate coeff
-        CityDigitalScoring coef = calculatingCoefficient(scoring, threshold);
-
-        //calculate point
-        //calculate score
-
-        //groupe par indicateur
-        //calculate score base
+        Calculating.updateScoreBaseOfScoring(scoring, threshold);
 
         //save data
         return null;
-    }
-
-    private CityDigitalScoring calculatingCoefficient(CityDigitalScoring scoring, CityDigitalScoring threshold) {
-        CityDigitalScoring scoringCoef = new CityDigitalScoring();
-
-        return scoringCoef;
     }
 
     /**
