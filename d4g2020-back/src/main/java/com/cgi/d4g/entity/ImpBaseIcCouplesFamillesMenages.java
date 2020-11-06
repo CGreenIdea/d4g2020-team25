@@ -10,6 +10,7 @@ public class ImpBaseIcCouplesFamillesMenages {
     private String cfmCodeArm;
     private Integer cfmSingle;
     private Integer cfmSingleParent;
+    private Integer cfmHousehold;
 
     @Id
     @Column(name = "CFM_ID", nullable = false)
@@ -49,6 +50,16 @@ public class ImpBaseIcCouplesFamillesMenages {
 
     public void setCfmSingleParent(Integer cfmSingleParent) {
         this.cfmSingleParent = cfmSingleParent;
+    }
+    
+    @Basic
+    @Column(name = "CFM_HOUSEHOLD", nullable = true, precision = 0)
+    public Integer getCfmHousehold() {
+        return cfmHousehold;
+    }
+
+    public void setCfmHousehold(Integer cfmHousehold) {
+        this.cfmHousehold = cfmHousehold;
     }
 
     @Override

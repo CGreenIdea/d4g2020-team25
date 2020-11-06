@@ -8,14 +8,14 @@ public class RegionDigitalScoringModel {
     private BigDecimal cdrMobilityCoverageRate2G;
     private BigDecimal cdrPovertyRate;
     private BigDecimal cdrMedianIncome;
-    private Integer cdrSingleParent;
-    private Integer cdrSingle;
+    private BigDecimal cdrSingleParent;
+    private BigDecimal cdrSingle;
     private BigDecimal cdrPublicServicePerPerson;
     private BigDecimal cdrPublicService;
-    private Integer cdrJobless15To64;
-    private Integer cdrPersonAged15To29;
-    private Integer cdrPersonAgedOver65;
-    private Integer cdrNoDiplomaOver15;
+    private BigDecimal cdrJobless15To64;
+    private BigDecimal cdrPersonAged15To29;
+    private BigDecimal cdrPersonAgedOver65;
+    private BigDecimal cdrNoDiplomaOver15;
     private int cdrDepartmentId;
     private BigDecimal cdrDigitalInterface;
     private BigDecimal cdrInformationAccess;
@@ -45,9 +45,9 @@ public class RegionDigitalScoringModel {
      */
     public RegionDigitalScoringModel(Integer cdrLegalPopulation, BigDecimal cdrNetworkRateCoverage,
 			BigDecimal cdrMobilityCoverageRate2G, BigDecimal cdrPovertyRate, BigDecimal cdrMedianIncome,
-			Integer cdrSingleParent, Integer cdrSingle, BigDecimal cdrPublicServicePerPerson,
-			BigDecimal cdrPublicService, Integer cdrJobless15To64, Integer cdrPersonAged15To29,
-			Integer cdrPersonAgedOver65, Integer cdrNoDiplomaOver15, int cdrDepartmentId,
+			BigDecimal cdrSingleParent, BigDecimal cdrSingle, BigDecimal cdrPublicServicePerPerson,
+			BigDecimal cdrPublicService, BigDecimal cdrJobless15To64, BigDecimal cdrPersonAged15To29,
+			BigDecimal cdrPersonAgedOver65, BigDecimal cdrNoDiplomaOver15, int cdrDepartmentId,
 		     BigDecimal cdrDigitalInterface, BigDecimal cdrInformationAccess,
 		     BigDecimal cdrAdministrationSkill, BigDecimal cdrDigitalSkill) {
 		super();
@@ -111,19 +111,19 @@ public class RegionDigitalScoringModel {
         this.cdrMedianIncome = cdrMedianIncome;
     }
 
-    public Integer getCdrSingleParent() {
+    public BigDecimal getCdrSingleParent() {
         return cdrSingleParent;
     }
 
-    public void setCdrSingleParent(Integer cdrSingleParent) {
+    public void setCdrSingleParent(BigDecimal cdrSingleParent) {
         this.cdrSingleParent = cdrSingleParent;
     }
 
-    public Integer getCdrSingle() {
+    public BigDecimal getCdrSingle() {
         return cdrSingle;
     }
 
-    public void setCdrSingle(Integer cdrSingle) {
+    public void setCdrSingle(BigDecimal cdrSingle) {
         this.cdrSingle = cdrSingle;
     }
 
@@ -143,35 +143,35 @@ public class RegionDigitalScoringModel {
         this.cdrPublicService = cdrPublicService;
     }
 
-    public Integer getCdrJobless15To64() {
+    public BigDecimal getCdrJobless15To64() {
         return cdrJobless15To64;
     }
 
-    public void setCdrJobless15To64(Integer cdrJobless15To64) {
+    public void setCdrJobless15To64(BigDecimal cdrJobless15To64) {
         this.cdrJobless15To64 = cdrJobless15To64;
     }
 
-    public Integer getCdrPersonAged15To29() {
+    public BigDecimal getCdrPersonAged15To29() {
         return cdrPersonAged15To29;
     }
 
-    public void setCdrPersonAged15To29(Integer cdrPersonAged15To29) {
+    public void setCdrPersonAged15To29(BigDecimal cdrPersonAged15To29) {
         this.cdrPersonAged15To29 = cdrPersonAged15To29;
     }
 
-    public Integer getCdrPersonAgedOver65() {
+    public BigDecimal getCdrPersonAgedOver65() {
         return cdrPersonAgedOver65;
     }
 
-    public void setCdrPersonAgedOver65(Integer cdrPersonAgedOver65) {
+    public void setCdrPersonAgedOver65(BigDecimal cdrPersonAgedOver65) {
         this.cdrPersonAgedOver65 = cdrPersonAgedOver65;
     }
 
-    public Integer getCdrNoDiplomaOver15() {
+    public BigDecimal getCdrNoDiplomaOver15() {
         return cdrNoDiplomaOver15;
     }
 
-    public void setCdrNoDiplomaOver15(Integer cdrNoDiplomaOver15) {
+    public void setCdrNoDiplomaOver15(BigDecimal cdrNoDiplomaOver15) {
         this.cdrNoDiplomaOver15 = cdrNoDiplomaOver15;
     }
 
@@ -185,11 +185,11 @@ public class RegionDigitalScoringModel {
 
 	public BigDecimal getCdrDigitalInterface() {
 		return cdrDigitalInterface;
-        }
+    }
 
 	public void setCdrDigitalInterface(BigDecimal cdrDigitalInterface) {
 		this.cdrDigitalInterface = cdrDigitalInterface;
-        }
+    }
 	
 	public BigDecimal getCdrInformationAccess() {
 		return cdrInformationAccess;
