@@ -129,7 +129,7 @@ public class Scoring {
 
         return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)), region, regionDigitalScoring);
     }
-    
+
 
 
     /**
@@ -218,7 +218,7 @@ public class Scoring {
         ccFilosofieToScoring(scoring, flfMedianIncome, flfPovertyRate);
     }
 
-	
+
 
     private void setMetropolis(City city, CityDigitalScoring scoring) {
         List<ImpMetropoleSites> mobileList = this.impMetropoleSitesDAO.getByCode(city.getCtyCodeArm());
@@ -253,7 +253,7 @@ public class Scoring {
         hdThdDeploiementDAO(scoring, htdAvailableNetworks, htdBestRate);
     }
 
-	
+
 
     private void setDiploma(City city, CityDigitalScoring scoring) {
         List<ImpBaseIcDiplomesFormation> diplomaList = this.impBaseIcDiplomesFormationDAO.getByCode(city.getCtyCodeArm());
@@ -277,6 +277,7 @@ public class Scoring {
         List<ImpBaseIcCouplesFamillesMenages> coupleList = this.impBaseIcCouplesFamillesMenagesDAO.getByCode(city.getCtyCodeArm());
         BigDecimal cfmSingle = BigDecimal.ZERO;
         BigDecimal cfmSingleParent = BigDecimal.ZERO;
+        BigDecimal cfmHousehold = BigDecimal.ZERO;
 
         for (ImpBaseIcCouplesFamillesMenages impBaseIcCouplesFamillesMenages : coupleList) {
             if (impBaseIcCouplesFamillesMenages.getCfmSingle() != null) {
@@ -285,11 +286,14 @@ public class Scoring {
             if (impBaseIcCouplesFamillesMenages.getCfmSingleParent() != null) {
                 cfmSingleParent = cfmSingleParent.add(BigDecimal.valueOf(impBaseIcCouplesFamillesMenages.getCfmSingleParent()));
             }
+            if (impBaseIcCouplesFamillesMenages.getCfmHousehold() != null) {
+                cfmHousehold = cfmHousehold.add(BigDecimal.valueOf(impBaseIcCouplesFamillesMenages.getCfmHousehold()));
+            }
         }
-        icCouplesFamillesMenageToScoring(scoring, cfmSingle, cfmSingleParent);
+        icCouplesFamiliesMenageToScoring(scoring, cfmSingle, cfmSingleParent, cfmHousehold);
     }
 
-	
+
 
     private CityDigitalScoring setPopulate(City city) {
         List<ImpBaseIcEvolStructProp> populateList = this.impBaseIcEvolStructPropDAO.getByCode(city.getCtyCodeArm());
@@ -326,7 +330,7 @@ public class Scoring {
             scoring.setCdsJobless15To64(BigDecimal.ZERO);
         }
 
-        icEvolStructPropToScoring(scoring, espPopAge1529, espPopAgeOver65, espPopNoJobOver15, espPopTotalPop);
+      icEvolStructPropToScoring(scoring, espPopAge1529, espPopAgeOver65, espPopNoJobOver15, espPopTotalPop);
 
         return scoring;
     }
@@ -383,12 +387,12 @@ public class Scoring {
         // FIXME
         int cdrDepartmentId = 0;
         Integer cdrLegalPopulation = null;
-        Integer cdrSingle = null;
-        Integer cdrPersonAged15To29 = null;
-        Integer cdrNoDiplomaOver15 = null;
-        Integer cdrJobless15To64 = null;
-        Integer cdrSingleParent = null;
-        Integer cdrPersonAgedOver65 = null;
+        BigDecimal cdrSingle = null;
+        BigDecimal cdrPersonAged15To29 = null;
+        BigDecimal cdrNoDiplomaOver15 = null;
+        BigDecimal cdrJobless15To64 = null;
+        BigDecimal cdrSingleParent = null;
+        BigDecimal cdrPersonAgedOver65 = null;
         BigDecimal cdrMedianIncome = null;
         BigDecimal cdrPovertyRate = null;
         BigDecimal cdrPublicService = null;
@@ -397,13 +401,13 @@ public class Scoring {
         BigDecimal cdrNetworkRateCoverage = null;
         return new RegionDigitalScoringModel(cdrLegalPopulation, cdrNetworkRateCoverage, cdrMobilityCoverageRate2G, cdrPovertyRate, cdrMedianIncome, cdrSingleParent, cdrSingle, cdrPublicServicePerPerson, cdrPublicService, cdrJobless15To64, cdrPersonAged15To29, cdrPersonAgedOver65, cdrNoDiplomaOver15, cdrDepartmentId, null, null, null, null);
     }
-    
-    private void icCouplesFamillesMenageToScoring(CityDigitalScoring scoring, BigDecimal cfmSingle,
-			BigDecimal cfmSingleParent) {
-		scoring.setCdsSingleParent(cfmSingleParent);
-        scoring.setCdsSingle(cfmSingle);
+
+    private void icCouplesFamiliesMenageToScoring(CityDigitalScoring scoring, BigDecimal cfmSingle,
+                                                  BigDecimal cfmSingleParent, BigDecimal cfmHousehold) {
+		scoring.setCdsSingleParent(cfmSingleParent.divide(cfmHousehold, 4, RoundingMode.HALF_UP));
+        scoring.setCdsSingle(cfmSingle.divide(cfmHousehold, 4, RoundingMode.HALF_UP));
 	}
-    
+
 	private void icEvolStructPropToScoring(CityDigitalScoring scoring, BigDecimal espPopAge1529, BigDecimal espPopAgeOver65,
 			BigDecimal espPopNoJobOver15, int espPopTotalPop) {
 		scoring.setCdsLegalPopulation(espPopTotalPop);
@@ -411,18 +415,18 @@ public class Scoring {
         scoring.setCdsPersonAgedOver65(espPopAgeOver65);
         scoring.setCdsNoDiplomaOver15(espPopNoJobOver15);
 	}
-	
+
 	private void ccFilosofieToScoring(CityDigitalScoring scoring, BigDecimal flfMedianIncome,
 			BigDecimal flfPovertyRate) {
 		scoring.setCdsPovertyRate(flfPovertyRate.divide(BIG_DECIMAL_100));
         scoring.setCdsMedianIncome(flfMedianIncome);
 	}
-	
+
 	private void hdThdDeploiementDAO(CityDigitalScoring scoring, BigDecimal htdAvailableNetworks,
 			BigDecimal htdBestRate) {
 		scoring.setCdsNetworkRateCoverage(htdAvailableNetworks.divide(htdBestRate, 4, RoundingMode.HALF_UP));
 	}
-	
+
 	private void icDiplomesFormationToScoring(CityDigitalScoring scoring, BigDecimal dlfUnschooledOver15,
 			BigDecimal dlfUnschooledNoDiplomaOver15) {
 		scoring.setCdsNoDiplomaOver15(dlfUnschooledOver15.divide(dlfUnschooledNoDiplomaOver15, 4, RoundingMode.HALF_UP));
