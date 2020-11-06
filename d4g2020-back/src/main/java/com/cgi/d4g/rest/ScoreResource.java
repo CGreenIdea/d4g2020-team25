@@ -68,7 +68,7 @@ public class ScoreResource {
 	 * @return list of city
 	 */
     @GET
-    @Path("true/city/{cityId}")
+    @Path("/city/{cityId}")
     public ScoringResultModel getScoreByCityTrue(@PathParam("cityId") long cityId) {
     	City city=cityDAO.findById(cityId);
     	return this.scoring.getOrRetrieveScoring(city);
@@ -82,7 +82,7 @@ public class ScoreResource {
 	 * @return list of city
 	 */
     @GET
-    @Path("/city/{cityId}")
+    @Path("false/city/{cityId}")
     public ScoringResultModel getScoreByCity(@PathParam("cityId") long cityId) {
     	City city=cityDAO.findById(cityId);
 		CityDigitalScoring cityDigitalScoring = new CityDigitalScoring();
