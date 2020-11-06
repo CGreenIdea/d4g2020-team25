@@ -31,8 +31,8 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @param code the postal code to find
 	 * @return the city
 	 */
-   public List<City> listByCodeArm(String code){
-       return list("CTY_CODE_ARM like ?1", Sort.ascending("CTY_NAME"), code + "%");
+   public List<City> listByPostalCode(String code){
+       return list("CTY_POSTAL_CODE like ?1", Sort.ascending("CTY_NAME"), code + "%");
    }
 
 	/**
