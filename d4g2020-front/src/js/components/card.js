@@ -185,14 +185,30 @@ function getValueRow(label, value, suffix) {
     }</div>`;
 }
 
+
+/**
+ * Display the information about the selected city (CP & name)
+ *
+ * @param {*} cityInfo
+ */
 function showCityInformation(cityInfo){
     document.getElementById("cityDetail").innerHTML = `${cityInfo.ctyName} - ${cityInfo.ctyPostalCode}`;
 }
 
+/**
+ * Display the information about the department city (code & name)
+ *
+ * @param {*} dptInfo
+ */
 function showDepartmentInformation(dptInfo){
     document.getElementById("departmentDetail").innerHTML = `${dptInfo.dptCode} - ${dptInfo.dptName}`;
 }
 
+/**
+ * Display the information about the region (name)
+ *
+ * @param {*} regionInfo
+ */
 function showRegionInformation(regionInfo){
     document.getElementById("regionDetail").innerHTML = `${regionInfo.rgnName}`;
 }
