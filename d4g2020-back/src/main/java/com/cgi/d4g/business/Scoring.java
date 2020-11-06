@@ -207,14 +207,29 @@ public class Scoring {
         threshold.setCdsJobless15To64(populate.getEspPopNoJobOver15());
         threshold.setCdsPovertyRate(filosofi.getFlrPovertyRate().divide(BIG_DECIMAL_100));
         threshold.setCdsMedianIncome(filosofi.getFlrMedianIncome());
-        threshold.setCdsSingleParent(couple.getCdrSingleParent().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
-        threshold.setCdsSingle(couple.getCdrSingle().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
         threshold.setCdsMobilityCoverageRate2G(metropolis.getMpsCodeAccessibility2G());
         if (hd.getHtdAvailableNetworks()== null) {
         	hd.setHtdAvailableNetworks(BigDecimal.ZERO);
         }
-        threshold.setCdsNetworkRateCoverage(hd.getHtdAvailableNetworks().divide(hd.getHtdBestRate(), 4, RoundingMode.HALF_UP));
-        threshold.setCdsNoDiplomaOver15(BigDecimal.valueOf(diploma.getDlfUnscholarOver15()).divide(BigDecimal.valueOf(diploma.getDlfUnscholarNoDiplomaOver15()), 4, RoundingMode.HALF_UP));
+
+        if (couple.getCfm_household() == null || (couple.getCfm_household().compareTo(BigDecimal.ZERO)) == 0) {
+            threshold.setCdsSingleParent(BigDecimal.ZERO);
+            threshold.setCdsSingle(BigDecimal.ZERO);
+        } else {
+            threshold.setCdsSingleParent(couple.getCdrSingleParent().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
+            threshold.setCdsSingle(couple.getCdrSingle().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
+        }
+
+        if (hd.getHtdBestRate() == null || (hd.getHtdBestRate().compareTo(BigDecimal.ZERO)) == 0) {
+            threshold.setCdsNetworkRateCoverage(BigDecimal.ZERO);
+        } else {
+            threshold.setCdsNetworkRateCoverage(hd.getHtdAvailableNetworks().divide(hd.getHtdBestRate(), 4, RoundingMode.HALF_UP));
+        }
+        if (diploma.getDlfUnscholarNoDiplomaOver15() > 0) {
+            threshold.setCdsNoDiplomaOver15(BigDecimal.valueOf(diploma.getDlfUnscholarOver15()).divide(BigDecimal.valueOf(diploma.getDlfUnscholarNoDiplomaOver15()), 4, RoundingMode.HALF_UP));
+        } else {
+            threshold.setCdsNoDiplomaOver15(BigDecimal.ZERO);
+        }
 
         return threshold;
     }
@@ -422,21 +437,34 @@ public class Scoring {
      */
     private RegionDigitalScoringModel generateRegionDigitalScoring() {
         // FIXME
-        return new RegionDigitalScoringModel( BigDecimal.valueOf(1), BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4));
+        return new RegionDigitalScoringModel(BigDecimal.valueOf(1), BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4));
     }
 
     private void icCouplesFamiliesMenageToScoring(CityDigitalScoring scoring, BigDecimal cfmSingle,
                                                   BigDecimal cfmSingleParent, BigDecimal cfmHousehold) {
-        scoring.setCdsSingleParent(cfmSingleParent.divide(cfmHousehold, 4, RoundingMode.HALF_UP));
-        scoring.setCdsSingle(cfmSingle.divide(cfmHousehold, 4, RoundingMode.HALF_UP));
+
+        if (cfmHousehold == null || cfmHousehold.compareTo(BigDecimal.ZERO) == 0) {
+            scoring.setCdsSingleParent(BigDecimal.ZERO);
+            scoring.setCdsSingle(BigDecimal.ZERO);
+        } else {
+            scoring.setCdsSingleParent(cfmSingleParent.divide(cfmHousehold, 4, RoundingMode.HALF_UP));
+            scoring.setCdsSingle(cfmSingle.divide(cfmHousehold, 4, RoundingMode.HALF_UP));
+        }
     }
 
     private void icEvolStructPropToScoring(CityDigitalScoring scoring, BigDecimal espPopAge1529, BigDecimal espPopAgeOver65,
                                            BigDecimal espPopNoJobOver15, int espPopTotalPop) {
         scoring.setCdsLegalPopulation(espPopTotalPop);
-        scoring.setCdsPersonAged15To29(espPopAge1529.divide(BigDecimal.valueOf(espPopTotalPop), 4, RoundingMode.HALF_UP));
-        scoring.setCdsPersonAgedOver65(espPopAgeOver65.divide(BigDecimal.valueOf(espPopTotalPop), 4, RoundingMode.HALF_UP));
-        scoring.setCdsJobless15To64(espPopNoJobOver15.divide(BigDecimal.valueOf(espPopTotalPop), 4, RoundingMode.HALF_UP));
+
+        if (espPopTotalPop > 0) {
+            scoring.setCdsPersonAged15To29(espPopAge1529.divide(BigDecimal.valueOf(espPopTotalPop), 4, RoundingMode.HALF_UP));
+            scoring.setCdsPersonAgedOver65(espPopAgeOver65.divide(BigDecimal.valueOf(espPopTotalPop), 4, RoundingMode.HALF_UP));
+            scoring.setCdsJobless15To64(espPopNoJobOver15.divide(BigDecimal.valueOf(espPopTotalPop), 4, RoundingMode.HALF_UP));
+        } else {
+            scoring.setCdsPersonAged15To29(BigDecimal.ZERO);
+            scoring.setCdsPersonAgedOver65(BigDecimal.ZERO);
+            scoring.setCdsJobless15To64(BigDecimal.ZERO);
+        }
     }
 
     private void ccFilosofieToScoring(CityDigitalScoring scoring, BigDecimal flfMedianIncome,
@@ -447,11 +475,20 @@ public class Scoring {
 
     private void hdThdDeploiementDAO(CityDigitalScoring scoring, BigDecimal htdAvailableNetworks,
                                      BigDecimal htdBestRate) {
-        scoring.setCdsNetworkRateCoverage(htdAvailableNetworks.divide(htdBestRate, 4, RoundingMode.HALF_UP));
+        if (htdBestRate == null || htdBestRate.compareTo(BigDecimal.ZERO) == 0) {
+            scoring.setCdsNetworkRateCoverage(BigDecimal.ZERO);
+        } else {
+            scoring.setCdsNetworkRateCoverage(htdAvailableNetworks.divide(htdBestRate, 4, RoundingMode.HALF_UP));
+
+        }
     }
 
     private void icDiplomesFormationToScoring(CityDigitalScoring scoring, BigDecimal dlfUnschooledOver15,
                                               BigDecimal dlfUnschooledNoDiplomaOver15) {
-        scoring.setCdsNoDiplomaOver15(dlfUnschooledOver15.divide(dlfUnschooledNoDiplomaOver15, 4, RoundingMode.HALF_UP));
+        if (dlfUnschooledNoDiplomaOver15 == null || dlfUnschooledNoDiplomaOver15.compareTo(BigDecimal.ZERO) == 0) {
+            scoring.setCdsNoDiplomaOver15(BigDecimal.ZERO);
+        } else {
+            scoring.setCdsNoDiplomaOver15(dlfUnschooledOver15.divide(dlfUnschooledNoDiplomaOver15, 4, RoundingMode.HALF_UP));
+        }
     }
 }

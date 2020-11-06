@@ -71,7 +71,7 @@ public final class Calculating {
      */
     private static BigDecimal defaultMultiplierCoefficient(BigDecimal value, BigDecimal threshold) {
         if (threshold == null || threshold.compareTo(BigDecimal.ZERO) == 0) {
-            threshold = BigDecimal.ONE;
+            return BigDecimal.ZERO;
         }
 
         return value.subtract(threshold).divide(threshold, SCALE, ROUNDING_MODE).add(MULTIPLIER_INIT);
@@ -94,7 +94,7 @@ public final class Calculating {
      */
     private static BigDecimal hdAndMobileMultiplierCoefficient(BigDecimal value, BigDecimal threshold) {
         if (threshold == null || threshold.compareTo(BigDecimal.ZERO) == 0) {
-            threshold = BigDecimal.ONE;
+            return BigDecimal.ZERO;
         }
         return HD_AND_MOBILE_INIT.subtract(value).divide(threshold, SCALE, ROUNDING_MODE);
     }
@@ -166,7 +166,13 @@ public final class Calculating {
      * (score * 100) / (lengthScore * 100)
      */
     private static BigDecimal getScoreBase(BigDecimal score, int numberScore) {
-        return score.multiply(SCORE_BASE).divide(BigDecimal.valueOf(numberScore).multiply(SCORE_BASE), SCALE, ROUNDING_MODE);
+        BigDecimal divide = BigDecimal.valueOf(numberScore).multiply(SCORE_BASE);
+
+        if(divide.compareTo(BigDecimal.ZERO) == 0){
+            return BigDecimal.ZERO;
+        }
+
+        return score.multiply(SCORE_BASE).divide(divide, SCALE, ROUNDING_MODE);
     }
 
 }
