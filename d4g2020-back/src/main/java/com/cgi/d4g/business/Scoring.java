@@ -15,7 +15,10 @@ import java.util.Optional;
 
 public class Scoring {
 
-    /**
+	/** constant used in the calculation */
+    private static final BigDecimal BIG_DECIMAL_100 = BigDecimal.valueOf(100);
+
+	/**
      * The department DAO.
      */
     private final DepartmentDAO departmentDAO;
@@ -259,7 +262,7 @@ public class Scoring {
         }else {
         	scoring.setCdsMobilityCoverageRate2G(BigDecimal.ZERO);
         }
-        scoring.setCdsPovertyRate(flfPovertyRate);
+        scoring.setCdsPovertyRate(flfPovertyRate.divide(BIG_DECIMAL_100));
         scoring.setCdsMedianIncome(flfMedianIncome);
         scoring.setCdsSingleParent(cfmSingleParent);
         scoring.setCdsSingle(cfmSingle);
