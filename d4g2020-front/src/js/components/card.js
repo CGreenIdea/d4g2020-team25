@@ -127,8 +127,8 @@ function displayScoringInformation(scoring) {
  * @param {*} departmentData scoring details of the department
  */
 function fillDepartmentData(departmentData) {
-    var scoring = getScoring(cityData.cddDigitalInterface, cityData.cddInformationAccess,
-        cityData.cddDigitalSkill, cityData.cddAdministrationSkill);
+    var scoring = getScoring(departmentData.cddDigitalInterface, departmentData.cddInformationAccess,
+        departmentData.cddDigitalSkill, departmentData.cddAdministrationSkill);
 
     // Scoring in the detail
     document.getElementById("departmentScore").innerHTML =
@@ -166,11 +166,11 @@ function fillDepartmentData(departmentData) {
  * @param {*} regionData scoring details of the region
  */
 function fillRegionData(regionData) {
-    var scoring = getScoring(cityData.cdrDigitalInterface, cityData.cdrInformationAccess,
-        cityData.cdrDigitalSkill, cityData.cdrAdministrationSkill);
+    var scoring = getScoring(regionData.cdrDigitalInterface, regionData.cdrInformationAccess,
+        regionData.cdrDigitalSkill, regionData.cdrAdministrationSkill);
 
     // Scoring in the detail
-    document.getElementById("regionScore").innerHTML = scoring ?? "";
+    document.getElementById("regionScore").innerHTML = scoring.toFixed(2) ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
