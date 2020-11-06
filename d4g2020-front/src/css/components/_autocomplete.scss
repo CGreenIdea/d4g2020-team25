@@ -2,6 +2,8 @@
     /* The container must be positioned relative */
     position: relative;
     display: inline-block;
+    flex: auto;
+    flex-grow: 1;
 }
 
 .autocomplete-items {

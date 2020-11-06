@@ -1,13 +1,13 @@
 /* Style the submit button */
 .search-form button {
-    width: 35px;
-    padding: 3px;
+    padding: 8px;
     background: $search-button-background;
     border: 1px solid grey;
     cursor: pointer;
     border-radius: $card-radius;
     position: relative;
     display: inline-block;
+    color: white;
 }
 
 .search-form button:hover {
@@ -24,8 +24,15 @@
 .search-form{
     display: flex;
     margin: 10px 20px 5px 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
-.search-form ::placeholder{
+.search-form::placeholder{
     font-size: 13px;
+}
+
+.search-form input[type=text]{
+    width: 100%;
 }
