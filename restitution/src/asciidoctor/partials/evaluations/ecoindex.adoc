@@ -1,5 +1,6 @@
 = Ecoindex
 
-Score (performance environnementale) : .../100
+Score (performance environnementale) : .../100 +
+06/11/2020 de 9h08 à 9h23
 
-CAUTION: score + capture + date
+image::ecoindex-waiting.png[align=center]

@@ -1,3 +1,8 @@
 = SonarQube
 
-CAUTION: score + capture + date + lien Github
+06/11/2020 09h28
+
+GitHub : https://github.com/cyChop/d4g2020-team25 +
+SonarQube : https://sonarcloud.io/dashboard?id=d4g2020-cgreenidea
+
+image::sonarqube.png[align=center]
