@@ -26,12 +26,12 @@ import com.cgi.d4g.dao.ImpBaseIcEvolStructPropDAO;
 import com.cgi.d4g.dao.ImpHdThdDeploiementDAO;
 import com.cgi.d4g.dao.ImpMetropoleSitesDAO;
 import com.cgi.d4g.dao.RegionDAO;
+import com.cgi.d4g.dto.*;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
 import com.cgi.d4g.entity.Department;
 import com.cgi.d4g.entity.DepartmentDigitalScoring;
 import com.cgi.d4g.entity.ImpBaseCcFilosofi;
-import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
 import com.cgi.d4g.entity.ImpBaseCcFilosofiRegion;
 import com.cgi.d4g.entity.ImpBaseIcCouplesFamillesMenages;
 import com.cgi.d4g.entity.ImpBaseIcDiplomesFormation;
@@ -176,26 +176,40 @@ public class Scoring {
      * @return the scoring
      */
     private CityDigitalScoring calculateCityScoring(City city) {
-        //calculate
-
-        //if missing poverty rate -> special average department
-        Department department = departmentDAO.findById(city.getDptId());
-        //region
-        Region region = regionDAO.findById(department.getRgnId());
-        ImpBaseCcFilosofiRegion impBaseCcFilosofiRegion = this.impBaseCcFilosofiRegionDAO.getByCode(region.getRgnCode());
-        ImpBaseCcFilosofiDepartement impBaseCcFilosofiDepartement = this.impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
-
-        //extract data from import table pour tout les indicateurs
         CityDigitalScoring scoring = consolidatedDataFromCity(city);
-
-        //calculate threshold
-        CityDigitalScoring threshold = new CityDigitalScoring(); // TODO complete
+        CityDigitalScoring threshold = consolidatedThreshold(city.getDptId());
 
         Calculating.updateScoreBaseOfScoring(scoring, threshold);
-
         cityDigitalScoringDAO.persist(scoring);
 
         return scoring;
+    }
+
+    private CityDigitalScoring consolidatedThreshold(long rgnId) {
+        CityDigitalScoring threshold = new CityDigitalScoring();
+        Department department = departmentDAO.findById(rgnId);
+        Region region = regionDAO.findById(department.getRgnId());
+
+        ImpBaseIcCouplesFamillesMenagesTo couple = impBaseIcCouplesFamillesMenagesDAO.getAvgRegion(rgnId);
+
+        ImpMetropoleSitesTo metropolis = impMetropoleSitesDAO.getAvgRegion(rgnId);
+        ImpHdThdDeploiementTo hd = impHdThdDeploiementDAO.getAvgRegion(rgnId);
+        ImpBaseIcEvolStructPropTo populate = impBaseIcEvolStructPropDAO.getAvgRegion(rgnId);
+        ImpBaseIcDiplomesFormationTo diploma = impBaseIcDiplomesFormationDAO.getAvgRegion(rgnId);
+        ImpBaseCcFilosofiRegion filosofi = this.impBaseCcFilosofiRegionDAO.getByCode(region.getRgnCode());
+
+        threshold.setCdsPersonAged15To29(populate.getEspPopAge1529());
+        threshold.setCdsPersonAgedOver65(populate.getEspPopAgeOver65());
+        threshold.setCdsJobless15To64(populate.getEspPopNoJobOver15());
+        threshold.setCdsPovertyRate(filosofi.getFlrPovertyRate().divide(BIG_DECIMAL_100));
+        threshold.setCdsMedianIncome(filosofi.getFlrMedianIncome());
+        threshold.setCdsSingleParent(couple.getCdrSingleParent().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
+        threshold.setCdsSingle(couple.getCdrSingle().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
+        threshold.setCdsMobilityCoverageRate2G(metropolis.getMpsCodeAccessibility2G());
+        threshold.setCdsNetworkRateCoverage(hd.getHtdAvailableNetworks().divide(hd.getHtdBestRate(), 4, RoundingMode.HALF_UP));
+        threshold.setCdsNoDiplomaOver15(BigDecimal.valueOf(diploma.getDlfUnscholarOver15()).divide(BigDecimal.valueOf(diploma.getDlfUnscholarNoDiplomaOver15()), 4, RoundingMode.HALF_UP));
+
+        return threshold;
     }
 
     /**
