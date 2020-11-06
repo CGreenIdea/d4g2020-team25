@@ -1,5 +1,5 @@
 import html2pdf from 'html2pdf.js';
-
+import { expandAll } from './collapsable';
 /**
  * Populate the data to display for the full scoring object
  *
@@ -48,6 +48,18 @@ const hideCard = () => {
     document.getElementById("regionScore").innerHTML = "";
     document.querySelector("#regionData .content").innerHTML = "";
     document.getElementById("resultCardFirstSection").innerHTML = "";
+};
+
+const generatePdf = () => {
+    document.body.style.cursor = 'wait';
+    // We expand all the hidden sections
+    expandAll();
+
+    setTimeout(function(){
+        var cardElement = document.getElementById('cardResult');
+        html2pdf(cardElement);
+        document.body.style.cursor='default';
+    }, 1500);
 };
 
 /**
@@ -213,4 +225,4 @@ function showRegionInformation(regionInfo){
     document.getElementById("regionDetail").innerHTML = `${regionInfo.rgnName}`;
 }
 
-export { showCard, hideCard };
+export { showCard, hideCard, generatePdf };
