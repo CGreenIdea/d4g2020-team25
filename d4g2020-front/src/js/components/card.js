@@ -1,3 +1,5 @@
+import html2pdf from 'html2pdf.js';
+
 /**
  * Populate the data to display for the full scoring object
  *

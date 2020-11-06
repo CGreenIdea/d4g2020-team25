@@ -1,6 +1,7 @@
 /* Node resolution */
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 /* Node utilities */
 import path from 'path';
@@ -34,6 +35,7 @@ export default {
         // transform Node dependencies so that Rollup can process them
         json(),
         resolve(),
+        commonjs(), // converts node modules to ES modules
 
         /* JS transformation */
         // Inject environment variables
