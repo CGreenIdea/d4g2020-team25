@@ -5,6 +5,7 @@ import {
 } from '../components/autocomplete';
 import {notifyError} from '../components/error';
 import {debounce} from '../utils/throttle';
+import { showCard } from '../components/card';
 
 const TYPING_THROTTLE = 200;
 
@@ -101,6 +102,17 @@ const initSearchForm = () => {
     /* Close all open lists when someone clicks on the document */
     document.addEventListener('click', clickEvent => {
         closeAllAutocompletionLists(clickEvent.target);
+    });
+
+    document.getElementById("searchButton").addEventListener('click', clickEvent => {
+        // TODO disable input while loading
+        let cityId = document.getElementById('city-id-input').value;
+
+        if(cityId != null && cityId > 0){
+            fetchData(`score/city/${cityId}`).then(json => {
+                showCard(json);
+            }).catch(error => notifyError(error));
+        }
     });
 };
 
