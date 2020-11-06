@@ -39,7 +39,12 @@ public class Scoring {
      * The filosofi department DAO.
      */
     private final ImpBaseCcFilosofiDepartementDAO impBaseCcFilosofiDepartementDAO;
-    
+
+    /**
+     * The filosofi region DAO.
+     */
+    private final ImpBaseCcFilosofiRegionDAO impBaseCcFilosofiRegionDAO;
+
     /**
      * The population file DAO.
      */
@@ -84,7 +89,8 @@ public class Scoring {
 		   ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO,
 		   ImpBaseIcDiplomesFormationDAO impBaseIcDiplomesFormationDAO,
 		   ImpHdThdDeploiementDAO impHdThdDeploiementDAO,
-		   ImpMetropoleSitesDAO impMetropoleSitesDAO) {
+		   ImpMetropoleSitesDAO impMetropoleSitesDAO,
+		   ImpBaseCcFilosofiRegionDAO impBaseCcFilosofiRegionDAO) {
         this.regionDAO = regionDAO;
         this.departmentDAO = departmentDAO;
         this.cityDigitalScoringDAO = cityDigitalScoringDAO;
@@ -96,6 +102,7 @@ public class Scoring {
         this.impBaseIcDiplomesFormationDAO= impBaseIcDiplomesFormationDAO;
         this.impHdThdDeploiementDAO= impHdThdDeploiementDAO;
         this.impMetropoleSitesDAO= impMetropoleSitesDAO;
+        this.impBaseCcFilosofiRegionDAO=impBaseCcFilosofiRegionDAO;
     }
 
     /**
@@ -137,8 +144,14 @@ public class Scoring {
         //calculate
         //extract data from import table pour tout les indicateurs
 
+    	
+    	
         //if missing poverty rate -> special average department
         Department department = departmentDAO.findById(city.getDptId());
+        //region
+        Region region = regionDAO.findById(department.getRgnId());
+        ImpBaseCcFilosofiRegion impBaseCcFilosofiRegion = this.impBaseCcFilosofiRegionDAO.getByCode(region.getRgnCode());
+
         ImpBaseCcFilosofiDepartement impBaseCcFilosofiDepartement = this.impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
 
         List<ImpBaseIcEvolStructProp> populateList = this.impBaseIcEvolStructPropDAO.getByCode(city.getCtyCodeArm());
