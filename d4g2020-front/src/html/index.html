@@ -9,30 +9,29 @@
 </head>
 
 <body>
-
     <div class="header">
         <h1>Indice de fragilité numérique</h1>
-        <h3>Team 25</h3>
+        <h3>Team 25 - D4G 2020</h3>
     </div>
 
     <div class="content">
         <div id="search-bar" class="search-form">
             <div class="autocomplete">
                 Région:
-                <input type="text" name="region" id="region-input" placeholder="Choisissez votre région"/>
-                <input type="hidden" name="region-id" id="region-id-input" value="-1"/>
+                <input type="text" name="region" id="region-input" placeholder="Choisissez votre région" />
+                <input type="hidden" name="region-id" id="region-id-input" value="-1" />
             </div>
 
             <div class="autocomplete">
                 Département:
-                <input type="text" name="department" id="department-input" placeholder="Choisissez votre département"/>
-                <input type="hidden" name="department-id" id="department-id-input" value="-1"/>
+                <input type="text" name="department" id="department-input" placeholder="Choisissez votre département" />
+                <input type="hidden" name="department-id" id="department-id-input" value="-1" />
             </div>
 
             <div class="autocomplete">
                 Ville:
-                <input type="text" name="city" id="city-input" placeholder="Choisissez votre ville"/>
-                <input type="hidden" name="city-id" id="city-id-input" value="-1"/>
+                <input type="text" name="city" id="city-input" placeholder="Choisissez votre ville" />
+                <input type="hidden" name="city-id" id="city-id-input" value="-1" />
             </div>
 
             <div>
@@ -43,17 +42,28 @@
 
         </div>
 
-
         <div>
             <div id="cardResult" style="width:60%" class="card-container">
                 <header class="result-card result-card-header">
                     <h3>Score: <span id="headerScore">1234</span></h3>
                 </header>
                 <div class="result-card">
-                    <p id="resultCardFirstSection">
+                    <div>
+                        <p>
+                            <i>Ville :</i> <span id="cityDetail"></span>
+                        </p>
+                        <p>
+                            <i>Département :</i> <span id="departmentDetail"></span>
+                        </p>
+                        <p>
+                            <i>Région :</i> <span id="regionDetail"></span>
+                        </p>
+                    </div>
 
-                    </p>
+                    <p id="resultCardFirstSection"></p>
+
                     <hr>
+
                     <div class="card-result-values">
                         <div id="cityData" class="collapsible">
                             <div class="card-result-value-content ">
@@ -68,9 +78,8 @@
                                     Population :
                                 </div>
                                 <div class="content-property-value">
-                                    123 432
-                                </div>
 
+                                </div>
                             </div>
                         </div>
 
@@ -87,7 +96,7 @@
                                     Population :
                                 </div>
                                 <div class="content-property-value">
-                                    123 432
+
                                 </div>
                             </div>
                         </div>
@@ -105,20 +114,15 @@
                                     Population :
                                 </div>
                                 <div class="content-property-value">
-                                    123 432
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
-
-
-    </div>
-
 </body>
+
 </html>
