@@ -42,10 +42,10 @@ const hideCard = () => {
  */
 function fillCityData(cityData) {
     // Scoring in header
-    document.getElementById("headerScore").innerHTML(cityData.scoring);
+    document.getElementById("headerScore").innerHTML = cityData.scoring;
 
     // Scoring in the detail
-    document.getElementById("cityScore").innerHTML(cityData.scoring);
+    document.getElementById("cityScore").innerHTML = cityData.scoring;
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -78,10 +78,8 @@ function fillCityData(cityData) {
  */
 function fillDepartmentData(departmentData) {
     // Scoring in the detail
-    document
-        .getElementById("departmentScore")
-        .innerHTML(departmentData.scoring);
-    l;
+    document.getElementById("departmentScore").innerHTML = departmentData.scoring;
+
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
         departmentData.cddDigitalInterface,
@@ -113,7 +111,7 @@ function fillDepartmentData(departmentData) {
  */
 function fillRegionData(regionData) {
     // Scoring in the detail
-    document.getElementById("regionScore").innerHTML(regionData.scoring);
+    document.getElementById("regionScore").innerHTML = regionData.scoring;
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
