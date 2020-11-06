@@ -11,12 +11,24 @@ const showCard = (data) => {
             fillCityData(data.cityDigitalScoring);
         }
 
+        if(data.city != null){
+            showCityInformation(data.city);
+        }
+
         if (data.departmentDigitalScoring != null) {
             fillDepartmentData(data.departmentDigitalScoring);
         }
 
+        if(data.department != null){
+            showDepartmentInformation(data.department);
+        }
+
         if (data.regionDigitalScoring != null) {
             fillRegionData(data.regionDigitalScoring);
+        }
+
+        if(data.region != null){
+            showRegionInformation(data.region);
         }
     }
 };
@@ -171,6 +183,18 @@ function getValueRow(label, value, suffix) {
     return `<div class="content-property-name">${label}</div><div class="content-property-value">${value} ${
         suffix ?? ""
     }</div>`;
+}
+
+function showCityInformation(cityInfo){
+    document.getElementById("cityDetail").innerHTML = `${cityInfo.ctyName} - ${cityInfo.ctyPostalCode}`;
+}
+
+function showDepartmentInformation(dptInfo){
+    document.getElementById("departmentDetail").innerHTML = `${dptInfo.dptCode} - ${dptInfo.dptName}`;
+}
+
+function showRegionInformation(regionInfo){
+    document.getElementById("regionDetail").innerHTML = `${regionInfo.rgnName}`;
 }
 
 export { showCard, hideCard };
