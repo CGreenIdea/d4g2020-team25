@@ -50,6 +50,11 @@ const hideCard = () => {
     document.getElementById("resultCardFirstSection").innerHTML = "";
 };
 
+const generatePdf = () => {
+    var cardElement = document.getElementById('cardResult');
+    html2pdf(cardElement);
+};
+
 /**
  * Display all the data regarding the city
  *
@@ -213,4 +218,4 @@ function showRegionInformation(regionInfo){
     document.getElementById("regionDetail").innerHTML = `${regionInfo.rgnName}`;
 }
 
-export { showCard, hideCard };
+export { showCard, hideCard, generatePdf };
