@@ -15,7 +15,7 @@
     "start:styles": "onchange -i 'src/css/**/*.scss' -- npm run build:css",
     "prebuild": "npm run clean",
     "build": "run-p build:**",
-    "build:assets": "cp -pr assets/* dist/",
+    "build:assets": "cp -pr src/assets/* dist/",
     "build:css": "node-sass --precision 6 src/css/index.scss dist/ifn.css",
     "build:html": "html-minifier --input-dir src/html --output-dir dist --file-ext html --remove-comments --collapse-whitespace --minify-js true --minify-css true",
     "build:rollup": "rollup -c",
