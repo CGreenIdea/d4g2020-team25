@@ -107,17 +107,25 @@ const initSearchForm = () => {
         closeAllAutocompletionLists(clickEvent.target);
     });
 
-    document.getElementById('searchButton').
-        addEventListener('click', clickEvent => {
-            // TODO disable input while loading
-            let cityId = document.getElementById('city-id-input').value;
+    var searchBtn = document.getElementById('searchButton');
 
-            if (cityId != null && cityId > 0) {
-                fetchData(`score/city/${cityId}`).then(json => {
-                    showCard(json);
-                }).catch(error => notifyError(error));
-            }
-        });
+    searchBtn.addEventListener('click', clickEvent => {
+        // TODO disable input while loading
+        let cityId = document.getElementById('city-id-input').value;
+
+        if (cityId != null && cityId > 0) {
+            fetchData(`score/city/${cityId}`).then(json => {
+                showCard(json);
+            }).catch(error => notifyError(error));
+        }
+    });
+
+    //For accessibility
+    searchBtn.addEventListener("keydown", (event => {
+        if (event.code === 'Space' || event.code === 'Enter') {
+            document.getElementById('searchButton').click();
+        }
+    }));
 };
 
 export {initSearchForm};
