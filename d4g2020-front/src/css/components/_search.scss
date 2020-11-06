@@ -7,7 +7,7 @@
     border-radius: $card-radius;
     position: relative;
     display: inline-block;
-    color: black;
+    color: $search-button-font-color;
 }
 
 .search-form button:hover {
