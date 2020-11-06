@@ -1,41 +1,46 @@
 .card-container:after,
 .card-container:before {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.card-container:after {
+    margin-bottom: 100px;
 }
 
 .card-container {
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
-  color: $card-text-color;
-  border-radius: $card-radius;
-  width: 60%;
-  margin: auto;
-  margin-top: 30px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2),
+        0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    color: $card-text-color;
+    border-radius: $card-radius;
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
 }
 
-.result-card{
+.result-card {
     padding: 0.01em 16px;
 }
 
-.result-card-header{
+.result-card-header {
     color: #000 !important;
     background-color: #f1f1f1 !important;
     border-radius: $card-radius $card-radius 0 0;
     text-align: center;
 }
 
-.card-result-values{
+.card-result-values {
     margin-bottom: 20px;
     width: 100%;
 }
 
-.card-result-value-content{
+.card-result-value-content {
     width: 100%;
     display: flex;
 }
 
-.card-result-value-name{
+.card-result-value-name {
     font-weight: bold;
     float: left;
     margin: 0 0 5px 0;
@@ -49,12 +54,12 @@
     text-align: center;
 }
 
-.card-result-value-content .toggle{
+.card-result-value-content .toggle {
     width: 10%;
     text-align: center;
 }
 
-.content-property-name{
+.content-property-name {
     font-style: italic;
     width: 55%;
     line-height: 1.25;
@@ -62,7 +67,7 @@
     padding: 0 0 10px 20px;
 }
 
-.content-property-value{
+.content-property-value {
     color: $card-values-color;
     width: 35%;
     text-align: right;
