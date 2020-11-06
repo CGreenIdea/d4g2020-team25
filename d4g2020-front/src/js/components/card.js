@@ -80,6 +80,7 @@ function fillCityData(cityData) {
 }
 
 function displayScoringInformation(scoring) {
+    // TODO Improve messages & scoring values
     let message = "";
     if (scoring <= 50) {
         message = "Ce score est unique et c'est ça qui nous plait.";
