@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.cgi.d4g.business.Scoring;
 import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
 import com.cgi.d4g.dao.CityDAO;
@@ -23,7 +24,8 @@ import com.cgi.d4g.entity.Region;
 @Path("/rest/score")
 @Produces(MediaType.APPLICATION_JSON)
 public class ScoreResource {
-	
+
+	private final Scoring scoring;
 	private final CityDAO cityDAO;
 	private final DepartmentDAO departmentDAO;
 	private final RegionDAO regionDAO;
@@ -33,11 +35,12 @@ public class ScoreResource {
 	 * @param cityDAO
 	 */
 	public ScoreResource(CityDAO cityDAO, DepartmentDAO departmentDAO, RegionDAO regionDAO,
-			ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO) {
+			ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO, Scoring scoring) {
 		this.cityDAO = cityDAO;
 		this.departmentDAO= departmentDAO;
 		this.regionDAO=regionDAO;
 		this.impBaseIcCouplesFamillesMenagesDAO=impBaseIcCouplesFamillesMenagesDAO;
+		this.scoring = scoring;
 	}
 
 	/**
@@ -47,10 +50,22 @@ public class ScoreResource {
 	 * @return list of city
 	 */
     @GET
+    @Path("true/city/{cityId}")
+    public ScoringResultModel getScoreByCityTrue(@PathParam("cityId") long cityId) {
+    	City city=cityDAO.findById(cityId);
+    	return this.scoring.getOrRetrieveScoring(city);
+    }
+	
+	
+	/**
+	 * List of all the city of a region.
+	 * @param regionId the id of the region to filter
+	 * @param name the name to filter
+	 * @return list of city
+	 */
+    @GET
     @Path("/city/{cityId}")
     public ScoringResultModel getScoreByCity(@PathParam("cityId") long cityId) {
-    	//TODO implemeter l'appel.
-    	
     	City city=cityDAO.findById(cityId);
 		CityDigitalScoring cityDigitalScoring = new CityDigitalScoring();
 		cityDigitalScoring.setCdsDigitalInterface(BigDecimal.valueOf(25.36));
