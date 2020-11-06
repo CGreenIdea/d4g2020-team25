@@ -1,6 +1,12 @@
+/* Node utilities */
+import path from 'path';
+
 /* JS parsing, enhancement and compression */
-import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
+import babel from '@rollup/plugin-babel';
+import { terser } from 'rollup-plugin-terser';
+
+/* Environment */
+import inject from '@rollup/plugin-inject';
 
 /* Determine whether this production mode */
 // `npm run build` -> `production` is true
@@ -21,10 +27,15 @@ export default {
 
     plugins: [
         /* JS transformation */
+        // Inject environment variables
+        inject({
+            env: path.resolve(production ? 'env/prod.js' : 'env/dev.js')
+        }),
+
         // Transpile ES6/7 to browser-compatible OS
         babel({ babelHelpers: 'bundled' }),
 
         // Minify, but only in production mode
-        production && terser(),
+        production && terser()
     ],
 };

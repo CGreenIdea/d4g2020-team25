@@ -2,7 +2,6 @@ package com.cgi.d4g.business.model;
 
 import java.math.BigDecimal;
 
-
 public class RegionDigitalScoringModel {
     private Integer cdrLegalPopulation;
     private BigDecimal cdrNetworkRateCoverage;
@@ -183,18 +182,18 @@ public class RegionDigitalScoringModel {
     public void setCdrDepartmentId(int cdrDepartmentId) {
         this.cdrDepartmentId = cdrDepartmentId;
     }
-    
+
 	public BigDecimal getCdrDigitalInterface() {
 		return cdrDigitalInterface;
-	}
+        }
 
 	public void setCdrDigitalInterface(BigDecimal cdrDigitalInterface) {
 		this.cdrDigitalInterface = cdrDigitalInterface;
-	}
+        }
 	
 	public BigDecimal getCdrInformationAccess() {
 		return cdrInformationAccess;
-	}
+    }
 
 	public void setCdrInformationAccess(BigDecimal cdrInformationAccess) {
 		this.cdrInformationAccess = cdrInformationAccess;
@@ -202,7 +201,7 @@ public class RegionDigitalScoringModel {
 	
 	public BigDecimal getCdrAdministrationSkill() {
 		return cdrAdministrationSkill;
-	}
+    }
 
 	public void setCdrAdministrationSkill(BigDecimal cdrAdministrationSkill) {
 		this.cdrAdministrationSkill = cdrAdministrationSkill;

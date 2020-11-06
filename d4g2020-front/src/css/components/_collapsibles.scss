@@ -1,0 +1,39 @@
+.collapsible {
+    .toggle {
+        cursor: pointer;
+
+        &.hide,
+        &.show {
+            font-family: $font-family-main;
+            font-size: smaller;
+            font-weight: normal;
+        }
+
+        &.hide {
+            display: none;
+        }
+    }
+
+    .content {
+        max-height: 0;
+        transition: max-height .6s ease-in-out;
+        overflow-y: hidden;
+    }
+
+    &.expanded {
+        .toggle {
+            &.show {
+                display: none;
+            }
+
+            &.hide {
+                display: inline;
+            }
+        }
+
+        .content {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+    }
+}

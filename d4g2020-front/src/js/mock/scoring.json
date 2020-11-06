@@ -1,0 +1,83 @@
+{
+    "city": {
+        "ctyId": 1,
+        "ctyName": "L'Abergement-Clémenciat",
+        "ctyCodeArm": "1001",
+        "ctyPostalCode": null,
+        "dptId": 1,
+        "ctyParentCodeArm": ""
+    },
+    "cityDigitalScoring": {
+        "cdsId": 0,
+        "cdsLegalPopulation": null,
+        "cdsNetworkRateCoverage": null,
+        "cdsMobilityCoverageRate2G": null,
+        "cdsPovertyRate": null,
+        "cdsMedianIncome": null,
+        "cdsSingleParent": null,
+        "cdsSingle": null,
+        "cdsPublicServicePerPerson": null,
+        "cdsPublicService": null,
+        "cdsJobless15To64": null,
+        "cdsPersonAged15To29": null,
+        "cdsPersonAgedOver65": null,
+        "cdsNoDiplomaOver15": null,
+        "cdsCityId": 0,
+        "cdsDigitalInterface": 25.36,
+        "cdsInformationAccess": 321.21,
+        "cdsAdministrationSkill": 324.2,
+        "cdsDigitalSkill": 5.3214
+    },
+    "department": {
+        "dptId": 1,
+        "dptName": "Ain",
+        "dptCode": "01",
+        "rgnId": 16
+    },
+    "departmentDigitalScoring": {
+        "cddId": 0,
+        "cddLegalPopulation": null,
+        "cddNetworkRateCoverage": null,
+        "cddMobilityCoverageRate2G": null,
+        "cddPovertyRate": null,
+        "cddMedianIncome": null,
+        "cddSingleParent": null,
+        "cddSingle": null,
+        "cddPublicServicePerPerson": null,
+        "cddPublicService": null,
+        "cddJobless15To64": null,
+        "cddPersonAged15To29": null,
+        "cddPersonAgedOver65": null,
+        "cddNoDiplomaOver15": null,
+        "cddDepartementId": 0,
+        "cddDigitalInterface": 25.36,
+        "cddInformationAccess": 56.21,
+        "cddAdministrationSkill": 57.2,
+        "cddDigitalSkill": 5.755
+    },
+    "region": {
+        "rgnId": 16,
+        "rgnName": "Auvergne-Rhône-Alpes",
+        "rgnCode": "84"
+    },
+    "regionDigitalScoring": {
+        "cdrLegalPopulation": null,
+        "cdrNetworkRateCoverage": null,
+        "cdrMobilityCoverageRate2G": null,
+        "cdrPovertyRate": null,
+        "cdrMedianIncome": null,
+        "cdrSingleParent": null,
+        "cdrSingle": null,
+        "cdrPublicServicePerPerson": null,
+        "cdrPublicService": null,
+        "cdrJobless15To64": null,
+        "cdrPersonAged15To29": null,
+        "cdrPersonAgedOver65": null,
+        "cdrNoDiplomaOver15": null,
+        "cdrDepartmentId": 0,
+        "cdrDigitalInterface": 555.45,
+        "cdrInformationAccess": 57.21,
+        "cdrAdministrationSkill": 57.2,
+        "cdrDigitalSkill": 5.7
+    }
+}
