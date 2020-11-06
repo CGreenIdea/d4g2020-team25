@@ -13,14 +13,14 @@ public class DepartmentDigitalScoring {
     private BigDecimal cddMobilityCoverageRate2G;
     private BigDecimal cddPovertyRate;
     private BigDecimal cddMedianIncome;
-    private Integer cddSingleParent;
-    private Integer cddSingle;
+    private BigDecimal cddSingleParent;
+    private BigDecimal cddSingle;
     private BigDecimal cddPublicServicePerPerson;
     private BigDecimal cddPublicService;
-    private Integer cddJobless15To64;
-    private Integer cddPersonAged15To29;
-    private Integer cddPersonAgedOver65;
-    private Integer cddNoDiplomaOver15;
+    private BigDecimal cddJobless15To64;
+    private BigDecimal cddPersonAged15To29;
+    private BigDecimal cddPersonAgedOver65;
+    private BigDecimal cddNoDiplomaOver15;
     private long cddDepartementId;
     private BigDecimal cddDigitalInterface;
     private BigDecimal cddInformationAccess;
@@ -89,21 +89,21 @@ public class DepartmentDigitalScoring {
 
     @Basic
     @Column(name = "CDD_SINGLE_PARENT", nullable = true, precision = 0)
-    public Integer getCddSingleParent() {
+    public BigDecimal getCddSingleParent() {
         return cddSingleParent;
     }
 
-    public void setCddSingleParent(Integer cddSingleParent) {
+    public void setCddSingleParent(BigDecimal cddSingleParent) {
         this.cddSingleParent = cddSingleParent;
     }
 
     @Basic
     @Column(name = "CDD_SINGLE", nullable = true, precision = 0)
-    public Integer getCddSingle() {
+    public BigDecimal getCddSingle() {
         return cddSingle;
     }
 
-    public void setCddSingle(Integer cddSingle) {
+    public void setCddSingle(BigDecimal cddSingle) {
         this.cddSingle = cddSingle;
     }
 
@@ -129,41 +129,41 @@ public class DepartmentDigitalScoring {
 
     @Basic
     @Column(name = "CDD_JOBLESS_15_TO_64", nullable = true, precision = 0)
-    public Integer getCddJobless15To64() {
+    public BigDecimal getCddJobless15To64() {
         return cddJobless15To64;
     }
 
-    public void setCddJobless15To64(Integer cddJobless15To64) {
+    public void setCddJobless15To64(BigDecimal cddJobless15To64) {
         this.cddJobless15To64 = cddJobless15To64;
     }
 
     @Basic
     @Column(name = "CDD_PERSON_AGED_15_TO_29", nullable = true, precision = 0)
-    public Integer getCddPersonAged15To29() {
+    public BigDecimal getCddPersonAged15To29() {
         return cddPersonAged15To29;
     }
 
-    public void setCddPersonAged15To29(Integer cddPersonAged15To29) {
+    public void setCddPersonAged15To29(BigDecimal cddPersonAged15To29) {
         this.cddPersonAged15To29 = cddPersonAged15To29;
     }
 
     @Basic
     @Column(name = "CDD_PERSON_AGED_OVER_65", nullable = true, precision = 0)
-    public Integer getCddPersonAgedOver65() {
+    public BigDecimal getCddPersonAgedOver65() {
         return cddPersonAgedOver65;
     }
 
-    public void setCddPersonAgedOver65(Integer cddPersonAgedOver65) {
+    public void setCddPersonAgedOver65(BigDecimal cddPersonAgedOver65) {
         this.cddPersonAgedOver65 = cddPersonAgedOver65;
     }
 
     @Basic
     @Column(name = "CDD_NO_DIPLOMA_OVER_15", nullable = true, precision = 0)
-    public Integer getCddNoDiplomaOver15() {
+    public BigDecimal getCddNoDiplomaOver15() {
         return cddNoDiplomaOver15;
     }
 
-    public void setCddNoDiplomaOver15(Integer cddNoDiplomaOver15) {
+    public void setCddNoDiplomaOver15(BigDecimal cddNoDiplomaOver15) {
         this.cddNoDiplomaOver15 = cddNoDiplomaOver15;
     }
 
