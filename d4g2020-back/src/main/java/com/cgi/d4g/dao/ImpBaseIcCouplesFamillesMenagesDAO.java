@@ -44,8 +44,8 @@ public class ImpBaseIcCouplesFamillesMenagesDAO implements PanacheRepository<Imp
 	   resultList.forEach((record) -> {
 		   BigDecimal cdrSingle = (BigDecimal) record[0];
 		   BigDecimal cdrSingleParent = (BigDecimal) record[1];
-		   regionDigitalScoringModel.setCdrSingle(cdrSingle.intValue());
-		   regionDigitalScoringModel.setCdrSingleParent(cdrSingleParent.intValue());
+		   regionDigitalScoringModel.setCdrSingle(cdrSingle);
+		   regionDigitalScoringModel.setCdrSingleParent(cdrSingleParent);
 	});
 	   return regionDigitalScoringModel;
    }
