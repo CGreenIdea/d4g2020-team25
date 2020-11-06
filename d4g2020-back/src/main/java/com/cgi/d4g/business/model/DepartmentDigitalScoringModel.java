@@ -8,9 +8,23 @@ public class DepartmentDigitalScoringModel {
     private BigDecimal cddInformationAccess;
     private BigDecimal cddAdministrationSkill;
     private BigDecimal cddDigitalSkill;
+    private BigDecimal scoring;
 
+    /**
+	 * @return the scoring
+	 */
+	public BigDecimal getScoring() {
+		return scoring;
+	}
 
-    public long getCddDepartementId() {
+	/**
+	 * @param scoring the scoring to set
+	 */
+	public void setScoring(BigDecimal scoring) {
+		this.scoring = scoring;
+	}
+
+	public long getCddDepartementId() {
         return cddDepartementId;
     }
 

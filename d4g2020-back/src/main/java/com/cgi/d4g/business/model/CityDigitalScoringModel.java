@@ -7,8 +7,23 @@ public class CityDigitalScoringModel {
     private BigDecimal cdsInformationAccess;
     private BigDecimal cdsAdministrationSkill;
     private BigDecimal cdsDigitalSkill;
+    private BigDecimal scoring;
 
-    public BigDecimal getCdsDigitalInterface() {
+    /**
+	 * @return the scoring
+	 */
+	public BigDecimal getScoring() {
+		return scoring;
+	}
+
+	/**
+	 * @param scoring the scoring to set
+	 */
+	public void setScoring(BigDecimal scoring) {
+		this.scoring = scoring;
+	}
+
+	public BigDecimal getCdsDigitalInterface() {
         return cdsDigitalInterface;
     }
 

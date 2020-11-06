@@ -41,11 +41,11 @@ const refreshCities = (input) => {
         return;
     }
 
-    const postalCode = /\\d(?:[\\dAB]\\d{0,3})?/i.test(input);
+    const postalCode = /^\d+?/i.test(input);
 
     const callId = ++callCounter;
     const endpoint = postalCode
-        ? `city/postal-code/{input}`
+        ? `city/postal-code/${input}`
         : `region/${regionIdInput.value}/department/${departmentId.value}/city/name/${input}`;
     fetchData(endpoint).then(json => {
         if (callId === callCounter) {
