@@ -52,7 +52,7 @@ const refreshCities = (input) => {
             cities = json.map(cty => {
                 return {
                     id: cty.ctyId,
-                    label: `${cty.ctyName} (${cty.ctyCodeArm})`,
+                    label: `${cty.ctyName} (${cty.ctyPostalCode})`,
                 };
             });
             // Trigger an input event to display the propositions
