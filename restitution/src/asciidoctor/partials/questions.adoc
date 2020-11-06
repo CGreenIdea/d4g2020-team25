@@ -1,8 +1,12 @@
-_Qu'est-ce qui fait que votre site est éco-conçu ?_
+= Qu'est-ce qui fait que votre site est éco-conçu ?
 
-CAUTION: réponse
+Nous avons fortement réfléchi à la pile technologique afin de réduire son empreinte tout en maximisant sa compatibilité avec le plus vaste ensemble de supports possible.
+
+Le second point sur lequel nous nous sommes concentrés a été celui de l'inclusion : cette solution risque-t-elle de mettre des personnes de côté ?
 
 
-_Avez-vous d'autres remarques pertinentes sur votre projet ?_
+= Avez-vous d'autres remarques pertinentes sur votre projet ?
 
-CAUTION: réponse
+En réfléchissant aux thématiques d'inclusion nous est venue l'idée d'un service complémentaire par SMS qui pourrait envoyer l'indice de fragilité numérique en réponse à un premier SMS contenant un code postal.
+Cela permettrait de mettre cet outil à disposition de populations souffrant d'un taux d'équipement faible.
+La formation pour expliquer sa signification pourrait cependant être complexe.
