@@ -1,0 +1,37 @@
+= image:logo-d4g.png[] Synthèse du projet challenge Design4Green 2020
+Cyrille Chopelet <cyrille.chopelet@cgi.com>
+:revnumber: 1.0
+:revdate: 2020-11-06
+
+// Enable icons (for admonitions and others)
+:icons: font
+:icon-set: far
+
+// Add numbers to all titles
+:sectnums:
+
+// Variables
+
+
+Numéro d'équipe : 25 +
+Lien vers la solution : http://vps-adb8195f.vps.ovh.net/
+
+== Évaluation par les outils automatisés
+
+include::partials/evaluations/gtmetrix.adoc[leveloffset=+2]
+include::partials/evaluations/ecoindex.adoc[leveloffset=+2]
+include::partials/evaluations/ecograder.adoc[leveloffset=+2]
+include::partials/evaluations/sonarqube.adoc[leveloffset=+2]
+include::partials/evaluations/wave.adoc[leveloffset=+2]
+
+
+== Conception
+
+include::partials/conception/general.adoc[leveloffset=+2]
+include::partials/conception/technique.adoc[leveloffset=+2]
+include::partials/conception/fonctionnel.adoc[leveloffset=+2]
+
+
+== Questions générales
+
+include::partials/questions.adoc[leveloffset=+2]

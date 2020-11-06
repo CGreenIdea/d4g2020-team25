@@ -1,0 +1,6 @@
+= GT Metrix
+
+Score (PageSpeed Score) : 96 % +
+06/11/2020 09h13
+
+image::gtmetrix.png[]

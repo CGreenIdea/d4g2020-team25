@@ -1,0 +1,71 @@
+= Conception fonctionnelle
+
+== Avez-vous choisi d'utiliser un outil de représentation graphique ? Pourquoi ?
+
+Nous avons beaucoup échangé et dessiné sur un flipboard, que ce soit pour la conception du modèle de données ou de l'interface que nous imaginions.
+
+Ceci nous a permis de partager sous forme visuelle et plus facile à appréhender ce que nous voulions expliquer à nos camarades, et de construire plus rapidement sur nos idées mutuelles.
+
+
+== Design : Expliquez en quelques mots les choix réalisés au niveau du design du site ?
+
+Nous avons voulu une interface simple et accessible pour l'application.
+Elle se divise en un bandeau supérieur qui présente les options de recherche disponible et une carte qui présente les résultats pour la ville sélectionnée.
+
+=== Champs de recherche
+
+Trois champs sont disponibles, sur lesquels il est possible de chercher par autocomplétion.
+
+La liste des régions et celle des départements sont préchargées.
+Les villes ne sont obtenues que lorsque l'utilisateur commence une saisie.
+
+.Champs de recherche disponibles
+[options="headers",cols="1,2,4"]
+|===
+|Champ
+|Recherche possible sur…
+|Remarque
+
+|Région
+|Nom
+|Liste préchargée, filtrage côté client
+
+|Département
+|Nom, numéro
+|Liste préchargée, filtrage côté client
+
+|Ville
+|Nom, code postal
+|La requête est envoyée au serveur sur un mode d'autocomplétion standard.
+Un goulot (`debounce`) est appliqué afin de limiter le nombre de requêtes (on attend que l'utilisateur arrête de taper au clavier pour envoyer la requête).
+
+Si une région ou un département sont sélectionnés, seules les villes de cette région/ville seront remontés.
+|===
+
+Ces champs de recherche sont utilisables au clavier et à la souris, la seule contrainte étant de commencer une saisie pour afficher les résultats correspondants.
+
+
+=== Affichage des résultats
+
+Notre objectif était d'afficher, de façon aussi synthétique que possible, sous forme d'une « carte » (_card_), les scores agrégés de la ville, le département et la région, afin de permettre de se repérer.
+
+Chaque ligne pourrait être étendue afin d'afficher le détail des différents scores.
+Nous avons également pensé à changer la couleur de la carte, en suivant une échelle allant du vert au rouge, selon les résultats dans l'objectif de donner une intuition de la signification de ce score avant même de l'avoir lu.
+
+Idéalement, les textes d'introduction et conclusion demandés dans les spécifications devraient indiquer comment le score doit être interprété.
+Nous n'avons pas eu le temps de mettre cette fonctionnalité en œuvre.
+
+
+== Accessibilité : Qu'avez-vous mis en place pour le respect de l'accessibilité du site ?
+
+Nous avons pris le temps de faire des audits de notre solution à l'aide des outils intégrés à nos navigateurs et via Wave.
+
+Nous avons également testé les recherches au clavier ou à la souris.
+
+Le choix a été fait de minimiser la présence d'icônes, et toute icône devait obligatoirement être accompagné d'un texte alternatif pour les logiciels de lecture d'écran et d'un libellé afin de limiter tout risque d'incompréhension.
+
+Nous avons déterminé que l'idée d'utiliser une échelle de couleur de vert à rouge pouvait provoquer une perte d'information pour des utilisateurs daltoniens.
+Cela n'a pas changé notre décision car :
+
+* cette échelle de couleur est instinctivement compréhensible pour les habitants de la culture visée par cette application ;
+* l'information portée par cette couleur n'est qu'indicative et ne se substitue pas au score détaillé, qui est plus précis.

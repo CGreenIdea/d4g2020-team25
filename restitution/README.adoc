@@ -1,0 +1,30 @@
+= README
+Cyrille Chopelet <cyrille.chopelet@cgi.com>
+
+Ce document est le document de restitution de l'équipe pour la participation au challenge Design4Green 2020.
+Ci-dessous quelques informations pour le générer.
+
+
+== Documentation générée
+
+Ce repo contient des documents générés via AsciiDoctor.
+Les instructions de génération en utilisant Dockerfootnote:[Docker est la solution préférée. L'alternative consiste à installer plusieurs outils (Make, Ruby, AsciiDoctor). Cette procédure est assez pénible, particulièrement sous Windows.] sont reprises ci-dessous.
+
+Dans PowerShell :
+
+[source, powershell]
+----
+PS C:\Mon projet> docker run --rm -v ${PWD}:/documents/ asciidoctor/docker-asciidoctor make
+----
+
+Ou sous Linux :
+
+[source, bash]
+----
+$ docker run --rm -v $(pwd):/documents/ asciidoctor/docker-asciidoctor make
+----
+
+
+TIP: Il est inutile d'essayer d'utiliser cette commande dans Git Bash sous Windows. Celui-ci effecture des remplacements sur les chemins Unix qui empêchent d'utiliser les volumes Docker.
+
+INFO: Exécuter une fois la commande `make fonts` pour télécharger les polices manquantes avant la compilation du document.

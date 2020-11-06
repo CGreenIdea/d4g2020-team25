@@ -1,0 +1,49 @@
+extends: default
+font:
+  catalog:
+    # Use Fluent Calibri
+    Calibri:
+      normal: calibri font/Calibri Regular/Calibri Regular.ttf
+      italic: calibri font/Calibri Italic/Calibri Italic.ttf
+      bold: calibri font/Calibri Bold/Calibri Bold.TTF
+      bold-italic: calibri font/Calibri Bold Italic/Calibri Bold Italic.ttf
+    # M+ 1mn supports ASCII and the circled numbers used for conums
+    M+ 1mn:
+      normal: M1MnRegular-M2Gn.ttf
+      bold: M1MnBold-876J.ttf
+page:
+  background-color: ffffff
+  layout: portrait
+  margin: [2cm, 2cm, 2cm, 2cm]
+  # margin-inner and margin-outer keys are used for recto/verso print margins when media=prepress
+  # margin-inner: 0.75in
+  # margin-outer: 0.59in
+  size: A4
+base:
+  align: left
+  # color as hex string (leading # is optional)
+  font-color: 000000
+  # color as RGB array
+  #font-color: [51, 51, 51]
+  # color as CMYK array (approximated)
+  #font-color: [0, 0, 0, 0.92]
+  #font-color: [0, 0, 0, 92%]
+  font-family: Calibri
+  font-size: 11
+  font-style: normal
+  font-size-min: $base-font-size
+  line-height-length: 12
+  line-height: $base-line-height-length / $base-font-size
+  margin-bottom: 0
+vertical-spacing: $base-line-height-length
+# literal is currently used for inline monospaced in prose and table cells
+heading:
+  align: left
+  font-family: $base-font-family
+  font-size: 18
+  font-style: bold
+  text-transform: uppercase
+heading-h2:
+  font-size: 14
+  font-style: bold
+  font-color: $base-font-color
