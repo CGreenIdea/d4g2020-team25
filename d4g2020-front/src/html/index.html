@@ -17,26 +17,40 @@
     <div class="content">
         <div id="search-bar" class="search-form">
             <div class="autocomplete">
-                Région:
-                <input type="text" name="region" id="region-input" placeholder="Choisissez votre région" />
-                <input type="hidden" name="region-id" id="region-id-input" value="-1" />
+                <div>
+                    <label for="region-input">Région :</label>
+                </div>
+                <div>
+                    <input tabindex="0" type="text" name="region" id="region-input" placeholder="Choisissez votre région" />
+                    <input type="hidden" name="region-id" id="region-id-input" value="-1" />
+                </div>
             </div>
 
             <div class="autocomplete">
-                Département:
-                <input type="text" name="department" id="department-input" placeholder="Choisissez votre département" />
-                <input type="hidden" name="department-id" id="department-id-input" value="-1" />
+                <div>
+                    <label for="department-input">Département :</label>
+                </div>
+                <div>
+                    <input  type="text" name="department" id="department-input" placeholder="Choisissez votre département" />
+                    <input type="hidden" name="department-id" id="department-id-input" value="-1" />
+                </div>
             </div>
 
             <div class="autocomplete">
-                Ville:
-                <input type="text" name="city" id="city-input" placeholder="Choisissez votre ville" />
-                <input type="hidden" name="city-id" id="city-id-input" value="-1" />
+                <div>
+                    <label for="city-input">Ville :</label>
+                </div>
+
+                <div>
+                    <input type="text" name="city" id="city-input" placeholder="Choisissez votre ville"  />
+                    <input type="hidden" name="city-id" id="city-id-input" value="-1" />
+                </div>
             </div>
 
-            <div>
-                <button type="submit" id="searchButton">
-                    <img src="./images/search.svg" alt="Rechercher" width="14px" height="14px" />
+            <div class="flexButton">
+                <button id="searchButton" tabindex="0">
+                    <img src="./images/search.svg" alt="Rechercher" />
+                    Rechercher
                 </button>
             </div>
 
