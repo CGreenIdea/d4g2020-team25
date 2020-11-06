@@ -26,7 +26,11 @@ import com.cgi.d4g.dao.ImpBaseIcEvolStructPropDAO;
 import com.cgi.d4g.dao.ImpHdThdDeploiementDAO;
 import com.cgi.d4g.dao.ImpMetropoleSitesDAO;
 import com.cgi.d4g.dao.RegionDAO;
-import com.cgi.d4g.dto.*;
+import com.cgi.d4g.dto.ImpBaseIcCouplesFamillesMenagesTo;
+import com.cgi.d4g.dto.ImpBaseIcDiplomesFormationTo;
+import com.cgi.d4g.dto.ImpBaseIcEvolStructPropTo;
+import com.cgi.d4g.dto.ImpHdThdDeploiementTo;
+import com.cgi.d4g.dto.ImpMetropoleSitesTo;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
 import com.cgi.d4g.entity.Department;
@@ -177,7 +181,8 @@ public class Scoring {
      */
     private CityDigitalScoring calculateCityScoring(City city) {
         CityDigitalScoring scoring = consolidatedDataFromCity(city);
-        CityDigitalScoring threshold = consolidatedThreshold(city.getDptId());
+        Department findById = departmentDAO.findById(city.getDptId());
+        CityDigitalScoring threshold = consolidatedThreshold(findById.getRgnId());
 
         Calculating.updateScoreBaseOfScoring(scoring, threshold);
         cityDigitalScoringDAO.persist(scoring);
@@ -187,8 +192,7 @@ public class Scoring {
 
     private CityDigitalScoring consolidatedThreshold(long rgnId) {
         CityDigitalScoring threshold = new CityDigitalScoring();
-        Department department = departmentDAO.findById(rgnId);
-        Region region = regionDAO.findById(department.getRgnId());
+        Region region = regionDAO.findById(rgnId);
 
         ImpBaseIcCouplesFamillesMenagesTo couple = impBaseIcCouplesFamillesMenagesDAO.getAvgRegion(rgnId);
 
@@ -206,6 +210,9 @@ public class Scoring {
         threshold.setCdsSingleParent(couple.getCdrSingleParent().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
         threshold.setCdsSingle(couple.getCdrSingle().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
         threshold.setCdsMobilityCoverageRate2G(metropolis.getMpsCodeAccessibility2G());
+        if (hd.getHtdAvailableNetworks()== null) {
+        	hd.setHtdAvailableNetworks(BigDecimal.ZERO);
+        }
         threshold.setCdsNetworkRateCoverage(hd.getHtdAvailableNetworks().divide(hd.getHtdBestRate(), 4, RoundingMode.HALF_UP));
         threshold.setCdsNoDiplomaOver15(BigDecimal.valueOf(diploma.getDlfUnscholarOver15()).divide(BigDecimal.valueOf(diploma.getDlfUnscholarNoDiplomaOver15()), 4, RoundingMode.HALF_UP));
 
