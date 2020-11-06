@@ -1,0 +1,25 @@
+= Conception fonctionnelle
+
+_Avez-vous choisi d'utiliser un outil de représentation graphique ?_
+
+_Si oui, pourquoi ?_
+
+CAUTION: réponse
+
+_Si non, pourquoi ?_
+
+CAUTION: réponse
+
+
+== Design
+
+_Expliquez en quelques mots les choix réalisés au niveau du design du site ?_
+
+CAUTION: réponse
+
+
+== Accessibilité
+
+_Qu'avez-vous mis en place pour le respect de l'accessibilité du site ?_
+
+CAUTION: réponse

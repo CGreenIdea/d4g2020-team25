@@ -21,6 +21,8 @@ tmp/
 /*front/site/hugo_stats.json
 /*front/site/data/rollup*.json
 _gen/
+# Documentation
+restitution/src/resources/fonts
 # Logs
 log/
 *.log

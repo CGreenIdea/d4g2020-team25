@@ -1,0 +1,10 @@
+= Conception technique
+
+_Quel langage avez-vous choisi et pourquoi ?_
+
+CAUTION: réponse
+
+
+_Comment avez-vous optimisé vos requêtes ?_
+
+CAUTION: réponse, index (+ primary keys, foreign keys)

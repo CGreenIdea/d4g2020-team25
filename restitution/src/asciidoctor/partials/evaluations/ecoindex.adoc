@@ -1,0 +1,5 @@
+= Ecoindex
+
+Score (performance environnementale) : .../100
+
+CAUTION: score + capture + date
