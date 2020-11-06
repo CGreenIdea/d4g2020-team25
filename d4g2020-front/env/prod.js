@@ -1,4 +1,4 @@
 export default {
-    apiUri: '/api/rest',
+    apiUri: '/rest',
     mode: 'same-origin'
 };
