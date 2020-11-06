@@ -7,7 +7,7 @@
     border-radius: $card-radius;
     position: relative;
     display: inline-block;
-    color: white;
+    color: black;
 }
 
 .search-form button:hover {
@@ -27,7 +27,13 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: 15px;
 }
+
+.search-form > * {
+    margin: 15px 0 0 15px;
+  }
+
 
 .search-form::placeholder{
     font-size: 13px;
@@ -35,4 +41,17 @@
 
 .search-form input[type=text]{
     width: 100%;
+}
+
+.flexButton{
+    flex: auto;
+    text-align: right;
+}
+
+.flexButton img{
+    margin-right: 3px;
+}
+
+.search-form label{
+    color: $labels-color;
 }
