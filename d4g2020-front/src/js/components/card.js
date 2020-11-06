@@ -33,6 +33,7 @@ const hideCard = () => {
     document.querySelector("#departmentData .content").innerHTML = "";
     document.getElementById("regionScore").innerHTML = "";
     document.querySelector("#regionData .content").innerHTML = "";
+    document.getElementById("resultCardFirstSection").innerHTML = "";
 };
 
 /**
@@ -42,33 +43,52 @@ const hideCard = () => {
  */
 function fillCityData(cityData) {
     // Scoring in header
-    document.getElementById("headerScore").innerHTML = cityData.scoring;
+    document.getElementById("headerScore").innerHTML = cityData.scoring ?? "";
 
     // Scoring in the detail
-    document.getElementById("cityScore").innerHTML = cityData.scoring;
+    document.getElementById("cityScore").innerHTML = cityData.scoring ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
         cityData.cdsDigitalInterface,
-        null
+        ""
     );
     detailContent += getValueRow(
         "Accès à l'information",
         cityData.cdsInformationAccess,
-        null
+        ""
     );
     detailContent += getValueRow(
         "Capacité d'usage des interfaces numériques",
         cityData.cdsDigitalSkill,
-        null
+        ""
     );
     detailContent += getValueRow(
         "Compétences administratives",
         cityData.cdsAdministrationSkill,
-        null
+        ""
     );
 
+    if (cityData.scoring != null) {
+        displayScoringInformation(cityData.scoring);
+    } else {
+        document.getElementById("resultCardFirstSection").innerHTML =
+            "Votre score ne nous à pas été communiqué et nous n'avons pas pu l'évaluer.";
+    }
+
     document.querySelector("#cityData .content").innerHTML = detailContent;
+}
+
+function displayScoringInformation(scoring) {
+    let message = "";
+    if (scoring <= 50) {
+        message = "Ce score est unique et c'est ça qui nous plait.";
+    } else if (scoring > 50 && scoring < 100) {
+        message = "Ce score est très bien et c'est ça qui nous plait.";
+    } else {
+        message = "Ce score est incroyable et c'est ça qui nous plait.";
+    }
+    document.getElementById("resultCardFirstSection").innerHTML = message;
 }
 
 /**
@@ -78,30 +98,33 @@ function fillCityData(cityData) {
  */
 function fillDepartmentData(departmentData) {
     // Scoring in the detail
-    document.getElementById("departmentScore").innerHTML = departmentData.scoring;
+    document.getElementById("departmentScore").innerHTML =
+        departmentData.scoring ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
         departmentData.cddDigitalInterface,
-        null
+        ""
     );
     detailContent += getValueRow(
         "Accès à l'information",
         departmentData.cddInformationAccess,
-        null
+        ""
     );
     detailContent += getValueRow(
         "Capacité d'usage des interfaces numériques",
         departmentData.cddDigitalSkill,
-        null
+        ""
     );
     detailContent += getValueRow(
         "Compétences administratives",
         departmentData.cddAdministrationSkill,
-        null
+        ""
     );
 
-    document.querySelector("#departmentData .content").innerHTML = detailContent;
+    document.querySelector(
+        "#departmentData .content"
+    ).innerHTML = detailContent;
 }
 
 /**
@@ -111,7 +134,7 @@ function fillDepartmentData(departmentData) {
  */
 function fillRegionData(regionData) {
     // Scoring in the detail
-    document.getElementById("regionScore").innerHTML = regionData.scoring;
+    document.getElementById("regionScore").innerHTML = regionData.scoring ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -144,7 +167,9 @@ function fillRegionData(regionData) {
  * @param {*} suffix suffix added to the suffix
  */
 function getValueRow(label, value, suffix) {
-    return `<div class="content-property-name">${label}</div><div class="content-property-value">${value} ${suffix}</div>`;
+    return `<div class="content-property-name">${label}</div><div class="content-property-value">${value} ${
+        suffix ?? ""
+    }</div>`;
 }
 
 export { showCard, hideCard };
