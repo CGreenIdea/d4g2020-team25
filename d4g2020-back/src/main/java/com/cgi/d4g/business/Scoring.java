@@ -325,8 +325,8 @@ public class Scoring {
         } else {
             scoring.setCdsJobless15To64(BigDecimal.ZERO);
         }
-
-        icEvolStructPropToScoring(scoring, espPopAge1529, espPopAgeOver65, espPopNoJobOver15, espPopTotalPop);
+  
+      icEvolStructPropToScoring(scoring, espPopAge1529, espPopAgeOver65, espPopNoJobOver15, espPopTotalPop);
 
         return scoring;
     }
