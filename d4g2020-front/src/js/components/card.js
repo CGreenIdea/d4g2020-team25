@@ -180,11 +180,9 @@ function fillRegionData(regionData) {
  * @param {*} suffix suffix added to the suffix
  */
 function getValueRow(label, value, suffix) {
-    return `<div class="content-property-name">${label}</div><div class="content-property-value">${value} ${
-        suffix ?? ""
-    }</div>`;
+    var valueOutput = value.toFixed(2) ?? "";
+    return `<div class="content-property-name">${label}</div><div class="content-property-value">${valueOutput} ${suffix ?? ""}</div>`;
 }
-
 
 /**
  * Display the information about the selected city (CP & name)
