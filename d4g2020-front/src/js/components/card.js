@@ -68,14 +68,15 @@ const generatePdf = () => {
  * @param {*} cityData scoring details of the city
  */
 function fillCityData(cityData) {
-    var scoring = getScoring(cityData.cdsDigitalInterface, cityData.cdsInformationAccess,
+    /*var scoring = getScoring(cityData.cdsDigitalInterface, cityData.cdsInformationAccess,
         cityData.cdsDigitalSkill, cityData.cdsAdministrationSkill);
+    */
 
     // Scoring in header
-    document.getElementById("headerScore").innerHTML = scoring.toFixed(2) ?? "";
+    document.getElementById("headerScore").innerHTML = cityData.scoring.toFixed(2) ?? "";
 
     // Scoring in the detail
-    document.getElementById("cityScore").innerHTML = scoring.toFixed(2) ?? "";
+    document.getElementById("cityScore").innerHTML = cityData.scoring.toFixed(2) ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -127,12 +128,18 @@ function displayScoringInformation(scoring) {
  * @param {*} departmentData scoring details of the department
  */
 function fillDepartmentData(departmentData) {
-    var scoring = getScoring(departmentData.cddDigitalInterface, departmentData.cddInformationAccess,
+    /*var scoring = getScoring(departmentData.cddDigitalInterface, departmentData.cddInformationAccess,
         departmentData.cddDigitalSkill, departmentData.cddAdministrationSkill);
+        */
 
     // Scoring in the detail
-    document.getElementById("departmentScore").innerHTML =
-        scoring.toFixed(2) ?? "";
+    if(departmentData.scoring != null){
+        document.getElementById("departmentScore").innerHTML =
+        departmentData.scoring.toFixed(2) ?? "";
+    }
+    else{
+        document.getElementById("departmentScore").innerHTML = "";
+    }
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -166,11 +173,17 @@ function fillDepartmentData(departmentData) {
  * @param {*} regionData scoring details of the region
  */
 function fillRegionData(regionData) {
-    var scoring = getScoring(regionData.cdrDigitalInterface, regionData.cdrInformationAccess,
+    /*var scoring = getScoring(regionData.cdrDigitalInterface, regionData.cdrInformationAccess,
         regionData.cdrDigitalSkill, regionData.cdrAdministrationSkill);
+        */
 
     // Scoring in the detail
-    document.getElementById("regionScore").innerHTML = scoring.toFixed(2) ?? "";
+    if(regionData.scoring != null){
+        document.getElementById("regionScore").innerHTML = regionData.scoring.toFixed(2) ?? "";
+    }
+    else{
+        document.getElementById("regionScore").innerHTML =  "";
+    }
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -203,7 +216,14 @@ function fillRegionData(regionData) {
  * @param {*} suffix suffix added to the suffix
  */
 function getValueRow(label, value, suffix) {
-    var valueOutput = value.toFixed(2) ?? "";
+    var valueOutput = "";
+
+    if(value != null) {
+         valueOutput = value.toFixed(2) ?? "";
+    }
+    else {
+        valueOutput =  "";
+    }
     return `<div class="content-property-name">${label}</div><div class="content-property-value">${valueOutput} ${suffix ?? ""}</div>`;
 }
 
