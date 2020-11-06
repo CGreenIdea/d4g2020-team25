@@ -8,7 +8,7 @@ import java.math.RoundingMode;
 public final class Calculating {
 
     private static final int SCALE = 2;
-    private static final RoundingMode ROUNDING_MODE = RoundingMode.CEILING;
+    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
     private static final BigDecimal POINT_VALUE = BigDecimal.valueOf(100);
     private static final BigDecimal MULTIPLIER_INIT = BigDecimal.valueOf(1);
     private static final BigDecimal PUBLIC_SERVICE_INIT = BigDecimal.valueOf(2);
@@ -114,13 +114,6 @@ public final class Calculating {
     /**
      * Simple addition of values
      */
-    private static BigDecimal globalAccessScore(BigDecimal digitalAccessScore, BigDecimal informationAccessScore) {
-        return digitalAccessScore.add(informationAccessScore);
-    }
-
-    /**
-     * Simple addition of values
-     */
     private static BigDecimal administrativeSkillsScore(BigDecimal jobless15To64Point, BigDecimal personAged15To29Point) {
         return jobless15To64Point.add(personAged15To29Point);
     }
@@ -130,20 +123,6 @@ public final class Calculating {
      */
     private static BigDecimal digitalSchoolSkillsScore(BigDecimal personAgedOver65Point, BigDecimal personNoDiplomaOver15Point) {
         return personAgedOver65Point.add(personNoDiplomaOver15Point);
-    }
-
-    /**
-     * Simple addition of values
-     */
-    private static BigDecimal globalCompetencesScore(BigDecimal administrativeSkillsScore, BigDecimal digitalSchoolSkillsScore) {
-        return administrativeSkillsScore.add(digitalSchoolSkillsScore);
-    }
-
-    /**
-     * Simple addition of values
-     */
-    private static BigDecimal globalScore(BigDecimal globalAccessScore, BigDecimal globalCompetencesScore) {
-        return globalAccessScore.add(globalCompetencesScore);
     }
 
     /**
@@ -161,13 +140,6 @@ public final class Calculating {
     }
 
     /**
-     * (score * 100) / (7 * 100)
-     */
-    private static BigDecimal globalAccessScoreBase(BigDecimal globalAccessScore) {
-        return getScoreBase(globalAccessScore, 7);
-    }
-
-    /**
      * (score * 100) / (2 * 100)
      */
     private static BigDecimal administrativeSkillsScoreBase(BigDecimal administrativeSkillsScore) {
@@ -179,20 +151,6 @@ public final class Calculating {
      */
     private static BigDecimal digitalSchoolSkillsScoreBase(BigDecimal digitalSchoolSkillsScore) {
         return getScoreBase(digitalSchoolSkillsScore, 2);
-    }
-
-    /**
-     * (score * 100) / (4 * 100)
-     */
-    private static BigDecimal globalCompetencesScoreBase(BigDecimal globalCompetencesScore) {
-        return getScoreBase(globalCompetencesScore, 4);
-    }
-
-    /**
-     * (score * 100) / (11 * 100)
-     */
-    private static BigDecimal globalScoreBase(BigDecimal globalScore) {
-        return getScoreBase(globalScore, 11);
     }
 
     /**

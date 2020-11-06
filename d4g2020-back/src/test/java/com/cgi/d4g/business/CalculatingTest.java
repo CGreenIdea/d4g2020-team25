@@ -8,12 +8,6 @@ import java.math.BigDecimal;
 
 class CalculatingTest {
 
-    private static final BigDecimal DIGITAL_INTERFACE_ACCESS_SCORE_BASE = BigDecimal.valueOf(36.96);
-    private static final BigDecimal INFORMATION_ACCESS_SCORE_BASE = BigDecimal.valueOf(108.82);
-    private static final BigDecimal ADMINISTRATIVE_SKILLS_SCORE_BASE = BigDecimal.valueOf(69.88);
-    private static final BigDecimal DIGITAL_SCHOOL_SKILLS_SCORE_BASE = BigDecimal.valueOf(55.19);
-
-
     @Test
     void testUpdateScoreBaseOfScoring() {
         CityDigitalScoring threshold = new CityDigitalScoring();
@@ -30,7 +24,7 @@ class CalculatingTest {
         threshold.setCdsNoDiplomaOver15(BigDecimal.valueOf(0.287));
 
         CityDigitalScoring scoring = new CityDigitalScoring();
-        scoring.setCdsNetworkRateCoverage(BigDecimal.valueOf(0,997));
+        scoring.setCdsNetworkRateCoverage(BigDecimal.valueOf(0.997));
         scoring.setCdsMobilityCoverageRate2G(BigDecimal.valueOf(1));
         scoring.setCdsPovertyRate(BigDecimal.valueOf(0.13));
         scoring.setCdsMedianIncome(BigDecimal.valueOf(25277));
@@ -43,10 +37,15 @@ class CalculatingTest {
 
         Calculating.updateScoreBaseOfScoring(scoring, threshold);
 
-        Assertions.assertEquals(0, scoring.getCdsDigitalInterface().compareTo(DIGITAL_INTERFACE_ACCESS_SCORE_BASE));
-        Assertions.assertEquals(0, scoring.getCdsInformationAccess().compareTo(INFORMATION_ACCESS_SCORE_BASE));
-        Assertions.assertEquals(0, scoring.getCdsAdministrationSkill().compareTo(ADMINISTRATIVE_SKILLS_SCORE_BASE));
-        Assertions.assertEquals(0, scoring.getCdsDigitalSkill().compareTo(DIGITAL_SCHOOL_SKILLS_SCORE_BASE));
+        BigDecimal digitalInterfaceScoreBase = BigDecimal.valueOf(51);
+        BigDecimal informationAccessScoreBase = BigDecimal.valueOf(109);
+        BigDecimal administrationSkillScoreBase = BigDecimal.valueOf(70);
+        BigDecimal digitalSkillScoreBase = BigDecimal.valueOf(55);
+
+        Assertions.assertEquals(0, scoring.getCdsDigitalInterface().compareTo(digitalInterfaceScoreBase));
+        Assertions.assertEquals(0, scoring.getCdsInformationAccess().compareTo(informationAccessScoreBase));
+        Assertions.assertEquals(0, scoring.getCdsAdministrationSkill().compareTo(administrationSkillScoreBase));
+        Assertions.assertEquals(0, scoring.getCdsDigitalSkill().compareTo(digitalSkillScoreBase));
 
     }
 }
