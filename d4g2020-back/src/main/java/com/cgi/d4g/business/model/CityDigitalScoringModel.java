@@ -2,21 +2,12 @@ package com.cgi.d4g.business.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-
-@Entity
 public class CityDigitalScoringModel {
     private BigDecimal cdsDigitalInterface;
     private BigDecimal cdsInformationAccess;
     private BigDecimal cdsAdministrationSkill;
     private BigDecimal cdsDigitalSkill;
 
-
-
-    @Basic
-    @Column(name = "CDS_DIGITAL_INTERFACE", nullable = true, precision = 4)
     public BigDecimal getCdsDigitalInterface() {
         return cdsDigitalInterface;
     }
@@ -25,8 +16,6 @@ public class CityDigitalScoringModel {
         this.cdsDigitalInterface = cdsDigitalInterface;
     }
 
-    @Basic
-    @Column(name = "CDS_INFORMATION_ACCESS", nullable = true, precision = 4)
     public BigDecimal getCdsInformationAccess() {
         return cdsInformationAccess;
     }
@@ -35,8 +24,6 @@ public class CityDigitalScoringModel {
         this.cdsInformationAccess = cdsInformationAccess;
     }
 
-    @Basic
-    @Column(name = "CDS_ADMISTRATION_SKILL", nullable = true, precision = 4)
     public BigDecimal getCdsAdministrationSkill() {
         return cdsAdministrationSkill;
     }
@@ -45,8 +32,6 @@ public class CityDigitalScoringModel {
         this.cdsAdministrationSkill = cdsAdministrationSkill;
     }
 
-    @Basic
-    @Column(name = "CDS_DIGITAL_SCRILL", nullable = true, precision = 4)
     public BigDecimal getCdsDigitalSkill() {
         return cdsDigitalSkill;
     }
