@@ -105,7 +105,7 @@ public class ScoreResource {
 		regionDigitalScoring.setCdrAdministrationSkill(BigDecimal.valueOf(57.2));
 		regionDigitalScoring.setCdrDigitalSkill(BigDecimal.valueOf(5.7));
 		
-		return new ScoringResultModel(city, cityDigitalScoring.getCityDigitalScoringModel(), department, departmentDigitalScoring.getDepartmentDigitalScoringModel(), region, regionDigitalScoring);
+		return new ScoringResultModel(city, cityDigitalScoring.toCityDigitalScoringModel(), department, departmentDigitalScoring.toDepartmentDigitalScoringModel(), region, regionDigitalScoring);
     }
 
 	/**

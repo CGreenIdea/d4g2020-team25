@@ -223,7 +223,7 @@ public class DepartmentDigitalScoring {
 		this.cddDigitalSkill = cddDigitalSkill;
 	}
 	
-	public DepartmentDigitalScoringModel getDepartmentDigitalScoringModel() {
+	public DepartmentDigitalScoringModel toDepartmentDigitalScoringModel() {
 		DepartmentDigitalScoringModel departmentDigitalScoringModel = new DepartmentDigitalScoringModel();
 		
 		departmentDigitalScoringModel.setCddAdministrationSkill(cddAdministrationSkill);

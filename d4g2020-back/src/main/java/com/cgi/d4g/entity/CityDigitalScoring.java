@@ -224,7 +224,7 @@ public class CityDigitalScoring {
         this.cdsDigitalSkill = cdsDigitalSkill;
     }
     
-    public CityDigitalScoringModel getCityDigitalScoringModel() {
+    public CityDigitalScoringModel toCityDigitalScoringModel() {
     	CityDigitalScoringModel cityDigitalScoringModel = new CityDigitalScoringModel();
     	cityDigitalScoringModel.setCdsAdministrationSkill(cdsAdministrationSkill);
     	cityDigitalScoringModel.setCdsDigitalInterface(cdsDigitalInterface);
