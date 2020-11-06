@@ -1,32 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-      <title>Hello, World!</title>
-      <link rel="stylesheet" href="ifn.css">
-      <script src="ifn.js" async></script>
-  </head>
-  <body>
+
+<head>
+    <meta charset="utf-8">
+    <title>Indice de fragilité numérique (D4G 2020, Team 25)</title>
+    <link rel="stylesheet" href="ifn.css">
+    <script src="ifn.js" async></script>
+</head>
+
+<body>
 
     <div class="header">
-        <h1>Team 25</h1>
+        <h1>Indice de fragilité numérique</h1>
+        <h3>Team 25</h3>
     </div>
 
     <div class="content">
-
-        Hello, World!
-
-        <div id="searchBar" class="searchForm">
-            <div>
+        <div id="search-bar" class="search-form">
+            <div class="autocomplete">
                 Région:
-                <input type="text" name="region" id="regionInput" placeholder="Choisissez votre région" />
+                <input type="text" name="region" id="region-input" placeholder="Choisissez votre région"/>
+                <input type="hidden" name="region-id" id="region-id-input" value="-1"/>
+            </div>
+
+            <div class="autocomplete">
+                Département:
+                <input type="text" name="department" id="department-input" placeholder="Choisissez votre département"/>
+                <input type="hidden" name="department-id" id="department-id-input" value="-1"/>
+            </div>
+
+            <div class="autocomplete">
+                Ville:
+                <input type="text" name="city" id="city-input" placeholder="Choisissez votre ville"/>
+                <input type="hidden" name="city-id" id="city-id-input" value="-1"/>
             </div>
 
             <div>
-                Département:
-                <input type="text" name="department" id="departmentInput" placeholder="Choisissez votre département" />
+                <button type="submit" id="searchButton">
+                    <img src="./images/search.svg" alt="Rechercher" width="14px" height="14px" />
+                </button>
+            </div>
+
+        </div>
+
+
+        <div>
+            <div id="cardResult" style="width:60%" class="card-container">
+                <header class="result-card result-card-header">
+                    <h3>Score: <span id="headerScore">1234</span></h3>
+                </header>
+                <div class="result-card">
+                    <p id="resultCardFirstSection">
+
+                    </p>
+                    <hr>
+                    <div class="card-result-values">
+                        <div id="cityData" class="collapsible">
+                            <div class="card-result-value-content ">
+                                <div class="card-result-value-name">Ville</div>
+                                <div class="card-result-value" id="cityScore">123</div>
+                                <div class="toggle show">+</div>
+                                <div class="toggle hide">-</div>
+                            </div>
+
+                            <div class="content">
+                                <div class="content-property-name">
+                                    Population :
+                                </div>
+                                <div class="content-property-value">
+                                    123 432
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="departmentData" class="collapsible">
+                            <div class="card-result-value-content">
+                                <div class="card-result-value-name">Département</div>
+                                <div class="card-result-value" id="departmentScore">123</div>
+                                <div class="toggle show">+</div>
+                                <div class="toggle hide">-</div>
+                            </div>
+
+                            <div class="content">
+                                <div class="content-property-name">
+                                    Population :
+                                </div>
+                                <div class="content-property-value">
+                                    123 432
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="regionData" class="collapsible">
+                            <div class="card-result-value-content">
+                                <div class="card-result-value-name">Région</div>
+                                <div class="card-result-value" id="regionScore">123</div>
+                                <div class="toggle show">+</div>
+                                <div class="toggle hide">-</div>
+                            </div>
+
+                            <div class="content">
+                                <div class="content-property-name">
+                                    Population :
+                                </div>
+                                <div class="content-property-value">
+                                    123 432
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+
     </div>
 
-  </body>
+
+    </div>
+
+</body>
 </html>

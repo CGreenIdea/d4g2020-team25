@@ -14,12 +14,12 @@ import com.cgi.d4g.entity.City;
 @Path("/rest/city")
 @Produces(MediaType.APPLICATION_JSON)
 public class CityResource {
-	
+
 	/**
 	 * the city DAO
 	 */
 	private CityDAO cityDAO;
-	
+
     /**
      * Constructor
 	 * @param cityDAO
@@ -28,11 +28,15 @@ public class CityResource {
 		this.cityDAO = cityDAO;
 	}
 
-
-
 	@Path("/name/{name}")
     @GET
     public List<City> listByNameLike(@PathParam("name") String name) {
         return this.cityDAO.listByName(name);
+    }
+
+	@Path("/postalCode/{code}")
+    @GET
+    public List<City> listByPostalCodeLike(@PathParam("code") String postalCode) {
+        return this.cityDAO.listByName(postalCode);
     }
 }

@@ -27,6 +27,15 @@ public class CityDAO implements PanacheRepository<City> {
    }
 
 	/**
+	 * Find city by postal code
+	 * @param code the postal code to find
+	 * @return the city
+	 */
+   public List<City> listByCodeArm(String code){
+       return list("CTY_CODE_ARM like ?1", Sort.ascending("CTY_NAME"), code + "%");
+   }
+
+	/**
 	 * Find city by name
 	 * @param dptId the id of the department
 	 * @return the city
@@ -51,7 +60,7 @@ public class CityDAO implements PanacheRepository<City> {
 	 * @param name the name to find
 	 * @return the city
 	 */
-  	public List<City>  listByRegionName(long rgnId ,String name){
+  	public List<City>  listByRegionAndName(long rgnId ,String name){
   		return list("select distinct c from City c INNER JOIN Department d ON d.dptId = c.dptId where d.rgnId = ?1 and c.ctyName like ?2", Sort.ascending("CTY_NAME"), rgnId, "%" + name + "%");
   	}
 }

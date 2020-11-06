@@ -1,8 +1,12 @@
 package com.cgi.d4g.entity;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "DEPARTMENT_DIGITAL_SCORING", schema = "d4g_ifn", catalog = "")
@@ -176,16 +180,16 @@ public class DepartmentDigitalScoring {
     public void setCddDepartementId(long cddDepartementId) {
         this.cddDepartementId = cddDepartementId;
     }
-    
+
     @Basic
     @Column(name = "CDD_DIGITAL_INTERFACE", nullable = true, precision = 4)
 	public BigDecimal getCddDigitalInterface() {
 		return cddDigitalInterface;
-	}
+        }
 
 	public void setCddDigitalInterface(BigDecimal cddDigitalInterface) {
 		this.cddDigitalInterface = cddDigitalInterface;
-	}
+        }
 	
 	@Basic
     @Column(name = "CDD_INFORMATION_ACCESS", nullable = true, precision = 4)
@@ -195,8 +199,8 @@ public class DepartmentDigitalScoring {
 
 	public void setCddInformationAccess(BigDecimal cddInformationAccess) {
 		this.cddInformationAccess = cddInformationAccess;
-	}
-	
+    }
+
 	@Basic
     @Column(name = "CDD_ADMISTRATION_SKILL", nullable = true, precision = 4)
 	public BigDecimal getCddAdministrationSkill() {
@@ -217,8 +221,8 @@ public class DepartmentDigitalScoring {
 		this.cddDigitalSkill = cddDigitalSkill;
 	}
 
-	@Override
-	public int hashCode() {
+    @Override
+    public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cddAdministrationSkill == null) ? 0 : cddAdministrationSkill.hashCode());
@@ -241,7 +245,7 @@ public class DepartmentDigitalScoring {
 		result = prime * result + ((cddSingle == null) ? 0 : cddSingle.hashCode());
 		result = prime * result + ((cddSingleParent == null) ? 0 : cddSingleParent.hashCode());
 		return result;
-	}
+    }
 
 	@Override
 	public boolean equals(Object obj) {
