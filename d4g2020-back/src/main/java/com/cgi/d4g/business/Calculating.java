@@ -70,6 +70,10 @@ public final class Calculating {
      * ((value - threshold) / threshold) + 1
      */
     private static BigDecimal defaultMultiplierCoefficient(BigDecimal value, BigDecimal threshold) {
+        if (threshold == null || threshold.compareTo(BigDecimal.ZERO) == 0) {
+            threshold = BigDecimal.ONE;
+        }
+
         return value.subtract(threshold).divide(threshold, SCALE, ROUNDING_MODE).add(MULTIPLIER_INIT);
     }
 
@@ -77,7 +81,7 @@ public final class Calculating {
      * IF 2 - (((value - threshold) / threshold) + 1) < 0 ? 0 : 2 - (((value - threshold) / threshold) + 1)
      */
     private static BigDecimal publicServiceMultiplierCoefficient(BigDecimal value, BigDecimal threshold) {
-        if(value == null){
+        if (value == null) {
             value = BigDecimal.ZERO;
         }
         BigDecimal baseMultiplier = PUBLIC_SERVICE_INIT.subtract(defaultMultiplierCoefficient(value, threshold));
@@ -89,6 +93,9 @@ public final class Calculating {
      * (1 - value ) / threshold
      */
     private static BigDecimal hdAndMobileMultiplierCoefficient(BigDecimal value, BigDecimal threshold) {
+        if (threshold == null || threshold.compareTo(BigDecimal.ZERO) == 0) {
+            threshold = BigDecimal.ONE;
+        }
         return HD_AND_MOBILE_INIT.subtract(value).divide(threshold, SCALE, ROUNDING_MODE);
     }
 
