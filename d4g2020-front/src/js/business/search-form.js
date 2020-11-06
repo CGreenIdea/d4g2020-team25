@@ -14,6 +14,7 @@ const departmentId = document.getElementById('department-id-input');
 const cityInput = document.getElementById('city-input');
 
 let cities = [];
+let callCounter = 0;
 
 function fetchData(endpoint) {
     return fetch(`${env.apiUri}/${endpoint}`, {
@@ -42,19 +43,21 @@ const refreshCities = (input) => {
 
     const postalCode = /\\d(?:[\\dAB]\\d{0,3})?/i.test(input);
 
+    const callId = ++callCounter;
     const endpoint = postalCode
         ? `city/postal-code/{input}`
         : `region/${regionIdInput.value}/department/${departmentId.value}/city/name/${input}`;
     fetchData(endpoint).then(json => {
-        cities = json.map(cty => {
-            return {
-                id: cty.ctyId,
-                label: `${cty.ctyName} (${cty.ctyCodeArm})`,
-            };
-        });
-        // Trigger an input event to display the propositions
-        console.log('refresh');
-        cityInput.dispatchEvent(new Event('focus'));
+        if (callId === callCounter) {
+            cities = json.map(cty => {
+                return {
+                    id: cty.ctyId,
+                    label: `${cty.ctyName} (${cty.ctyCodeArm})`,
+                };
+            });
+            // Trigger an input event to display the propositions
+            cityInput.dispatchEvent(new Event('focus'));
+        }
     }).catch(error => notifyError(error));
 };
 
