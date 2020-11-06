@@ -5,6 +5,8 @@ import com.cgi.d4g.entity.CityDigitalScoring;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import javax.enterprise.context.ApplicationScoped;
+
 public final class Calculating {
 
     private static final int SCALE = 2;
