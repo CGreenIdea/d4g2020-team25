@@ -201,9 +201,9 @@ deploy:
     ### Stop running app
     - ssh $SSH_USER@$SSH_HOST "~/d4g-back/begin-deploy.sh"
     ### Sync libs in case they were updated
-    - rsync -vrzt --del --stats d4g2020-back/target/lib/ $SSH_USER@$SSH_HOST:~/d4g-front/lib/
+    - rsync -vrzt --del --stats d4g2020-back/target/lib/ $SSH_USER@$SSH_HOST:~/d4g-back/lib/
     ### Deploy new executable
-    - scp d4g202back/target/d4g202-back-*-runner.jar $SSH_USER@$SSH_HOST:~/d4g-front/executable.jar
+    - scp d4g202back/target/d4g202-back-*-runner.jar $SSH_USER@$SSH_HOST:~/d4g-back/executable.jar
     ### Restart app
     - ssh $SSH_USER@$SSH_HOST "~/d4g-back/begin-deploy.sh"
 
