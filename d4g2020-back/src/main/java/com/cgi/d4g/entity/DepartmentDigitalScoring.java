@@ -232,10 +232,27 @@ public class DepartmentDigitalScoring {
 		departmentDigitalScoringModel.setCddDigitalSkill(cddDigitalSkill);
 		departmentDigitalScoringModel.setCddInformationAccess(cddInformationAccess);
 
-		departmentDigitalScoringModel.setScoring(cddAdministrationSkill
-    			.add(cddDigitalInterface)
-    			.add(cddDigitalSkill)
-    			.add(cddInformationAccess).divide(BigDecimal.valueOf(4)));
+		BigDecimal scoring = BigDecimal.ZERO;
+		int index=0;
+		if(cddAdministrationSkill!=null) {
+			scoring=scoring.add(cddAdministrationSkill);
+			index++;
+		}
+		if(cddDigitalInterface!=null) {
+			scoring=scoring.add(cddDigitalInterface);
+			index++;
+		}
+		if(cddDigitalSkill!=null) {
+			scoring=scoring.add(cddDigitalSkill);
+			index++;
+		}
+		if(cddInformationAccess!=null) {
+			scoring=scoring.add(cddInformationAccess);
+			index++;
+		}
+		if(index > 0) {
+			departmentDigitalScoringModel.setScoring(scoring.divide(BigDecimal.valueOf(index)));
+		}
 		
 		
 		return departmentDigitalScoringModel;
