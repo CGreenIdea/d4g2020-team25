@@ -230,6 +230,10 @@ public class CityDigitalScoring {
     	cityDigitalScoringModel.setCdsDigitalInterface(cdsDigitalInterface);
     	cityDigitalScoringModel.setCdsDigitalSkill(cdsDigitalSkill);
     	cityDigitalScoringModel.setCdsInformationAccess(cdsInformationAccess);
+    	cityDigitalScoringModel.setScoring(cdsAdministrationSkill
+    			.add(cdsDigitalInterface)
+    			.add(cdsDigitalSkill)
+    			.add(cdsInformationAccess).divide(BigDecimal.valueOf(4)));
     	return cityDigitalScoringModel;
     }
 

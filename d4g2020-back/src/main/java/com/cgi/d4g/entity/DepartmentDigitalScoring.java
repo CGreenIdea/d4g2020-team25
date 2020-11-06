@@ -231,6 +231,13 @@ public class DepartmentDigitalScoring {
 		departmentDigitalScoringModel.setCddDigitalInterface(cddDigitalInterface);
 		departmentDigitalScoringModel.setCddDigitalSkill(cddDigitalSkill);
 		departmentDigitalScoringModel.setCddInformationAccess(cddInformationAccess);
+
+		departmentDigitalScoringModel.setScoring(cddAdministrationSkill
+    			.add(cddDigitalInterface)
+    			.add(cddDigitalSkill)
+    			.add(cddInformationAccess).divide(BigDecimal.valueOf(4)));
+		
+		
 		return departmentDigitalScoringModel;
 	}
 	
