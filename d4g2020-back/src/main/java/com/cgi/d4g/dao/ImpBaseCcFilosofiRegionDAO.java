@@ -2,13 +2,12 @@ package com.cgi.d4g.dao;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
 import com.cgi.d4g.entity.ImpBaseCcFilosofiRegion;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 /**
- * DAO for the ImpBaseCcFilosofi for Region 
+ * DAO for the ImpBaseCcFilosofi for Region
  * @author vaulotan
  *
  */

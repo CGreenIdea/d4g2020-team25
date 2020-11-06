@@ -5,11 +5,8 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.cgi.d4g.entity.ImpBaseCcFilosofi;
-import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
-import com.cgi.d4g.entity.ImpBaseIcEvolStructProp;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
-import io.quarkus.panache.common.Sort;
 
 /**
  * DAO for the ImpBaseCcFilosofieDAO for poverty/Median

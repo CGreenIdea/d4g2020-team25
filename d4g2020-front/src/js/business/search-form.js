@@ -107,7 +107,7 @@ const initSearchForm = () => {
         closeAllAutocompletionLists(clickEvent.target);
     });
 
-    var searchBtn = document.getElementById('searchButton');
+    const searchBtn = document.getElementById('searchButton');
 
     searchBtn.addEventListener('click', clickEvent => {
         // TODO disable input while loading

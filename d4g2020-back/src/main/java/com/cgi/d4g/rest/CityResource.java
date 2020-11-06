@@ -18,7 +18,7 @@ public class CityResource {
 	/**
 	 * the city DAO
 	 */
-	private CityDAO cityDAO;
+	private final CityDAO cityDAO;
 
     /**
      * Constructor

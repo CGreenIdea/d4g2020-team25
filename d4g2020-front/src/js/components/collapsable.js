@@ -16,10 +16,4 @@ const expandAll = () => {
         .forEach((element) => toggleCollapsible(element));
 };
 
-const collapseAll = () => {
-    document
-        .querySelectorAll(".collapsible.expanded")
-        .forEach((element) => toggleCollapsible(element));
-};
-
-export { initCollapsables, expandAll, collapseAll };
+export { initCollapsables, expandAll };

@@ -56,7 +56,7 @@ const generatePdf = () => {
     expandAll();
 
     setTimeout(function(){
-        var cardElement = document.getElementById('cardResult');
+        const cardElement = document.getElementById('cardResult');
         html2pdf(cardElement);
         document.body.style.cursor='default';
     }, 1500);
@@ -68,7 +68,8 @@ const generatePdf = () => {
  * @param {*} cityData scoring details of the city
  */
 function fillCityData(cityData) {
-    var scoring = getScoring(cityData.cdsDigitalInterface, cityData.cdsInformationAccess,
+    const scoring = getScoring(cityData.cdsDigitalInterface,
+        cityData.cdsInformationAccess,
         cityData.cdsDigitalSkill, cityData.cdsAdministrationSkill);
 
     // Scoring in header
@@ -127,7 +128,8 @@ function displayScoringInformation(scoring) {
  * @param {*} departmentData scoring details of the department
  */
 function fillDepartmentData(departmentData) {
-    var scoring = getScoring(departmentData.cddDigitalInterface, departmentData.cddInformationAccess,
+    const scoring = getScoring(departmentData.cddDigitalInterface,
+        departmentData.cddInformationAccess,
         departmentData.cddDigitalSkill, departmentData.cddAdministrationSkill);
 
     // Scoring in the detail
@@ -166,7 +168,8 @@ function fillDepartmentData(departmentData) {
  * @param {*} regionData scoring details of the region
  */
 function fillRegionData(regionData) {
-    var scoring = getScoring(regionData.cdrDigitalInterface, regionData.cdrInformationAccess,
+    const scoring = getScoring(regionData.cdrDigitalInterface,
+        regionData.cdrInformationAccess,
         regionData.cdrDigitalSkill, regionData.cdrAdministrationSkill);
 
     // Scoring in the detail
@@ -203,7 +206,7 @@ function fillRegionData(regionData) {
  * @param {*} suffix suffix added to the suffix
  */
 function getValueRow(label, value, suffix) {
-    var valueOutput = value.toFixed(2) ?? "";
+    const valueOutput = value.toFixed(2) ?? '';
     return `<div class="content-property-name">${label}</div><div class="content-property-value">${valueOutput} ${suffix ?? ""}</div>`;
 }
 
