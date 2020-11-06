@@ -230,10 +230,29 @@ public class CityDigitalScoring {
     	cityDigitalScoringModel.setCdsDigitalInterface(cdsDigitalInterface);
     	cityDigitalScoringModel.setCdsDigitalSkill(cdsDigitalSkill);
     	cityDigitalScoringModel.setCdsInformationAccess(cdsInformationAccess);
-    	cityDigitalScoringModel.setScoring(cdsAdministrationSkill
-    			.add(cdsDigitalInterface)
-    			.add(cdsDigitalSkill)
-    			.add(cdsInformationAccess).divide(BigDecimal.valueOf(4)));
+
+
+		BigDecimal scoring = BigDecimal.ZERO;
+		int index=0;
+		if(cdsAdministrationSkill!=null) {
+			scoring=scoring.add(cdsAdministrationSkill);
+			index++;
+		}
+		if(cdsDigitalInterface!=null) {
+			scoring=scoring.add(cdsDigitalInterface);
+			index++;
+		}
+		if(cdsDigitalSkill!=null) {
+			scoring=scoring.add(cdsDigitalSkill);
+			index++;
+		}
+		if(cdsInformationAccess!=null) {
+			scoring=scoring.add(cdsInformationAccess);
+			index++;
+		}
+		if(index > 0) {
+			cityDigitalScoringModel.setScoring(scoring.divide(BigDecimal.valueOf(index)));
+		}
     	return cityDigitalScoringModel;
     }
 
