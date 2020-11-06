@@ -37,6 +37,6 @@ public class CityResource {
 	@Path("/postalCode/{code}")
     @GET
     public List<City> listByPostalCodeLike(@PathParam("code") String postalCode) {
-        return this.cityDAO.listByName(postalCode);
+        return this.cityDAO.listByPostalCode(postalCode);
     }
 }
