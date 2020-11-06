@@ -34,7 +34,7 @@ public class ImpHdThdDeploiementDAO implements PanacheRepository<ImpHdThdDeploie
    } 
    
    public ImpHdThdDeploiementTo getAvgRegion(long rgnId) {
-	   Query nativeQuery = this.getEntityManager().createNativeQuery("select avg(HTD_AVAILABLE_NETWORKS), avg(HTD_BEST_RATE),  from IMP_HD_THD_DEPLOIEMENT f inner join CITY c on c.CTY_CODE_ARM=f.ESP_CODE_ARM INNER JOIN DEPARTMENT d ON d.DPT_ID = c.DPT_ID where d.RGN_ID = :rgnId");
+	   Query nativeQuery = this.getEntityManager().createNativeQuery("select avg(HTD_AVAILABLE_NETWORKS), avg(HTD_BEST_RATE) from IMP_HD_THD_DEPLOIEMENT f inner join CITY c on c.CTY_CODE_ARM=f.HTD_CODE_ARM INNER JOIN DEPARTMENT d ON d.DPT_ID = c.DPT_ID where d.RGN_ID = :rgnId");
 	   nativeQuery.setParameter("rgnId", 1);
 	   Stream<Object[]> resultList = nativeQuery.getResultStream();
 	   
@@ -50,7 +50,7 @@ public class ImpHdThdDeploiementDAO implements PanacheRepository<ImpHdThdDeploie
    
    
    public ImpHdThdDeploiementTo getAvgdepartment(long dptId) {
-	   Query nativeQuery = this.getEntityManager().createNativeQuery("select avg(HTD_AVAILABLE_NETWORKS), avg(HTD_BEST_RATE) from IMP_HD_THD_DEPLOIEMENT f inner join CITY c on c.CTY_CODE_ARM=f.ESP_CODE_ARM where c.DPT_ID = :dptId");
+	   Query nativeQuery = this.getEntityManager().createNativeQuery("select avg(HTD_AVAILABLE_NETWORKS), avg(HTD_BEST_RATE) from IMP_HD_THD_DEPLOIEMENT f inner join CITY c on c.CTY_CODE_ARM=f.HTD_CODE_ARM where c.DPT_ID = :dptId");
 	   nativeQuery.setParameter("dptId", 1);
 	   Stream<Object[]> resultList = nativeQuery.getResultStream();
 	   

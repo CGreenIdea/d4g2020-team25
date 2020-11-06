@@ -1,9 +1,14 @@
 package com.cgi.d4g.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.Query;
 
+import com.cgi.d4g.dto.ImpBaseIcDiplomesFormationTo;
+import com.cgi.d4g.dto.ImpBaseIcEvolStructPropTo;
 import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
 import com.cgi.d4g.entity.ImpBaseIcDiplomesFormation;
 import com.cgi.d4g.entity.ImpBaseIcEvolStructProp;
@@ -26,5 +31,37 @@ public class ImpBaseIcDiplomesFormationDAO implements PanacheRepository<ImpBaseI
 	 */
    public List<ImpBaseIcDiplomesFormation> getByCode(String code){
        return list("DLF_CODE_ARM", code);
+   }
+   
+   
+   public ImpBaseIcDiplomesFormationTo getAvgRegion(long rgnId) {
+	   Query nativeQuery = this.getEntityManager().createNativeQuery("select sum(DLF_UNSCHOLAR_OVER_15), sum(DLF_UNSCHOLAR_NO_DIPLOMA_OVER_15) from IMP_BASE_IC_DIPLOMES_FORMATION f inner join CITY c on c.CTY_CODE_ARM=f.DLF_CODE_ARM INNER JOIN DEPARTMENT d ON d.DPT_ID = c.DPT_ID where d.RGN_ID = :rgnId");
+	   nativeQuery.setParameter("rgnId", 1);
+	   Stream<Object[]> resultList = nativeQuery.getResultStream();
+	   
+	   ImpBaseIcDiplomesFormationTo impBaseIcDiplomesFormationTo = new ImpBaseIcDiplomesFormationTo();
+	   resultList.forEach((record) -> {
+		   
+		   impBaseIcDiplomesFormationTo.setDlfUnscholarOver15(((BigDecimal ) record[1]).intValue());
+		   impBaseIcDiplomesFormationTo.setDlfUnscholarNoDiplomaOver15(((BigDecimal ) record[0]).intValue());
+		   
+	});
+	   return impBaseIcDiplomesFormationTo;
+   }
+   
+   
+   public ImpBaseIcDiplomesFormationTo getAvgdepartment(long dptId) {
+	   Query nativeQuery = this.getEntityManager().createNativeQuery("select avg(DLF_UNSCHOLAR_OVER_15), avg(DLF_UNSCHOLAR_NO_DIPLOMA_OVER_15) from IMP_BASE_IC_DIPLOMES_FORMATION f inner join CITY c on c.CTY_CODE_ARM=f.DLF_CODE_ARM where c.DPT_ID = :dptId");
+	   nativeQuery.setParameter("dptId", 1);
+	   Stream<Object[]> resultList = nativeQuery.getResultStream();
+
+	   ImpBaseIcDiplomesFormationTo impBaseIcDiplomesFormationTo = new ImpBaseIcDiplomesFormationTo();
+	   resultList.forEach((record) -> {
+		   
+		   impBaseIcDiplomesFormationTo.setDlfUnscholarOver15(((BigDecimal ) record[1]).intValue());
+		   impBaseIcDiplomesFormationTo.setDlfUnscholarNoDiplomaOver15(((BigDecimal ) record[0]).intValue());
+		   
+	});
+	   return impBaseIcDiplomesFormationTo;
    }
 }
