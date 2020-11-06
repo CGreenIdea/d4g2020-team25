@@ -9,7 +9,7 @@ public class ImpBaseIcCouplesFamillesMenages {
     private long cfmId;
     private String cfmCodeArm;
     private Integer cfmSingle;
-    private Integer cfmSingleParent;;
+    private Integer cfmSingleParent;
     private Integer cfmHousehold;
 
     @Id
