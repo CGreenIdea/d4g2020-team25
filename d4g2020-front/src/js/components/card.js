@@ -180,19 +180,33 @@ function fillRegionData(regionData) {
  * @param {*} suffix suffix added to the suffix
  */
 function getValueRow(label, value, suffix) {
-    return `<div class="content-property-name">${label}</div><div class="content-property-value">${value} ${
-        suffix ?? ""
-    }</div>`;
+    var valueOutput = value.toFixed(2) ?? "";
+    return `<div class="content-property-name">${label}</div><div class="content-property-value">${valueOutput} ${suffix ?? ""}</div>`;
 }
 
+/**
+ * Display the information about the selected city (CP & name)
+ *
+ * @param {*} cityInfo
+ */
 function showCityInformation(cityInfo){
     document.getElementById("cityDetail").innerHTML = `${cityInfo.ctyName} - ${cityInfo.ctyPostalCode}`;
 }
 
+/**
+ * Display the information about the department city (code & name)
+ *
+ * @param {*} dptInfo
+ */
 function showDepartmentInformation(dptInfo){
     document.getElementById("departmentDetail").innerHTML = `${dptInfo.dptCode} - ${dptInfo.dptName}`;
 }
 
+/**
+ * Display the information about the region (name)
+ *
+ * @param {*} regionInfo
+ */
 function showRegionInformation(regionInfo){
     document.getElementById("regionDetail").innerHTML = `${regionInfo.rgnName}`;
 }
