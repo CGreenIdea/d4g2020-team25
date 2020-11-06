@@ -8,6 +8,9 @@ import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
+import com.cgi.d4g.business.model.CityDigitalScoringModel;
+import com.cgi.d4g.business.model.DepartmentDigitalScoringModel;
+
 /*
  * class to manage the business of scoring.
  */
@@ -159,7 +162,21 @@ public class Scoring {
         Optional<CityDigitalScoring> cityDigitalScoring = getCityScoring(city);
         //if empty calulate and save.
 
-        return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)).toCityDigitalScoringModel(), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)).toDepartmentDigitalScoringModel(), region, regionDigitalScoring);
+        CityDigitalScoringModel cityDigitalScoringModel;
+        if (cityDigitalScoring.isEmpty()) {
+        	cityDigitalScoringModel = calculateCityScoring(city).toCityDigitalScoringModel();
+        }else {
+        	cityDigitalScoringModel = cityDigitalScoring.get().toCityDigitalScoringModel();
+        }
+        
+		DepartmentDigitalScoringModel departmentDigitalScoringModel2;
+		if (departmentDigitalScoring.isEmpty()) {
+			departmentDigitalScoringModel2 = calculateDepartmentScoring(department).toDepartmentDigitalScoringModel();
+        }else {
+        	departmentDigitalScoringModel2 = departmentDigitalScoring.get().toDepartmentDigitalScoringModel();
+        }
+		
+		return new ScoringResultModel(city, cityDigitalScoringModel, department, departmentDigitalScoringModel2, region, regionDigitalScoring);
     }
 
 
