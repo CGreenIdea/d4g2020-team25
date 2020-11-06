@@ -1,5 +1,6 @@
 = GT Metrix
 
-Score (PageSpeed Score) : ...%
+Score (PageSpeed Score) : 96 % +
+06/11/2020 09h13
 
-CAUTION: score + capture + date
+image::gtmetrix.png[]

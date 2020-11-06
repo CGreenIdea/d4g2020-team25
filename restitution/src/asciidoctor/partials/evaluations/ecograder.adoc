@@ -1,5 +1,6 @@
 = Ecograder
 
-Score : .../100
+Score : 62/100 +
+06/11/2020 09h10
 
-CAUTION: score + capture + date
+image::ecograder.png[align=center]
