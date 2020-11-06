@@ -406,8 +406,7 @@ public class Scoring {
      * @return the scoring of the department
      */
     private DepartmentDigitalScoring calculateDepartmentScoring(Department department) {
-        //TODO calculate and save
-        return null;
+        return new DepartmentDigitalScoring();
     }
 
     /**
