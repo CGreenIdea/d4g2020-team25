@@ -12,6 +12,7 @@ import com.cgi.d4g.business.model.RegionDigitalScoringModel;
 import com.cgi.d4g.business.model.ScoringResultModel;
 import com.cgi.d4g.dao.CityDAO;
 import com.cgi.d4g.dao.DepartmentDAO;
+import com.cgi.d4g.dao.ImpBaseIcCouplesFamillesMenagesDAO;
 import com.cgi.d4g.dao.RegionDAO;
 import com.cgi.d4g.entity.City;
 import com.cgi.d4g.entity.CityDigitalScoring;
@@ -26,14 +27,17 @@ public class ScoreResource {
 	private final CityDAO cityDAO;
 	private final DepartmentDAO departmentDAO;
 	private final RegionDAO regionDAO;
+	private final ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO;
     
 	/**
 	 * @param cityDAO
 	 */
-	public ScoreResource(CityDAO cityDAO, DepartmentDAO departmentDAO, RegionDAO regionDAO) {
+	public ScoreResource(CityDAO cityDAO, DepartmentDAO departmentDAO, RegionDAO regionDAO,
+			ImpBaseIcCouplesFamillesMenagesDAO impBaseIcCouplesFamillesMenagesDAO) {
 		this.cityDAO = cityDAO;
 		this.departmentDAO= departmentDAO;
 		this.regionDAO=regionDAO;
+		this.impBaseIcCouplesFamillesMenagesDAO=impBaseIcCouplesFamillesMenagesDAO;
 	}
 
 	/**
@@ -69,6 +73,20 @@ public class ScoreResource {
 		regionDigitalScoring.setCdrDigitalSkill(BigDecimal.valueOf(5.7));
 		
 		return new ScoringResultModel(city, cityDigitalScoring, department, departmentDigitalScoring, region, regionDigitalScoring);
+    }
+
+	/**
+	 * List of all the city of a region.
+	 * @param regionId the id of the region to filter
+	 * @param name the name to filter
+	 * @return list of city
+	 */
+    @GET
+    @Path("/test/{rgnId}")
+    public DepartmentDigitalScoring getScoreByregion(@PathParam("rgnId") long rgnId) {
+    	DepartmentDigitalScoring regionDigitalScoringModel = impBaseIcCouplesFamillesMenagesDAO.getAvgdepartment(rgnId);
+    	
+    return regionDigitalScoringModel;
     }
 
 }
