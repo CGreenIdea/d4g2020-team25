@@ -155,7 +155,7 @@ public class Scoring {
         Optional<CityDigitalScoring> cityDigitalScoring = getCityScoring(city);
         //if empty calulate and save.
 
-        return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)).getCityDigitalScoringModel(), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)).getDepartmentDigitalScoringModel(), region, regionDigitalScoring);
+        return new ScoringResultModel(city, cityDigitalScoring.orElse(calculateCityScoring(city)).toCityDigitalScoringModel(), department, departmentDigitalScoring.orElse(calculateDepartmentScoring(department)).toDepartmentDigitalScoringModel(), region, regionDigitalScoring);
     }
 
 
