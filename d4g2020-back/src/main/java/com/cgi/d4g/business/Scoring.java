@@ -15,7 +15,10 @@ import java.util.Optional;
 
 public class Scoring {
 
-    /**
+	/** constant used in the calculation */
+    private static final BigDecimal BIG_DECIMAL_100 = BigDecimal.valueOf(100);
+
+	/**
      * The department DAO.
      */
     private final DepartmentDAO departmentDAO;
@@ -154,14 +157,8 @@ public class Scoring {
 
         ImpBaseCcFilosofiDepartement impBaseCcFilosofiDepartement = this.impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
 
-        List<ImpBaseIcEvolStructProp> populateList = this.impBaseIcEvolStructPropDAO.getByCode(city.getCtyCodeArm());
-        List<ImpBaseIcCouplesFamillesMenages> coupleList = this.impBaseIcCouplesFamillesMenagesDAO.getByCode(city.getCtyCodeArm());
-        List<ImpBaseIcDiplomesFormation> diplomaList = this.impBaseIcDiplomesFormationDAO.getByCode(city.getCtyCodeArm());
-        List<ImpHdThdDeploiement> hdList = this.impHdThdDeploiementDAO.getByCode(city.getCtyCodeArm());
-        List<ImpMetropoleSites> mobileList = this.impMetropoleSitesDAO.getByCode(city.getCtyCodeArm());
-        List<ImpBaseCcFilosofi> filosofiList = this.impBaseCcFilosofieDAO.getByCode(city.getCtyCodeArm());
-
-        CityDigitalScoring scoring = new CityDigitalScoring(); // TODO complete
+        CityDigitalScoring scoring = consolidatedDataFromCity(city);
+        
         CityDigitalScoring threshold = new CityDigitalScoring(); // TODO complete
 
         //par taux
@@ -171,6 +168,130 @@ public class Scoring {
         //save data
         return null;
     }
+
+    /**
+     * Consolidated data from city extracted data. 
+     * @param city the city to search
+     * @return the Scoring values extracted.
+     */
+	private CityDigitalScoring consolidatedDataFromCity(City city) {
+		List<ImpBaseIcEvolStructProp> populateList = this.impBaseIcEvolStructPropDAO.getByCode(city.getCtyCodeArm());
+        
+		Integer espPopAge014 = 0;
+        Integer espPopAge1529 = 0;
+        Integer espPopAgeOver65 = 0;
+        Integer espPopNoJobOver15 = 0;
+        Integer espPopTotalPop = 0;
+        for (ImpBaseIcEvolStructProp impBaseIcEvolStructProp : populateList) {
+        	if(impBaseIcEvolStructProp.getEspPopAge014() != null) {
+        		espPopAge014 = espPopAge014 + impBaseIcEvolStructProp.getEspPopAge014();        		
+        	}
+        	if(impBaseIcEvolStructProp.getEspPopAge1529() != null) {
+        		espPopAge1529 = espPopAge1529 + impBaseIcEvolStructProp.getEspPopAge1529();
+        	}
+        	if(impBaseIcEvolStructProp.getEspPopAgeOver65() != null) {
+        		espPopAgeOver65 = espPopAgeOver65 + impBaseIcEvolStructProp.getEspPopAgeOver65();
+        	}
+        	if(impBaseIcEvolStructProp.getEspPopNoJobOver15() != null) {
+        		espPopNoJobOver15 = espPopNoJobOver15 + impBaseIcEvolStructProp.getEspPopNoJobOver15();
+        	}
+        	if(impBaseIcEvolStructProp.getEspTotalPop() != null) {
+        		espPopTotalPop = espPopTotalPop + impBaseIcEvolStructProp.getEspTotalPop();
+        	}
+		}
+        
+        List<ImpBaseIcCouplesFamillesMenages> coupleList = this.impBaseIcCouplesFamillesMenagesDAO.getByCode(city.getCtyCodeArm());
+        BigDecimal cfmSingle = BigDecimal.ZERO;
+        BigDecimal cfmSingleParent = BigDecimal.ZERO;
+        for (ImpBaseIcCouplesFamillesMenages impBaseIcCouplesFamillesMenages : coupleList) {
+        	if(impBaseIcCouplesFamillesMenages.getCfmSingle() != null) {
+        		cfmSingle = cfmSingle.add(BigDecimal.valueOf(impBaseIcCouplesFamillesMenages.getCfmSingle()));
+        	}
+        	if(impBaseIcCouplesFamillesMenages.getCfmSingleParent() != null) {
+        		cfmSingleParent = cfmSingleParent.add(BigDecimal.valueOf(impBaseIcCouplesFamillesMenages.getCfmSingleParent()));
+        	}
+        }
+        
+        List<ImpBaseIcDiplomesFormation> diplomaList = this.impBaseIcDiplomesFormationDAO.getByCode(city.getCtyCodeArm());
+        BigDecimal dlfUnscholarOver15 = BigDecimal.ZERO;
+        BigDecimal dlfUnscholarNoDiplomaOver15= BigDecimal.ZERO;
+        for (ImpBaseIcDiplomesFormation impBaseIcDiplomesFormation : diplomaList) {
+        	if(impBaseIcDiplomesFormation.getDlfUnscholarOver15() != null ) {
+        		dlfUnscholarOver15 = dlfUnscholarOver15.add(BigDecimal.valueOf(impBaseIcDiplomesFormation.getDlfUnscholarOver15()));
+        	}
+        	if(impBaseIcDiplomesFormation.getDlfUnscholarNoDiplomaOver15() != null ) {
+        		dlfUnscholarNoDiplomaOver15 = dlfUnscholarNoDiplomaOver15.add(BigDecimal.valueOf(impBaseIcDiplomesFormation.getDlfUnscholarNoDiplomaOver15()));
+        	}
+        }
+        
+        List<ImpHdThdDeploiement> hdList = this.impHdThdDeploiementDAO.getByCode(city.getCtyCodeArm());
+        BigDecimal htdAvailableNetworks = BigDecimal.ZERO;
+        BigDecimal htdBestRate = BigDecimal.ZERO;
+        for (ImpHdThdDeploiement impHdThdDeploiement : hdList) {
+        	if(impHdThdDeploiement.getHtdAvailableNetworks() != null) {
+        		htdAvailableNetworks = htdAvailableNetworks.add(BigDecimal.valueOf(impHdThdDeploiement.getHtdAvailableNetworks()));
+        	}
+        	if(impHdThdDeploiement.getHtdBestRate() != null) {
+        		htdBestRate = htdBestRate.add(impHdThdDeploiement.getHtdBestRate());
+        	}
+        }
+        
+        List<ImpMetropoleSites> mobileList = this.impMetropoleSitesDAO.getByCode(city.getCtyCodeArm());
+        BigDecimal mpsCodeAccessibility2G = BigDecimal.ZERO;
+        for (ImpMetropoleSites impMetropoleSites : mobileList) {
+        	if(impMetropoleSites.getMpsCodeAccessibility2G() != null) {
+        		mpsCodeAccessibility2G = mpsCodeAccessibility2G.add(impMetropoleSites.getMpsCodeAccessibility2G());
+        	}
+        }
+
+        List<ImpBaseCcFilosofi> filosofiList = this.impBaseCcFilosofieDAO.getByCode(city.getCtyCodeArm());
+        BigDecimal flfMedianIncome = BigDecimal.ZERO;
+        int nbrowMedian = 0;
+        BigDecimal flfPovertyRate = BigDecimal.ZERO;
+        int nbrowPovrety = 0;
+        for (ImpBaseCcFilosofi impBaseCcFilosofi : filosofiList) {
+        	if(impBaseCcFilosofi.getFlfMedianIncome() != null) {
+        		flfMedianIncome = flfMedianIncome.add(impBaseCcFilosofi.getFlfMedianIncome());
+        		nbrowMedian++;
+        	}
+        	if(impBaseCcFilosofi.getFlfPovertyRate() != null) {
+        		flfPovertyRate = flfPovertyRate.add(impBaseCcFilosofi.getFlfPovertyRate());
+        		nbrowPovrety++;
+        	}
+        }
+        // filosofiList should be average data so if nbRow over 1 we will have to divide by it.
+        if(nbrowMedian > 1) {
+        	flfMedianIncome.divide(BigDecimal.valueOf(nbrowMedian));
+        }
+        if(nbrowPovrety > 1) {
+        	flfPovertyRate.divide(BigDecimal.valueOf(nbrowPovrety));
+        }
+        CityDigitalScoring scoring = new CityDigitalScoring(); 
+        scoring.setCdsCityId(city.getCtyId());
+        scoring.setCdsLegalPopulation(espPopTotalPop);
+        scoring.setCdsNetworkRateCoverage(htdAvailableNetworks.divide(htdBestRate));
+        if(mpsCodeAccessibility2G.compareTo(BigDecimal.ONE) > 0) {
+        	scoring.setCdsMobilityCoverageRate2G(BigDecimal.ONE);
+        }else {
+        	scoring.setCdsMobilityCoverageRate2G(BigDecimal.ZERO);
+        }
+        scoring.setCdsPovertyRate(flfPovertyRate.divide(BIG_DECIMAL_100));
+        scoring.setCdsMedianIncome(flfMedianIncome);
+        scoring.setCdsSingleParent(cfmSingleParent);
+        scoring.setCdsSingle(cfmSingle);
+        scoring.setCdsPublicServicePerPerson(null);
+        scoring.setCdsPublicService(null);
+        
+        if(espPopTotalPop > 0) {
+        	scoring.setCdsJobless15To64(BigDecimal.valueOf(espPopTotalPop - espPopAge014 - espPopAgeOver65).divide(BigDecimal.valueOf(espPopTotalPop))); 
+        }else {
+        	scoring.setCdsJobless15To64(BigDecimal.ZERO);
+        }
+        scoring.setCdsPersonAged15To29(BigDecimal.valueOf(espPopAge1529));
+        scoring.setCdsPersonAgedOver65(BigDecimal.valueOf(espPopAgeOver65));
+        scoring.setCdsNoDiplomaOver15(BigDecimal.valueOf(espPopNoJobOver15));
+		return scoring;
+	}
 
     /**
      * Retrieve the department scoring for the department
