@@ -1,7 +1,11 @@
 = Conception générale
 
-_Avez-vous réussi à finaliser votre projet ?_
+== Avez-vous réussi à finaliser votre projet ?
 
-_Si non, pourquoi et quels éléments sont manquants ?_
+L'unité fonctionnelle exprimée semble couverte.
+Une phase de recette plus approfondie serait nécessaire et bienvenue.
 
-CAUTION: réponse
+
+== Si non, pourquoi et quels éléments sont manquants ?
+
+L'analyse des sources de données a été complexe et nous a demandé beaucoup de temps.
