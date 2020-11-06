@@ -383,12 +383,12 @@ public class Scoring {
         // FIXME
         int cdrDepartmentId = 0;
         Integer cdrLegalPopulation = null;
-        Integer cdrSingle = null;
-        Integer cdrPersonAged15To29 = null;
-        Integer cdrNoDiplomaOver15 = null;
-        Integer cdrJobless15To64 = null;
-        Integer cdrSingleParent = null;
-        Integer cdrPersonAgedOver65 = null;
+        BigDecimal cdrSingle = null;
+        BigDecimal cdrPersonAged15To29 = null;
+        BigDecimal cdrNoDiplomaOver15 = null;
+        BigDecimal cdrJobless15To64 = null;
+        BigDecimal cdrSingleParent = null;
+        BigDecimal cdrPersonAgedOver65 = null;
         BigDecimal cdrMedianIncome = null;
         BigDecimal cdrPovertyRate = null;
         BigDecimal cdrPublicService = null;
