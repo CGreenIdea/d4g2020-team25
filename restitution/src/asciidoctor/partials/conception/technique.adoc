@@ -92,6 +92,11 @@ Ces deux outils se sont basés sur la liste `defaults` de **browserslist**, qui 
 Ce choix est un compromis entre inclusion et bande passante utilisée.
 
 
+==== Conception _mobile-first_
+
+L'interface a été conçue pour fonctionner sur mobile et adaptée pour que l'ergonomie reste acceptable sur un écran d'ordinateur.
+
+
 ==== Harmonisation des styles
 
 Un _reset CSS_ est devenu habituel pour des applications web, afin d'assurer un rendu uniforme dans tous les navigateurs.
@@ -106,6 +111,13 @@ La subtilité est que cet outil ne vise que les styles différents d'un navigate
 Afin de réduire autant que possible la bande passante nécessaire à la consultation de notre solution, nous avons automatisé la minification de toutes les ressources que nous distribuons (HTML, JavaScript et CSS).
 
 Ces ressources sont par ailleurs compressées avec l'algorithme gzip.
+
+
+==== Génération du PDF
+
+Le PDF est généré par le front en utilisant html2pdf.js.
+Ceci est une solution de secours.
+Nous aurions en effet préféré générer le PDF côté Java, mais le faire par le JavaScript permettait d'offrir la fonctionnalité aux utilisateurs à coûts réduits et dans les temps.
 
 
 === Serveur de fichiers : Nginx
@@ -131,3 +143,8 @@ image::technique-extrait-mpd.png[align=center]
 
 Partout où une jointure est possible, nous avons défini une _foreign key_.
 Des index ont été également définis sur certains champs qui peuvent être utilisés pour des requêtes, à condition que ces requêtes puissent les exploiter (la recherche de ville par nom ne le permet pas car elle utilise un critère `like %name%` à des fins d'ergonomie).
+
+
+== Document de synthèse
+
+Le document de synthèse fait partie du rendu et nous avons là aussi opté pour un format ouvert et libre, le document étant rédigé via AsciiDoctor et compilé en PDF.
