@@ -32,6 +32,7 @@ import com.cgi.d4g.entity.CityDigitalScoring;
 import com.cgi.d4g.entity.Department;
 import com.cgi.d4g.entity.DepartmentDigitalScoring;
 import com.cgi.d4g.entity.ImpBaseCcFilosofi;
+import com.cgi.d4g.entity.ImpBaseCcFilosofiDepartement;
 import com.cgi.d4g.entity.ImpBaseCcFilosofiRegion;
 import com.cgi.d4g.entity.ImpBaseIcCouplesFamillesMenages;
 import com.cgi.d4g.entity.ImpBaseIcDiplomesFormation;
@@ -62,7 +63,7 @@ public class Scoring {
      * The city digital scoring DAO.
      */
     private final CityDigitalScoringDAO cityDigitalScoringDAO;
-
+    
     /**
      * The department digital scoring DAO.
      */
@@ -399,6 +400,64 @@ public class Scoring {
      * @return the scoring of the department
      */
     private DepartmentDigitalScoring calculateDepartmentScoring(Department department) {
+    	   CityDigitalScoring regionInto = new CityDigitalScoring();
+
+           ImpBaseIcCouplesFamillesMenagesTo couple = impBaseIcCouplesFamillesMenagesDAO.getAvgdepartment(department.getDptId());
+
+           ImpMetropoleSitesTo metropolis = impMetropoleSitesDAO.getAvgRegion(department.getDptId());
+           ImpHdThdDeploiementTo hd = impHdThdDeploiementDAO.getAvgRegion(department.getDptId());
+           ImpBaseIcEvolStructPropTo populate = impBaseIcEvolStructPropDAO.getAvgRegion(department.getDptId());
+           ImpBaseIcDiplomesFormationTo diploma = impBaseIcDiplomesFormationDAO.getAvgRegion(department.getDptId());
+           ImpBaseCcFilosofiDepartement filosofi = this.impBaseCcFilosofiDepartementDAO.getByCode(department.getDptCode());
+
+           regionInto.setCdsPersonAged15To29(populate.getEspPopAge1529());
+           regionInto.setCdsPersonAgedOver65(populate.getEspPopAgeOver65());
+           regionInto.setCdsJobless15To64(populate.getEspPopNoJobOver15());
+           regionInto.setCdsPovertyRate(filosofi.getFldPovertyRate().divide(BIG_DECIMAL_100));
+           regionInto.setCdsMedianIncome(filosofi.getFldMedianIncome());
+           regionInto.setCdsMobilityCoverageRate2G(metropolis.getMpsCodeAccessibility2G());
+
+           if (couple.getCfm_household() == null || (couple.getCfm_household().compareTo(BigDecimal.ZERO)) == 0) {
+        	   regionInto.setCdsSingleParent(BigDecimal.ZERO);
+        	   regionInto.setCdsSingle(BigDecimal.ZERO);
+           } else {
+        	   regionInto.setCdsSingleParent(couple.getCdrSingleParent().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
+        	   regionInto.setCdsSingle(couple.getCdrSingle().divide(couple.getCfm_household(), 4, RoundingMode.HALF_UP));
+           }
+
+           if (hd.getHtdBestRate() == null || (hd.getHtdBestRate().compareTo(BigDecimal.ZERO)) == 0) {
+        	   regionInto.setCdsNetworkRateCoverage(BigDecimal.ZERO);
+           } else {
+        	   regionInto.setCdsNetworkRateCoverage(hd.getHtdAvailableNetworks().divide(hd.getHtdBestRate(), 4, RoundingMode.HALF_UP));
+           }
+           if (diploma.getDlfUnscholarNoDiplomaOver15() > 0) {
+        	   regionInto.setCdsNoDiplomaOver15(BigDecimal.valueOf(diploma.getDlfUnscholarOver15()).divide(BigDecimal.valueOf(diploma.getDlfUnscholarNoDiplomaOver15()), 4, RoundingMode.HALF_UP));
+           } else {
+        	   regionInto.setCdsNoDiplomaOver15(BigDecimal.ZERO);
+           }
+
+           CityDigitalScoring threshold = consolidatedThreshold(department.getRgnId());
+
+           Calculating.updateScoreBaseOfScoring(regionInto, threshold);
+
+           DepartmentDigitalScoring region = new DepartmentDigitalScoring();
+           region.setCddDepartementId(department.getDptId());
+           region.setCddAdministrationSkill(regionInto.getCdsAdministrationSkill());
+           region.setCddDigitalInterface(regionInto.getCdsDigitalInterface());
+           region.setCddDigitalSkill(regionInto.getCdsDigitalSkill());
+           region.setCddInformationAccess(regionInto.getCdsInformationAccess());
+           region.setCddJobless15To64(regionInto.getCdsJobless15To64());
+           region.setCddLegalPopulation(regionInto.getCdsLegalPopulation());
+           region.setCddMedianIncome(regionInto.getCdsMedianIncome());
+           region.setCddMobilityCoverageRate2G(regionInto.getCdsMobilityCoverageRate2G());
+           region.setCddNetworkRateCoverage(regionInto.getCdsNetworkRateCoverage());
+           region.setCddNoDiplomaOver15(regionInto.getCdsNoDiplomaOver15());
+           region.setCddPersonAged15To29(regionInto.getCdsPersonAged15To29());
+           region.setCddPersonAgedOver65(regionInto.getCdsPersonAgedOver65());
+           region.setCddPovertyRate(regionInto.getCdsPovertyRate());
+           region.setCddSingle(regionInto.getCdsSingle());
+           region.setCddSingleParent(regionInto.getCdsSingleParent());
+           
         return new DepartmentDigitalScoring();
     }
 
