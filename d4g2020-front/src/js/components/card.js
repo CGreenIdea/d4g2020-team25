@@ -68,11 +68,14 @@ const generatePdf = () => {
  * @param {*} cityData scoring details of the city
  */
 function fillCityData(cityData) {
+    var scoring = getScoring(cityData.cdsDigitalInterface, cityData.cdsInformationAccess,
+        cityData.cdsDigitalSkill, cityData.cdsAdministrationSkill);
+
     // Scoring in header
-    document.getElementById("headerScore").innerHTML = cityData.scoring ?? "";
+    document.getElementById("headerScore").innerHTML = scoring.toFixed(2) ?? "";
 
     // Scoring in the detail
-    document.getElementById("cityScore").innerHTML = cityData.scoring ?? "";
+    document.getElementById("cityScore").innerHTML = scoring.toFixed(2) ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -124,9 +127,12 @@ function displayScoringInformation(scoring) {
  * @param {*} departmentData scoring details of the department
  */
 function fillDepartmentData(departmentData) {
+    var scoring = getScoring(departmentData.cddDigitalInterface, departmentData.cddInformationAccess,
+        departmentData.cddDigitalSkill, departmentData.cddAdministrationSkill);
+
     // Scoring in the detail
     document.getElementById("departmentScore").innerHTML =
-        departmentData.scoring ?? "";
+        scoring.toFixed(2) ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -160,8 +166,11 @@ function fillDepartmentData(departmentData) {
  * @param {*} regionData scoring details of the region
  */
 function fillRegionData(regionData) {
+    var scoring = getScoring(regionData.cdrDigitalInterface, regionData.cdrInformationAccess,
+        regionData.cdrDigitalSkill, regionData.cdrAdministrationSkill);
+
     // Scoring in the detail
-    document.getElementById("regionScore").innerHTML = regionData.scoring ?? "";
+    document.getElementById("regionScore").innerHTML = scoring.toFixed(2) ?? "";
 
     let detailContent = getValueRow(
         "Accès aux interfaces digitales",
@@ -223,6 +232,10 @@ function showDepartmentInformation(dptInfo){
  */
 function showRegionInformation(regionInfo){
     document.getElementById("regionDetail").innerHTML = `${regionInfo.rgnName}`;
+}
+
+function getScoring(val1, val2, val3, val4){
+    return (val1 + val2 + val3 + val4);
 }
 
 export { showCard, hideCard, generatePdf };
